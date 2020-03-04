@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<div class="col-lg-6" th:fragment="form">
+    <div class="card mb-3 ">
+        <div class="card-header">
+            <i th:if="${mode == 'NEW'}" class="fa fa-plus">&nbsp;</i>
+            <i th:if="${mode == 'EDIT'}" class="fa fa-edit">&nbsp;</i>
+            <span th:if="${mode == 'NEW'}" th:text="#{menu.documentLine.new}"></span>
+            <span th:if="${mode == 'EDIT'}" th:text="#{menu.documentLine.edit}"></span>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <form th:action="@{${url}}"
+                      name="createDocumentLine"
+                      th:object="${documentLine}"
+                      method="post">
+                    <input class="form-control" id="id" type="hidden" th:field="*{id}"/>
+
+                    <table class="table table-condensed table-hover table-striped" id="clientDetail">
+                        <tr>
+                            <th th:text="#{documentLine.description}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                          class="text-danger"></span>
+                                    <input class="form-control" id="code" type="text" th:field="*{description}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{documentLine.unit}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"
+                                          class="text-danger"></span>
+
+                                    <select class="form-control" th:field="*{unit}">
+                                        <option th:each="unit : ${T(com.frans.bcmanager.enums.Unit).values()}"
+                                                th:value="${unit}"
+                                                th:text="${unit.displayName}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{documentLine.quantity}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+                                          class="text-danger"></span>
+                                    <input class="form-control" id="quantity" type="text" th:field="*{quantity}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{documentLine.price}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+                                          class="text-danger"></span>
+                                    <!--<span class="input-group-addon"><i class="fa fa-eur"></i>-->
+                                    <!--</span>-->
+                                    <input class="form-control" id="price" type="text" th:field="*{price}"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button th:if="${mode == 'NEW'}" type="submit" class="btn btn-primary btn-block" th:text="#{button.add}"></button>
+                    <button th:if="${mode == 'EDIT'}" type="submit" class="btn btn-warning btn-block" th:text="#{button.update}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

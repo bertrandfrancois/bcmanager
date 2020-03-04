@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head :: head_default"></head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/home}" th:text="#{menu.home}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{'/clients/' + ${clientId}}" th:text="#{menu.client.detail}"></a>
+            </li>
+
+            <li th:if="${mode == 'EDIT'}" class="breadcrumb-item">
+                <a th:href="@{'/clients/' + ${clientId} + '/projects/' + ${project.id}}" th:text="#{menu.project.detail}"></a>
+            </li>
+
+            <li th:if="${mode == 'EDIT'}" class="breadcrumb-item active"><span th:text="#{menu.project.edit}"></span></li>
+            <li th:if="${mode == 'NEW'}" class="breadcrumb-item active"><span th:text="#{menu.project.new}"></span></li>
+
+        </ol>
+
+        <div class="card">
+            <div class="card-header">
+                <i th:if="${mode == 'NEW'}" class="fa fa-plus">&nbsp;</i>
+                <i th:if="${mode == 'EDIT'}" class="fa fa-edit">&nbsp;</i>
+                <span th:if="${mode == 'NEW'}" th:text="#{menu.project.new}"></span>
+                <span th:if="${mode == 'EDIT'}" th:text="#{menu.project.edit}"></span>
+            </div>
+
+            <div class="card-body">
+                <form th:action="@{${url}}"
+                      name="editProject"
+                      th:object="${project}"
+                      method="post">
+                    <input id="id" type="hidden" th:field="*{id}"/>
+                    <!--                    <input id="client" type="hidden" th:field="*{client.id}" th:value="${$clientId}"/>-->
+                    <input id="client" type="hidden" th:name="client.id" th:value="${clientId}"/>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="description" th:text="#{project.description}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="description" type="text" th:field="*{description}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="street" th:text="#{address.street}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="street" type="text" th:field="*{address.street}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="postCode" th:text="#{address.postCode}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('address.postCode')}" th:errors="*{address.postCode}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="postCode" type="text" th:field="*{address.postCode}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="city" th:text="#{address.city}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="city" type="text" th:field="*{address.city}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" th:text="#{project.startDate}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('period.startDate')}" th:errors="*{period.startDate}"
+                                      class="text-danger"></span>
+                                <span th:if="${#fields.hasErrors('period')}" th:errors="*{period}" class="text-danger"></span>
+                                <input class="form-control" id="startDate" type="date" th:field="*{period.startDate}"
+                                       pattern="dd/MM/yyyyy"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate" th:text="#{project.endDate}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('period.endDate')}" th:errors="*{period.endDate}"
+                                      class="text-danger"></span>
+                                <span th:if="${#fields.hasErrors('period')}" th:errors="*{period}" class="text-danger"></span>
+
+                                <input class="form-control" id="endDate" type="date" th:field="*{period.endDate}"
+                                       pattern="dd/MM/yyyyy"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a th:if="${mode == 'NEW'}" th:href="@{'/clients/' + ${clientId}}" class="btn btn-danger btn-block">
+                                <span th:text="#{button.cancel}"></span>
+                            </a>
+                            <a th:if="${mode == 'EDIT'}"
+                               th:href="@{'/clients/' + ${clientId} + '/projects/' + ${project.id}}"
+                               class="btn btn-danger btn-block">
+                                <span th:text="#{button.cancel}"></span>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <button th:if="${mode == 'NEW'}"
+                                    type="submit"
+                                    class="btn btn-primary btn-block"
+                                    th:text="#{button.validate}"></button>
+                            <button th:if="${mode == 'EDIT'}"
+                                    type="submit"
+                                    class="btn btn-warning btn-block"
+                                    th:text="#{button.update}"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div th:replace="fragments/modals :: logout"></div>
+
+    <!-- Bootstrap core JavaScript-->
+    <th:block th:include="fragments/scripts :: scripts"/>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head :: head_default"></head>
+
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/home}" th:text="#{menu.home}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{'/clients/' + ${client.id}}" th:text="#{menu.client.detail}"></a>
+            </li>
+            <li class="breadcrumb-item">
+            <a th:href="@{'/clients/' + ${client.id} + '/projects/' + ${project.id}}" th:text="#{menu.project.detail}"></a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="#{menu.projectInvoice.detail}"></span></li>
+        </ol>
+
+        <div class="alert alert-success alert-dismissable" th:if="${param.editSuccess}">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.project.edit.success}"></span>
+        </div>
+        <div class="alert alert-success alert-dismissable" th:if="${param.createSuccess}">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.project.create.success}"></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-user">&nbsp;</i><span th:text="#{menu.projectInvoice.detail}"></span>
+                        <a data-toggle="modal" data-target="#deleteProject"
+                           class="btn btn-danger btn-sm float-right" style="margin-left:5px;">
+                            <i class="fa fa-trash text-white" aria-hidden="true"></i>
+                        </a>
+                        <a th:href="@{'./' + ${project.id} + '/edit'}" class="btn btn-primary btn-sm float-right">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </a>&nbsp;
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover table-striped" id="projectDetail">
+                                <tr>
+                                    <th th:text="#{document.code}"></th>
+                                    <td th:text="${document.code}"></td>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{document.creationDate}"></th>
+                                    <td th:text="${#temporals.format(document.creationDate, 'dd/MM/yyyy')}"></td>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{document.paymentDate}"></th>
+                                    <td th:text="${#temporals.format(document.paymentDate, 'dd/MM/yyyy')}"></td>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{document.taxRate}"></th>
+                                    <td th:text="${document.taxRate}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-6">-->
+                <!--<div class="card mb-3">-->
+                    <!--<div class="card-header">-->
+                        <!--<i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.documents}"></span>-->
+                        <!--<a th:href="@{'./'+ ${project.id} +'/documents/create'}"-->
+                           <!--class="btn btn-primary btn-sm float-right">-->
+                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                        <!--</a>&nbsp;-->
+                    <!--</div>-->
+
+                    <!--<div class="card-body">-->
+                        <!--<div class="table-responsive">-->
+                            <!--<table class="table table-condensed table-hover table-striped" id="projects">-->
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th>-->
+                                        <!--<span th:text="#{document.code}"></span>-->
+                                    <!--</th>-->
+                                    <!--<th>-->
+                                        <!--<span th:text="#{menu.detail}"></span>-->
+                                    <!--</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <!--<tbody>-->
+                                <!--<tr th:each="document : ${project.documents}">-->
+                                    <!--<td th:text="${document.code}"></td>-->
+                                    <!--<td>-->
+                                        <!--<a th:href="@{'./' + ${project.id} +'/documents/' + ${document.id}}">-->
+                                            <!--<i class="fa fa-arrow-right" aria-hidden="true"></i>-->
+                                        <!--</a>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div th:replace="fragments/modals :: logout"></div>
+    <div th:replace="fragments/modals :: deleteProject"></div>
+
+    <!-- Bootstrap core JavaScript-->
+    <th:block th:include="fragments/scripts :: scripts"/>
+</div>
+</body>
+</html>

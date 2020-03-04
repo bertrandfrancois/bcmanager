@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head :: head_default"></head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/home}" th:text="#{menu.home}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{'/clients/' + ${clientId}}" th:text="#{menu.client.detail}"></a>
+            </li>
+            <li th:if="${mode == 'EDIT'}" class="breadcrumb-item">
+                <a th:href="@{'/clients/' + ${clientId}+ 'estimates/' + ${estimate.id}}" th:text="#{menu.estimate.detail}"></a>
+            </li>
+            <li th:if="${mode == 'NEW'}" class="breadcrumb-item active"><span th:text="#{menu.estimate.new}"></span></li>
+            <li th:if="${mode == 'EDIT'}" class="breadcrumb-item active"><span th:text="#{menu.estimate.edit}"></span></li>
+        </ol>
+
+        <div class="card">
+            <div class="card-header">
+                <i th:if="${mode == 'NEW'}" class="fa fa-plus">&nbsp;</i>
+                <i th:if="${mode == 'EDIT'}" class="fa fa-edit">&nbsp;</i>
+                <span th:if="${mode == 'NEW'}" th:text="#{menu.estimate.new}"></span>
+                <span th:if="${mode == 'EDIT'}" th:text="#{menu.estimate.edit}"></span>
+            </div>
+
+            <div class="card-body">
+                <form th:action="${mode == 'NEW'} ?
+                                 @{'/clients/' + ${clientId} + '/estimates/create'} :
+                                 @{'/clients/' + ${clientId}+ '/estimates/' + ${estimate.id} + '/edit'}"
+                      th:name="createDocument"
+                      th:object="${estimate}"
+                      th:method="post">
+                    <input id="id" type="hidden" th:field="*{id}"/>
+                    <input id="client" type="hidden" th:name="client.id" th:value="${clientId}"/>
+                    <input id="documentLines" type="hidden" th:field="*{documentLines}"/>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="code" th:text="#{document.code}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="text-danger"></span>
+                                <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
+                                <input class="form-control" id="code" type="text" th:field="*{code}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxRate" th:text="#{document.taxRate}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('taxRate')}" th:errors="*{taxRate}"
+                                      class="text-danger"></span>
+                                <!--<input class="form-control" id="taxRate" type="text" th:field="*{taxRate}"/>-->
+                                <select class="form-control" th:field="*{taxRate}" id="taxRate">
+                                    <option th:each="rate : ${T(com.frans.bcmanager.enums.TaxRate).values()}"
+                                            th:value="${rate}"
+                                            th:text="${{rate.value}}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="creationDate" th:text="#{document.creationDate}"
+                                       class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="creationDate" type="date" th:field="*{creationDate}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a th:if="${mode == 'NEW'}" th:href="@{'/clients/' + ${clientId}}" class="btn btn-danger btn-block">
+                                <span th:text="#{button.cancel}"></span>
+                            </a>
+                            <a th:if="${mode == 'EDIT'}"
+                               th:href="@{'/clients/' + ${clientId} + '/estimates/' + ${estimate.id}}"
+                               class="btn btn-danger btn-block">
+                                <span th:text="#{button.cancel}"></span>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <button th:if="${mode == 'NEW'}"
+                                    type="submit"
+                                    class="btn btn-primary btn-block"
+                                    th:text="#{button.validate}"></button>
+                            <button th:if="${mode == 'EDIT'}"
+                                    type="submit"
+                                    class="btn btn-warning btn-block"
+                                    th:text="#{button.update}"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div th:replace="fragments/modals :: logout"></div>
+
+    <!-- Bootstrap core JavaScript-->
+    <th:block th:include="fragments/scripts :: scripts"/>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="logout">
+    <div class="modal-dialog" role="document">
+        <form th:action="@{/logout}" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><span th:text="#{menu.logout}"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><span th:text="#{message.logout}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{button.cancel}"></button>
+                    <button type="submit" class="btn btn-danger" th:text="#{button.logout}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="deleteClient" tabindex="-1" role="dialog" aria-labelledby="deleteClientLabel"
+     aria-hidden="true" th:fragment="deleteClient">
+    <div class="modal-dialog" role="document">
+        <form th:action="@{'/clients/' + ${clientId} + '/delete'}" name="deleteClient" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteClientLabel"><span th:text="#{menu.delete.client}"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><span th:text="#{message.delete.client}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{button.cancel}"></button>
+                    <button name ="delete" type="submit" class="btn btn-danger" th:text="#{button.delete}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="deleteProjectLabel"
+     aria-hidden="true" th:fragment="deleteProject">
+    <div class="modal-dialog" role="document">
+        <form th:action="@{'./' + ${project.id} + '/delete'}" name="deleteProject" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProjectLabel"><span th:text="#{menu.delete.project}"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><span th:text="#{message.delete.project}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{button.cancel}"></button>
+                    <button type="submit" class="btn btn-danger" th:text="#{button.delete}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="deleteEstimate" tabindex="-1" role="dialog" aria-labelledby="deleteEstimateLabel"
+     aria-hidden="true" th:fragment="deleteEstimate">
+    <div class="modal-dialog" role="document">
+        <form th:action="@{'/clients/'+ ${clientId} + '/estimates/' + ${document.id} + '/delete'}" name="deleteEstimate" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteEstimateLabel"><span th:text="#{menu.estimate.delete}"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><span th:text="#{message.estimate.delete}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{button.cancel}"></button>
+                    <button type="submit" class="btn btn-danger" th:text="#{button.delete}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="deleteService" tabindex="-1" role="dialog" aria-labelledby="deleteEstimateLabel"
+     aria-hidden="true" th:fragment="deleteService">
+    <div class="modal-dialog" role="document">
+        <form th:action="@{'/clients/'+ ${clientId} + '/services/' + ${document.id} + '/delete'}" name="deleteService" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteServiceLabel"><span th:text="#{menu.invoice.delete}"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><span th:text="#{message.service.delete}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{button.cancel}"></button>
+                    <button type="submit" class="btn btn-danger" th:text="#{button.delete}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="deleteProjectInvoice" tabindex="-1" role="dialog" aria-labelledby="deleteProjectInvoiceLabel"
+     aria-hidden="true" th:fragment="deleteProjectInvoice">
+    <div class="modal-dialog" role="document">
+        <form th:action="@{'/clients/'+ ${clientId} + '/projects/' + ${project.id}+ '/documents/' + ${document.id} + '/delete'}" name="deleteEstimate" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProjectInvoiceLabel"><span th:text="#{menu.invoice.delete}"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><span th:text="#{message.invoice.delete}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{button.cancel}"></button>
+                    <button type="submit" class="btn btn-danger" th:text="#{button.delete}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</html>

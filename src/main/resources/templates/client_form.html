@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head :: head_default"></head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/home}" th:text="#{menu.home}"></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
+            </li>
+            <li th:if="${mode == 'EDIT'}" class="breadcrumb-item">
+                <a th:href="@{'/clients/' + ${client.id}}" th:text="#{menu.client.detail}"></a>
+            </li>
+
+            <li th:if="${mode == 'EDIT'}" class="breadcrumb-item active"><span th:text="#{menu.edit.client}"></span></li>
+            <li th:if="${mode == 'NEW'}" class="breadcrumb-item active"><span th:text="#{menu.new.client}"></span></li>
+        </ol>
+
+        <div class="card">
+            <div class="card-header">
+                <i th:if="${mode == 'NEW'}" class="fa fa-plus">&nbsp;</i>
+                <i th:if="${mode == 'EDIT'}" class="fa fa-edit">&nbsp;</i>
+                <span th:if="${mode == 'NEW'}" th:text="#{menu.new.client}"></span>
+                <span th:if="${mode == 'EDIT'}" th:text="#{menu.edit.client}"></span>
+            </div>
+            <div class="card-body">
+
+                <form th:action="${mode == 'NEW'} ?
+                                 @{'/clients/create'} :
+                                 @{'/clients/' + ${client.id} + '/edit'}"
+                      th:name="createClient"
+                      th:object="${client}"
+                      th:method="post">
+                    <input class="form-control" id="id" type="hidden" th:field="*{id}"/>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="lastName" th:text="#{client.lastName}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="lastName" type="text" th:field="*{lastName}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName" th:text="#{client.firstName}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="firstName" type="text" th:field="*{firstName}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="street" th:text="#{address.street}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="street" type="text" th:field="*{address.street}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="postCode" th:text="#{address.postCode}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('address.postCode')}" th:errors="*{address.postCode}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="postCode" type="text" th:field="*{address.postCode}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="city" th:text="#{address.city}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="city" type="text" th:field="*{address.city}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="mail" th:text="#{client.mail}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="mail" type="text" th:field="*{mail}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber" th:text="#{client.phoneNumber}" class="text-primary required"></label>
+                                <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="phoneNumber" type="text" th:field="*{phoneNumber}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxNumber" th:text="#{client.taxNumber}" class="text-primary"></label>
+                                <span th:if="${#fields.hasErrors('taxNumber')}" th:errors="*{taxNumber}"
+                                      class="text-danger"></span>
+                                <input class="form-control" id="taxNumber" type="text" th:field="*{taxNumber}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <a th:href="${mode == 'NEW'} ?
+                            @{'/clients'} :
+                            @{'/clients/' + ${client.id}}" class="btn btn-danger btn-block">
+                                <span th:text="#{button.cancel}"></span>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <button th:if="${mode == 'NEW'}"
+                                    type="submit"
+                                    class="btn btn-primary btn-block"
+                                    th:text="#{button.validate}"></button>
+                            <button th:if="${mode == 'EDIT'}"
+                                    type="submit"
+                                    class="btn btn-warning btn-block"
+                                    th:text="#{button.update}"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div th:replace="fragments/modals :: logout"></div>
+
+    <!-- Bootstrap core JavaScript-->
+    <th:block th:include="fragments/scripts :: scripts"/>
+
+</div>
+</body>
+</html>

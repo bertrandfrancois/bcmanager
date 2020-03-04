@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel='stylesheet' href='/webjars/bootstrap/3.2.0/css/bootstrap.min.css'/>
+</head>
+<body>
+<div class="projectList" th:unless="${#lists.isEmpty(projects)}">
+
+    <h2 th:text="#{title.projects}"></h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="#{project.description}"></th>
+            <th th:text="#{address.street}"></th>
+            <th th:text="#{address.postCode}"></th>
+            <th th:text="#{address.city}"></th>
+            <th th:text="#{date.startDate}"></th>
+            <th th:text="#{date.endDate}"></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.description}"></td>
+            <td th:text="${project.address.street}"></td>
+            <td th:text="${project.address.postCode}"></td>
+            <td th:text="${project.address.city}"></td>
+            <td th:text="${#dates.format(project.startDate, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#dates.format(project.endDate, 'dd/MM/yyyy')}"></td>
+            <td><a th:href="@{'/project/'+ ${project.id} + '/delete'}">delete</a></td>
+            <td><a th:href="@{'/project/' + ${project.id} + '/edit'}">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <p>Add Construction Site</p>
+    <form action="#" th:action="@{/projects/add}" th:object="${project}" method="post">
+        <table class="table">
+            <tr>
+                <th th:text="#{project.description}"></th>
+                <td><input id="description" type="text" th:field="*{description}"/></td>
+                <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></td>
+            </tr>
+            <tr>
+                <th th:text="#{address.street}"></th>
+                <td><input id="address" type="text" th:field="*{address.street}"/></td>
+                <td th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}" class="text-danger">
+                    Description Error
+                </td>
+            </tr>
+            <tr>
+                <th th:text="#{address.postCode}"></th>
+                <td><input id="postCode" type="text" th:field="*{address.postCode}"/></td>
+                <td th:if="${#fields.hasErrors('address.postCode')}" th:errors="*{address.postCode}"
+                    class="text-danger">Description Error
+                </td>
+            </tr>
+            <tr>
+                <th th:text="#{address.city}"></th>
+                <td><input id="city" type="text" th:field="*{address.city}"/></td>
+                <td th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}" class="text-danger"></td>
+            </tr>
+            <tr>
+                <th th:text="#{date.startDate}"></th>
+                <td><input id="startDate" type="text" th:field="*{startDate}"/></td>
+                <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="text-danger"></td>
+            </tr>
+            <tr>
+                <th th:text="#{date.endDate}"></th>
+                <td><input id="endDate" type="text" th:field="*{endDate}"/></td>
+                <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="text-danger"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="submit"/></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+</body>
+</html>

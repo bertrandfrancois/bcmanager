@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="scripts">
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/popper/popper.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin.min.js}"></script>
+</th:block>
+<th:block th:fragment="scripts_table">
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/popper/popper.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.options.js}"></script>
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin.min.js}"></script>
+    <!-- Custom scripts for this page-->
+    <script th:src="@{/js/sb-admin-datatables.min.js}"></script>
+</th:block>
+</html>
