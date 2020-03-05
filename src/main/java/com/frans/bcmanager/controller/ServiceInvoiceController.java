@@ -1,15 +1,11 @@
 package com.frans.bcmanager.controller;
 
 import com.frans.bcmanager.factory.UrlFactory;
-import com.frans.bcmanager.model.Client;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Mode;
 import com.frans.bcmanager.model.ServiceInvoice;
-import com.frans.bcmanager.service.ClientService;
-import com.frans.bcmanager.service.DocumentLineService;
 import com.frans.bcmanager.service.DocumentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,32 +21,23 @@ import javax.validation.Valid;
 @RequestMapping("/clients/{clientId}/services")
 public class ServiceInvoiceController {
 
-    private ClientService clientService;
-
     private DocumentService documentService;
 
     private UrlFactory urlFactory;
 
-    private DocumentLineService documentLineService;
-
-    public ServiceInvoiceController(ClientService clientService,
-                                    DocumentService documentService,
-                                    UrlFactory urlFactory,
-                                    DocumentLineService documentLineService) {
-        this.clientService = clientService;
+    public ServiceInvoiceController(DocumentService documentService,
+                                    UrlFactory urlFactory) {
         this.documentService = documentService;
         this.urlFactory = urlFactory;
-        this.documentLineService = documentLineService;
     }
 
     @GetMapping("/{documentId}")
     public String showServiceInvoiceDocument(@PathVariable("clientId") long clientId,
                                              @PathVariable("documentId") long documentId,
                                              Model model) {
-        Client client = clientService.find(clientId);
         ServiceInvoice document = (ServiceInvoice) documentService.find(documentId);
         DocumentLine documentLine = new DocumentLine();
-        model.addAttribute("client", client);
+        model.addAttribute("client", clientId);
         model.addAttribute("document", document);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.NEW);
@@ -62,9 +49,8 @@ public class ServiceInvoiceController {
     @GetMapping("/create")
     public String createServiceInvoiceDocument(@PathVariable("clientId") long clientId,
                                                Model model) {
-        Client client = clientService.find(clientId);
         ServiceInvoice serviceInvoice = new ServiceInvoice();
-        model.addAttribute("client", client);
+        model.addAttribute("clientId", clientId);
         model.addAttribute("serviceInvoice", serviceInvoice);
         model.addAttribute("mode", Mode.NEW);
         return "service_invoice_form";
@@ -75,13 +61,11 @@ public class ServiceInvoiceController {
                                              BindingResult bindingResult,
                                              @PathVariable("clientId") long clientId,
                                              Model model) {
-        Client client = clientService.find(clientId);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("client", client);
+            model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.NEW);
             return "service_invoice_form";
         }
-        document.setClient(client);
         Document savedDocument = documentService.save(document);
         return "redirect:/clients/" + clientId + "/services/" + savedDocument.getId() + "?createSuccess";
     }
@@ -90,10 +74,9 @@ public class ServiceInvoiceController {
     public String editServiceInvoice(@PathVariable("clientId") long clientId,
                                      @PathVariable("documentId") long documentId,
                                      Model model) {
-        Client client = clientService.find(clientId);
         ServiceInvoice serviceInvoice = (ServiceInvoice) documentService.find(documentId);
         model.addAttribute("serviceInvoice", serviceInvoice);
-        model.addAttribute("client", client);
+        model.addAttribute("clientId", clientId);
         model.addAttribute("mode", Mode.EDIT);
         return "service_invoice_form";
     }
@@ -105,9 +88,8 @@ public class ServiceInvoiceController {
                                      BindingResult bindingResult,
                                      Model model) {
         if (bindingResult.hasErrors()) {
-            Client client = clientService.find(clientId);
             model.addAttribute("mode", Mode.EDIT);
-            model.addAttribute("client", client);
+            model.addAttribute("clientId", clientId);
             return "service_invoice_form";
         }
         documentService.save(serviceInvoice);
@@ -128,11 +110,10 @@ public class ServiceInvoiceController {
                                                 @PathVariable("documentId") long documentId,
                                                 Model model) {
         Document document = documentService.find(documentId);
-        Client client = clientService.find(clientId);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
-            model.addAttribute("client", client);
+            model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.NEW);
             model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, documentId));
             return "service_invoice_detail";
@@ -149,10 +130,9 @@ public class ServiceInvoiceController {
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
         Document document = documentService.find(documentId);
-        Client client = clientService.find(clientId);
         DocumentLine documentLine = document.getDocumentLines().stream().filter(dl -> dl.getId().equals(documentLineId)).findFirst().get();
         model.addAttribute("document", document);
-        model.addAttribute("client", client);
+        model.addAttribute("clientId", clientId);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.EDIT);
         model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, documentId, documentLineId));
@@ -168,16 +148,15 @@ public class ServiceInvoiceController {
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
         Document document = documentService.find(documentId);
-        Client client = clientService.find(clientId);
-
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
-            model.addAttribute("client", client);
+            model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.EDIT);
             model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, documentId, documentLineId));
             return "service_invoice_detail";
         }
-        documentLineService.save(documentLine);
+        document.editDocumentLine(documentLine);
+        documentService.save(document);
         return "redirect:/clients/" + clientId + "/services/" + document.getId();
     }
 
@@ -185,7 +164,9 @@ public class ServiceInvoiceController {
     public String deleteDocumentLine(@PathVariable("clientId") long clientId,
                                      @PathVariable("documentId") long documentId,
                                      @PathVariable("documentLineId") long documentLineId) {
-        documentLineService.delete(documentLineId);
+        Document document = documentService.find(documentId);
+        document.deleteLine(documentLineId);
+        documentService.save(document);
         return "redirect:/clients/" + clientId + "/services/" + documentId;
     }
 }

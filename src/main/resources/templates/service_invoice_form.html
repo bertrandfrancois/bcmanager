@@ -16,10 +16,10 @@
                 <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${client.id}}" th:text="#{menu.client.detail}"></a>
+                <a th:href="@{'/clients/' + ${clientId}}" th:text="#{menu.client.detail}"></a>
             </li>
             <li th:if="${mode == 'EDIT'}" class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${client.id}+ 'services/' + ${serviceInvoice.id}}" th:text="#{menu.service.detail}"></a>
+                <a th:href="@{'/clients/' + ${clientId}+ 'services/' + ${serviceInvoice.id}}" th:text="#{menu.service.detail}"></a>
             </li>
             <li th:if="${mode == 'NEW'}" class="breadcrumb-item active"><span th:text="#{menu.service.new}"></span></li>
             <li th:if="${mode == 'EDIT'}" class="breadcrumb-item active"><span th:text="#{menu.service.edit}"></span></li>
@@ -35,13 +35,13 @@
 
             <div class="card-body">
                 <form th:action="${mode == 'NEW'} ?
-                                 @{'/clients/' + ${client.id} + '/services/create'} :
-                                 @{'/clients/' + ${client.id}+ '/services/' + ${serviceInvoice.id} + '/edit'}"
+                                 @{'/clients/' + ${clientId} + '/services/create'} :
+                                 @{'/clients/' + ${clientId}+ '/services/' + ${serviceInvoice.id} + '/edit'}"
                       th:name="createDocument"
                       th:object="${serviceInvoice}"
                       th:method="post">
                     <input id="id" type="hidden" th:field="*{id}"/>
-                    <input id="client" type="hidden" th:field="*{client.id}"/>
+                    <input id="client" type="hidden" name="client.id" value="${clientId}"/>
                     <input id="documentLines" type="hidden" th:field="*{documentLines}"/>
                     <div class="row">
                         <div class="col-lg-6">
@@ -83,11 +83,11 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <a th:if="${mode == 'NEW'}" th:href="@{'/clients/' + ${client.id}}" class="btn btn-danger btn-block">
+                            <a th:if="${mode == 'NEW'}" th:href="@{'/clients/' + ${clientId}}" class="btn btn-danger btn-block">
                                 <span th:text="#{button.cancel}"></span>
                             </a>
                             <a th:if="${mode == 'EDIT'}"
-                               th:href="@{'/clients/' + ${client.id} + '/services/' + ${serviceInvoice.id}}"
+                               th:href="@{'/clients/' + ${clientId} + '/services/' + ${serviceInvoice.id}}"
                                class="btn btn-danger btn-block">
                                 <span th:text="#{button.cancel}"></span>
                             </a>

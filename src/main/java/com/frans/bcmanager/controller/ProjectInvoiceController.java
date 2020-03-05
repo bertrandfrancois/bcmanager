@@ -1,16 +1,11 @@
 package com.frans.bcmanager.controller;
 
 import com.frans.bcmanager.factory.UrlFactory;
-import com.frans.bcmanager.model.Client;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Mode;
-import com.frans.bcmanager.model.Project;
 import com.frans.bcmanager.model.ProjectInvoice;
-import com.frans.bcmanager.service.ClientService;
-import com.frans.bcmanager.service.DocumentLineService;
 import com.frans.bcmanager.service.DocumentService;
-import com.frans.bcmanager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,27 +22,15 @@ import javax.validation.Valid;
 @RequestMapping("/clients/{clientId}/projects/{projectId}/documents/")
 public class ProjectInvoiceController {
 
-    private ClientService clientService;
-
     private DocumentService documentService;
-
-    private ProjectService projectService;
 
     private UrlFactory urlFactory;
 
-    private DocumentLineService documentLineService;
-
     @Autowired
-    public ProjectInvoiceController(ClientService clientService,
-                                    DocumentService documentService,
-                                    UrlFactory urlFactory,
-                                    DocumentLineService documentLineService,
-                                    ProjectService projectService) {
-        this.clientService = clientService;
+    public ProjectInvoiceController(DocumentService documentService,
+                                    UrlFactory urlFactory) {
         this.documentService = documentService;
         this.urlFactory = urlFactory;
-        this.documentLineService = documentLineService;
-        this.projectService = projectService;
     }
 
     @GetMapping("/{documentId}")
@@ -55,14 +38,12 @@ public class ProjectInvoiceController {
                                              @PathVariable("documentId") long documentId,
                                              @PathVariable("projectId") long projectId,
                                              Model model) {
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
         ProjectInvoice document = (ProjectInvoice) documentService.find(documentId);
         DocumentLine documentLine = new DocumentLine();
-        model.addAttribute("client", client);
+        model.addAttribute("clientId", clientId);
         model.addAttribute("document", document);
         model.addAttribute("documentLine", documentLine);
-        model.addAttribute("project", project);
+        model.addAttribute("projectId", projectId);
         model.addAttribute("mode", Mode.NEW);
         model.addAttribute("url", urlFactory.newProjectInvoiceDocumentLine(clientId, projectId, documentId));
 
@@ -73,11 +54,9 @@ public class ProjectInvoiceController {
     public String createProjectInvoiceDocument(@PathVariable("clientId") long clientId,
                                                @PathVariable("projectId") long projectId,
                                                Model model) {
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
         ProjectInvoice projectInvoice = new ProjectInvoice();
-        model.addAttribute("client", client);
-        model.addAttribute("project", project);
+        model.addAttribute("clientId", clientId);
+        model.addAttribute("projectId", projectId);
         model.addAttribute("projectInvoice", projectInvoice);
         model.addAttribute("mode", Mode.NEW);
         return "project_invoice_form";
@@ -89,17 +68,12 @@ public class ProjectInvoiceController {
                                              @PathVariable("clientId") long clientId,
                                              @PathVariable("projectId") long projectId,
                                              Model model) {
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
-
         if (bindingResult.hasErrors()) {
-            model.addAttribute("client", client);
-            model.addAttribute("project", project);
+            model.addAttribute("clientId", clientId);
+            model.addAttribute("projectId", projectId);
             model.addAttribute("mode", Mode.NEW);
             return "project_invoice_form";
         }
-        document.setClient(client);
-        document.setProject(project);
         Document savedDocument = documentService.save(document);
         return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + savedDocument.getId() + "?createSuccess";
     }
@@ -109,12 +83,10 @@ public class ProjectInvoiceController {
                                      @PathVariable("projectId") long projectId,
                                      @PathVariable("documentId") long documentId,
                                      Model model) {
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
         ProjectInvoice serviceInvoice = (ProjectInvoice) documentService.find(documentId);
         model.addAttribute("projectInvoice", serviceInvoice);
-        model.addAttribute("client", client);
-        model.addAttribute("project", project);
+        model.addAttribute("clientId", clientId);
+        model.addAttribute("projectId", projectId);
 
         model.addAttribute("mode", Mode.EDIT);
         return "project_invoice_form";
@@ -129,11 +101,9 @@ public class ProjectInvoiceController {
                                      Model model) {
         if (bindingResult.hasErrors()) {
 
-            Project project = projectService.find(projectId);
-            Client client = clientService.find(clientId);
             model.addAttribute("mode", Mode.EDIT);
-            model.addAttribute("client", client);
-            model.addAttribute("project", project);
+            model.addAttribute("clientId", clientId);
+            model.addAttribute("projectId", projectId);
 
             return "project_invoice_form";
         }
@@ -157,13 +127,11 @@ public class ProjectInvoiceController {
                                                 @PathVariable("documentId") long documentId,
                                                 Model model) {
         Document document = documentService.find(documentId);
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
-            model.addAttribute("client", client);
-            model.addAttribute("project", project);
+            model.addAttribute("clientId", clientId);
+            model.addAttribute("projectId", projectId);
 
             model.addAttribute("mode", Mode.NEW);
             model.addAttribute("url", urlFactory.newProjectInvoiceDocumentLine(clientId, projectId, documentId));
@@ -182,13 +150,11 @@ public class ProjectInvoiceController {
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
         Document document = documentService.find(documentId);
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
 
         DocumentLine documentLine = document.getDocumentLines().stream().filter(dl -> dl.getId().equals(documentLineId)).findFirst().get();
         model.addAttribute("document", document);
-        model.addAttribute("client", client);
-        model.addAttribute("project", project);
+        model.addAttribute("clientId", clientId);
+        model.addAttribute("projectId", projectId);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.EDIT);
         model.addAttribute("url", urlFactory.editProjectInvoiceDocumentLine(clientId, projectId, documentId, documentLineId));
@@ -205,18 +171,17 @@ public class ProjectInvoiceController {
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
         Document document = documentService.find(documentId);
-        Client client = clientService.find(clientId);
-        Project project = projectService.find(projectId);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
-            model.addAttribute("client", client);
-            model.addAttribute("project", project);
+            model.addAttribute("clientId", clientId);
+            model.addAttribute("projectId", projectId);
             model.addAttribute("mode", Mode.EDIT);
             model.addAttribute("url", urlFactory.editProjectInvoiceDocumentLine(clientId, projectId, documentId, documentLineId));
             return "project_invoice_detail";
         }
-        documentLineService.save(documentLine);
+        document.editDocumentLine(documentLine);
+        documentService.save(document);
         return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + document.getId();
     }
 
@@ -225,7 +190,9 @@ public class ProjectInvoiceController {
                                      @PathVariable("projectId") long projectId,
                                      @PathVariable("documentId") long documentId,
                                      @PathVariable("documentLineId") long documentLineId) {
-        documentLineService.delete(documentLineId);
+        Document document = documentService.find(documentId);
+        document.deleteLine(documentLineId);
+        documentService.save(document);
         return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId;
     }
 }
