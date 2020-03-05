@@ -42,10 +42,6 @@ public class Project {
     @Embedded
     private Address address;
 
-    @Valid
-    @Embedded
-    private Period period;
-
     @ManyToOne
     @JoinColumn(name = "CLIENT_ID")
     private Client client;

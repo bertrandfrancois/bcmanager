@@ -34,7 +34,6 @@ public class UniqueCodeValidatorTest extends MockitoTest {
 
     @BeforeEach
     public void setUp() {
-        when(document.getId()).thenReturn(DOCUMENT_ID);
         when(document.getCode()).thenReturn(CODE);
         when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of());
     }
@@ -42,8 +41,10 @@ public class UniqueCodeValidatorTest extends MockitoTest {
     public void isValid() {
         Assertions.assertThat(uniqueCodeValidator.isValid(document, context)).isTrue();
     }
+
     @Test
     public void isValid_DocumentCodeExist_SameDocumentId_ReturnsTrue() {
+        when(document.getId()).thenReturn(DOCUMENT_ID);
         when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of(existingDocument));
         when(existingDocument.getId()).thenReturn(DOCUMENT_ID);
 
@@ -51,6 +52,7 @@ public class UniqueCodeValidatorTest extends MockitoTest {
     }
     @Test
     public void isValid_DocumentCodeExist_OtherDocumentId_ReturnsFalse() {
+        when(document.getId()).thenReturn(DOCUMENT_ID);
         when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of(existingDocument));
         when(existingDocument.getId()).thenReturn(OTHER_DOCUMENT_ID);
 

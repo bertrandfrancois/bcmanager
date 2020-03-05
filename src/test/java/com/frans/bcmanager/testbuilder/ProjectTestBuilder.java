@@ -16,8 +16,6 @@ public class ProjectTestBuilder {
     private Long id = null;
     private String description = "description";
     private Address address = new Address("street", "12345", "city");
-    private LocalDate startDate = LocalDate.of(2017, 1, 1);
-    private LocalDate endDate = LocalDate.of(2017, 12, 31);
     private Client client;
 
     public ProjectTestBuilder() {
@@ -32,7 +30,6 @@ public class ProjectTestBuilder {
                            List.of(),
                            description,
                            address,
-                           new Period(startDate, endDate),
                            client);
     }
 

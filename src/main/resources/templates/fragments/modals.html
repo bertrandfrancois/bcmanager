@@ -46,7 +46,7 @@
 <div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="deleteProjectLabel"
      aria-hidden="true" th:fragment="deleteProject">
     <div class="modal-dialog" role="document">
-        <form th:action="@{'./' + ${project.id} + '/delete'}" name="deleteProject" method="post">
+        <form th:action="@{'./' + ${projectId} + '/delete'}" name="deleteProject" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteProjectLabel"><span th:text="#{menu.delete.project}"></span></h5>
@@ -109,7 +109,7 @@
 <div class="modal fade" id="deleteProjectInvoice" tabindex="-1" role="dialog" aria-labelledby="deleteProjectInvoiceLabel"
      aria-hidden="true" th:fragment="deleteProjectInvoice">
     <div class="modal-dialog" role="document">
-        <form th:action="@{'/clients/'+ ${clientId} + '/projects/' + ${project.id}+ '/documents/' + ${document.id} + '/delete'}" name="deleteEstimate" method="post">
+        <form th:action="@{'/clients/'+ ${clientId} + '/projects/' + ${projectId}+ '/documents/' + ${document.id} + '/delete'}" name="deleteEstimate" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteProjectInvoiceLabel"><span th:text="#{menu.invoice.delete}"></span></h5>

@@ -16,8 +16,8 @@
                     <span class="nav-link-text" th:text="#{menu.home}"></span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" th:title="#{menu.clients}">
-                <a class="nav-link" th:href="@{/clients}">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" th:title="#{menu.clients}" id="clients_dropdown">
+                <a class="nav-link" th:href="@{/clients}" id="clients_link">
                     <i class="fa fa-fw fa-users"></i>
                     <span class="nav-link-text" th:text="#{menu.clients}"></span>
                 </a>

@@ -27,7 +27,9 @@ import javax.validation.GroupSequence;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
@@ -65,7 +67,7 @@ public abstract class Document {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "DOCUMENT_ID")
-    protected List<DocumentLine> documentLines;
+    protected List<DocumentLine> documentLines = List.of();
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public BigDecimal getSubTotal() {
@@ -84,6 +86,12 @@ public abstract class Document {
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public BigDecimal getTotalTax() {
         return getSubTotal().multiply(taxRate.getValue());
+    }
+
+    public List<DocumentLine> getDocumentLines() {
+        return documentLines.stream()
+                            .sorted(Comparator.comparing(DocumentLine::getId))
+                            .collect(Collectors.toList());
     }
 
     public void addDocumentLine(DocumentLine documentLine) {

@@ -41,7 +41,7 @@
                       th:object="${serviceInvoice}"
                       th:method="post">
                     <input id="id" type="hidden" th:field="*{id}"/>
-                    <input id="client" type="hidden" name="client.id" value="${clientId}"/>
+                    <input id="client" type="hidden" name="client.id" th:value="${clientId}"/>
                     <input id="documentLines" type="hidden" th:field="*{documentLines}"/>
                     <div class="row">
                         <div class="col-lg-6">

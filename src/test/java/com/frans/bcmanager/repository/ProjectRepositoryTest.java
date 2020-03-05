@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
@@ -32,7 +34,7 @@ public class ProjectRepositoryTest {
         project = ProjectTestBuilder.project().build();
         client = ClientTestBuilder.client().build();
         project.setClient(client);
-        client.getProjects().add(project);
+        client.setProjects(List.of(project));
         entityManager.persist(client);
     }
     @Test

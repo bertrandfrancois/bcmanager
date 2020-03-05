@@ -225,14 +225,6 @@ public class ProjectInvoicePdfView extends AbstractPdfView {
         cellulesInfos[20].setBorder(0);
         cellulesInfos[20].setHorizontalAlignment(ALIGN_LEFT);
         tableInfo.addCell(cellulesInfos[20]);
-
-        String projectStartDate = project().getPeriod().getStartDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String projectEndDate = project().getPeriod().getEndDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-        cellulesInfos[21] = new PdfPCell(new Phrase("du " + projectStartDate + " au " + projectEndDate, fontInfo));
-        cellulesInfos[21].setBorder(0);
-        cellulesInfos[21].setHorizontalAlignment(ALIGN_LEFT);
-        tableInfo.addCell(cellulesInfos[21]);
         return tableInfo;
     }
 

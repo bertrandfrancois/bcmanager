@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>sanity_check</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create client</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/home<datalist><option>http://localhost:8080/home</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=clients_link<datalist><option>id=clients_link</option><option>link=Clients</option><option>//a[@id='clients_link']</option><option>//li[@id='clients_dropdown']/a</option><option>//a[contains(@href, '/clients')]</option><option>//li[2]/a</option><option>css=#clients_link</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div/a/i<datalist><option>//body[@id='page-top']/div/div/div/div/a/i</option><option>//div/div/a/i</option><option>css=i.fa.fa-user-plus</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span<datalist><option>/html/body/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span</option><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span<datalist><option>/html/body/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span</option><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[3]/span<datalist><option>/html/body/div/div[1]/div/div[2]/form/div[1]/div[2]/div[3]/span</option><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=lastName<datalist><option>id=lastName</option><option>name=lastName</option><option>//input[@id='lastName']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#lastName</option></datalist></td><td>Darth</td>
+</tr>
+<tr><td>type</td><td>id=firstName<datalist><option>id=firstName</option><option>name=firstName</option><option>//input[@id='firstName']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/input</option><option>//div[2]/input</option><option>css=#firstName</option></datalist></td><td>Vader</td>
+</tr>
+<tr><td>type</td><td>id=street<datalist><option>id=street</option><option>name=address.street</option><option>//input[@id='street']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#street</option></datalist></td><td>skyway</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[4]/input</option><option>//div[4]/input</option><option>css=#postCode</option></datalist></td><td>123456</td>
+</tr>
+<tr><td>type</td><td>id=city<datalist><option>id=city</option><option>name=address.city</option><option>//input[@id='city']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div/input</option><option>//div[2]/div/input</option><option>css=#city</option></datalist></td><td>Death Star</td>
+</tr>
+<tr><td>type</td><td>id=mail<datalist><option>id=mail</option><option>name=mail</option><option>//input[@id='mail']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#mail</option></datalist></td><td>darth</td>
+</tr>
+<tr><td>type</td><td>id=phoneNumber<datalist><option>id=phoneNumber</option><option>name=phoneNumber</option><option>//input[@id='phoneNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[3]/input</option><option>//div[2]/div[3]/input</option><option>css=#phoneNumber</option></datalist></td><td>0123456789</td>
+</tr>
+<tr><td>type</td><td>id=taxNumber<datalist><option>id=taxNumber</option><option>name=taxNumber</option><option>//input[@id='taxNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[4]/input</option><option>//div[2]/div[4]/input</option><option>css=#taxNumber</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span</option></datalist></td><td>size must be between 0 and 5</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[2]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[2]/span</option></datalist></td><td>Addresse mail incorrecte</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[4]/span</option></datalist></td><td>Numéro TVA invalide</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[4]/input</option><option>//div[4]/input</option><option>css=#postCode</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>type</td><td>id=mail<datalist><option>id=mail</option><option>name=mail</option><option>//input[@id='mail']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#mail</option></datalist></td><td>darth@darkside.com</td>
+</tr>
+<tr><td>type</td><td>id=taxNumber<datalist><option>id=taxNumber</option><option>name=taxNumber</option><option>//input[@id='taxNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[4]/input</option><option>//div[2]/div[4]/input</option><option>css=#taxNumber</option></datalist></td><td>0600834826</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[1]/td</option></datalist></td><td>Darth</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[2]/td</option></datalist></td><td>Vader</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[3]/td</option></datalist></td><td>skyway</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[4]/td</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[5]/td</option></datalist></td><td>Death Star</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[5]/td</option><option>//*[@id="clientDetail"]/tbody/tr[6]/td</option></datalist></td><td>darth@darkside.com</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[6]/td</option><option>//*[@id="clientDetail"]/tbody/tr[7]/td</option></datalist></td><td>0123456789</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[8]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[7]/td</option><option>//*[@id="clientDetail"]/tbody/tr[8]/td</option></datalist></td><td>0600834826</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit client</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div[2]/div/div/div/a[2]/i<datalist><option>//body[@id='page-top']/div/div/div[2]/div/div/div/a[2]/i</option><option>//a[2]/i</option><option>css=i.fa.fa-edit</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=lastName<datalist><option>id=lastName</option><option>name=lastName</option><option>//input[@id='lastName']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#lastName</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=firstName<datalist><option>id=firstName</option><option>name=firstName</option><option>//input[@id='firstName']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/input</option><option>//div[2]/input</option><option>css=#firstName</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=street<datalist><option>id=street</option><option>name=address.street</option><option>//input[@id='street']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#street</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[4]/input</option><option>//div[4]/input</option><option>css=#postCode</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=city<datalist><option>id=city</option><option>name=address.city</option><option>//input[@id='city']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div/input</option><option>//div[2]/div/input</option><option>css=#city</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=mail<datalist><option>id=mail</option><option>name=mail</option><option>//input[@id='mail']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#mail</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=phoneNumber<datalist><option>id=phoneNumber</option><option>name=phoneNumber</option><option>//input[@id='phoneNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[3]/input</option><option>//div[2]/div[3]/input</option><option>css=#phoneNumber</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=taxNumber<datalist><option>id=taxNumber</option><option>name=taxNumber</option><option>//input[@id='taxNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[4]/input</option><option>//div[2]/div[4]/input</option><option>css=#taxNumber</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span</option><option>/html/body/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span</option><option>/html/body/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[3]/span</option><option>/html/body/div/div[1]/div/div[2]/form/div[1]/div[2]/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div<datalist><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div</option><option>//form/div/div/div</option><option>css=div.form-group</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=lastName<datalist><option>id=lastName</option><option>name=lastName</option><option>//input[@id='lastName']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#lastName</option></datalist></td><td>Skywalker</td>
+</tr>
+<tr><td>type</td><td>id=firstName<datalist><option>id=firstName</option><option>name=firstName</option><option>//input[@id='firstName']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/input</option><option>//div[2]/input</option><option>css=#firstName</option></datalist></td><td>Luke</td>
+</tr>
+<tr><td>type</td><td>id=street<datalist><option>id=street</option><option>name=address.street</option><option>//input[@id='street']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#street</option></datalist></td><td>xwing</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[4]/input</option><option>//div[4]/input</option><option>css=#postCode</option></datalist></td><td>123456</td>
+</tr>
+<tr><td>type</td><td>id=city<datalist><option>id=city</option><option>name=address.city</option><option>//input[@id='city']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div/input</option><option>//div[2]/div/input</option><option>css=#city</option></datalist></td><td>tatooine</td>
+</tr>
+<tr><td>type</td><td>id=mail<datalist><option>id=mail</option><option>name=mail</option><option>//input[@id='mail']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#mail</option></datalist></td><td>luke</td>
+</tr>
+<tr><td>type</td><td>id=phoneNumber<datalist><option>id=phoneNumber</option><option>name=phoneNumber</option><option>//input[@id='phoneNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[3]/input</option><option>//div[2]/div[3]/input</option><option>css=#phoneNumber</option></datalist></td><td>123456789</td>
+</tr>
+<tr><td>type</td><td>id=taxNumber<datalist><option>id=taxNumber</option><option>name=taxNumber</option><option>//input[@id='taxNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[4]/input</option><option>//div[2]/div[4]/input</option><option>css=#taxNumber</option></datalist></td><td>123456789</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[4]/span</option></datalist></td><td>size must be between 0 and 5</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[2]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[2]/span</option></datalist></td><td>Addresse mail incorrecte</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[4]/span</option></datalist></td><td>Numéro TVA invalide</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[4]/input</option><option>//div[4]/input</option><option>css=#postCode</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>type</td><td>id=mail<datalist><option>id=mail</option><option>name=mail</option><option>//input[@id='mail']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#mail</option></datalist></td><td>luke@skywalker.com</td>
+</tr>
+<tr><td>type</td><td>id=taxNumber<datalist><option>id=taxNumber</option><option>name=taxNumber</option><option>//input[@id='taxNumber']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div[4]/input</option><option>//div[2]/div[4]/input</option><option>css=#taxNumber</option></datalist></td><td>0600834826</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[1]/td</option></datalist></td><td>Skywalker</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[2]/td</option></datalist></td><td>Luke</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[3]/td</option></datalist></td><td>xwing</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[4]/td</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[5]/td</option></datalist></td><td>tatooine</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[6]/td</option><option>//*[@id="clientDetail"]/tbody/tr[5]/td</option></datalist></td><td>luke@skywalker.com</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[7]/td</option><option>//*[@id="clientDetail"]/tbody/tr[6]/td</option></datalist></td><td>123456789</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[8]/td<datalist><option>//*[@id="clientDetail"]/tbody/tr[8]/td</option><option>//*[@id="clientDetail"]/tbody/tr[7]/td</option></datalist></td><td>0600834826</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create estimate</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div[2]/div[3]/div/div/a<datalist><option>//body[@id='page-top']/div/div/div[2]/div[3]/div/div/a</option><option>//a[contains(@href, './7/estimates/create')]</option><option>//div[3]/div/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span</option></datalist></td><td>Le numéro de document doit être composé de 7 chiffres</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>2020001</td>
+</tr>
+<tr><td>select</td><td>id=taxRate<datalist><option>id=taxRate</option><option>name=taxRate</option><option>//select[@id='taxRate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/select</option><option>//select</option><option>css=#taxRate</option></datalist></td><td>label=6%</td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-01-01</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>2020001</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option></datalist></td><td>01/01/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option></datalist></td><td>6%</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option></datalist></td><td>$0.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option></datalist></td><td>$0.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option></datalist></td><td>$0.00</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add estimate lines</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div[2]/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[1]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[1]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[3]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[3]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[4]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[4]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description1</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=m</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>10</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>50</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div[2]/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]</option></datalist></td><td>description1</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]</option></datalist></td><td>10.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]</option></datalist></td><td>m</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]</option></datalist></td><td>$50.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]</option></datalist></td><td>$500.00</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description2</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=m³</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>5</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>5</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[1]</option></datalist></td><td>description2</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[2]</option></datalist></td><td>5.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[3]</option></datalist></td><td>m³</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[4]</option></datalist></td><td>$5.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option></datalist></td><td>$525.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option></datalist></td><td>$31.50</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option></datalist></td><td>$556.50</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit estimate lines</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i<datalist><option>//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i</option><option>//td[6]/a/i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description3</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=ff</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>1</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>125</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]</option></datalist></td><td>description3</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]</option></datalist></td><td>1.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]</option></datalist></td><td>ff</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]</option></datalist></td><td>$125.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]</option></datalist></td><td>$125.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>$150.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>$9.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>$159.00</td>
+</tr>
+<tr><td>click</td><td>//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i<datalist><option>//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i</option><option>//td[6]/a[2]/i</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>$1.50</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>$26.50</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit estimate</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div/div/div/a[3]/i<datalist><option>//body[@id='page-top']/div/div/div/div/div/div/a[3]/i</option><option>//a[3]/i</option><option>css=i.fa.fa-edit</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span</option></datalist></td><td>Le numéro de document doit être composé de 7 chiffres</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>select</td><td>id=taxRate<datalist><option>id=taxRate</option><option>name=taxRate</option><option>//select[@id='taxRate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/select</option><option>//select</option><option>css=#taxRate</option></datalist></td><td>label=21%</td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-02-01</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option></datalist></td><td>01/02/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option></datalist></td><td>21%</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option></datalist></td><td>$5.25</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="estimateDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option></datalist></td><td>$30.25</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">delete estimate</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div[2]/div/div/div/a/i<datalist><option>//body[@id='page-top']/div/div/div[2]/div/div/div/a/i</option><option>//div/div/a/i</option><option>css=i.fa.fa-trash.text-white</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[3]<datalist><option>xpath=(//button[@type='submit'])[3]</option><option>//div[@id='deleteEstimate']/div/form/div/div[3]/button[2]</option><option>//div[3]/div/form/div/div[3]/button[2]</option><option>css=form[name="deleteEstimate"] &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-danger</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create service invoice</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//*[@id="page-top"]/div/div[1]/div/div[4]/div/div[1]/a<datalist><option>//body[@id='page-top']/div/div/div[2]/div[3]/div/div/a</option><option>//a[contains(@href, './7/estimates/create')]</option><option>//div[3]/div/div/a</option><option>//*[@id="page-top"]/div/div[1]/div/div[4]/div/div[1]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span</option></datalist></td><td>Le numéro de document doit être composé de 7 chiffres</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[4]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>select</td><td>id=taxRate<datalist><option>id=taxRate</option><option>name=taxRate</option><option>//select[@id='taxRate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/select</option><option>//select</option><option>css=#taxRate</option></datalist></td><td>label=6%</td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-01-01</td>
+</tr>
+<tr><td>type</td><td>id=paymentDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option><option>id=paymentDate</option></datalist></td><td>2020-01-15</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[1]/td</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[2]/td</option></datalist></td><td>01/01/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[3]/td</option></datalist></td><td>15/01/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[4]/td</option></datalist></td><td>6%</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$0.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$0.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$0.00</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add service invoice lines</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div[2]/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[1]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[1]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[3]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[3]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[4]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[4]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description1</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=m</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>10</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>50</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div[2]/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]</option></datalist></td><td>description1</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]</option></datalist></td><td>10.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]</option></datalist></td><td>m</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]</option></datalist></td><td>$50.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]</option></datalist></td><td>$500.00</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description2</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=m³</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>5</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>5</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[1]</option></datalist></td><td>description2</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[2]</option></datalist></td><td>5.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[3]</option></datalist></td><td>m³</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[4]</option></datalist></td><td>$5.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[4]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$525.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$31.50</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$556.50</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit service invoice lines</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i<datalist><option>//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i</option><option>//td[6]/a/i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description3</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=ff</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>1</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>125</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]</option></datalist></td><td>description3</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]</option></datalist></td><td>1.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]</option></datalist></td><td>ff</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]</option></datalist></td><td>$125.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]</option></datalist></td><td>$125.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$150.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$9.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[7]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$159.00</td>
+</tr>
+<tr><td>click</td><td>//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i<datalist><option>//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i</option><option>//td[6]/a[2]/i</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$1.50</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[7]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$26.50</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit service invoice</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div/div/div/a[3]/i<datalist><option>//body[@id='page-top']/div/div/div/div/div/div/a[3]/i</option><option>//a[3]/i</option><option>css=i.fa.fa-edit</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span</option></datalist></td><td>Le numéro de document doit être composé de 7 chiffres</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>select</td><td>id=taxRate<datalist><option>id=taxRate</option><option>name=taxRate</option><option>//select[@id='taxRate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/select</option><option>//select</option><option>css=#taxRate</option></datalist></td><td>label=21%</td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-02-01</td>
+</tr>
+<tr><td>type</td><td>id=paymentDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option><option>id=paymentDate</option></datalist></td><td>2020-02-10</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[1]/td</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[2]/td</option></datalist></td><td>01/02/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[3]/td</option></datalist></td><td>10/02/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[4]/td</option></datalist></td><td>21%</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$5.25</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="serviceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[7]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$30.25</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">delete service invoice</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//*[@id="page-top"]/div/div[1]/div[2]/div[1]/div/div[1]/a[1]<datalist><option>//body[@id='page-top']/div/div/div[2]/div/div/div/a/i</option><option>//div/div/a/i</option><option>css=i.fa.fa-trash.text-white</option><option>//*[@id="page-top"]/div/div[1]/div[2]/div[1]/div/div[1]/a[1]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//*[@id="deleteService"]/div/form/div/div[3]/button[2]<datalist><option>xpath=(//button[@type='submit'])[3]</option><option>//div[@id='deleteEstimate']/div/form/div/div[3]/button[2]</option><option>//div[3]/div/form/div/div[3]/button[2]</option><option>css=form[name="deleteEstimate"] &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-danger</option><option>//*[@id="deleteService"]/div/form/div/div[3]/button[2]</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create project</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div[2]/div/div/a/i<datalist><option>//body[@id='page-top']/div/div/div/div[2]/div/div/a/i</option><option>//div[2]/div/div/a/i</option><option>css=i.fa.fa-plus</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=description<datalist><option>id=description</option><option>//input[@id='description']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#description</option></datalist></td><td>project description</td>
+</tr>
+<tr><td>type</td><td>id=street<datalist><option>id=street</option><option>name=address.street</option><option>//input[@id='street']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/input</option><option>//div[2]/input</option><option>css=#street</option></datalist></td><td>street</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#postCode</option></datalist></td><td>123456</td>
+</tr>
+<tr><td>type</td><td>id=city<datalist><option>id=city</option><option>name=address.city</option><option>//input[@id='city']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div/input</option><option>//div[2]/div/input</option><option>css=#city</option></datalist></td><td>city</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span</option></datalist></td><td>size must be between 0 and 5</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#postCode</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[1]/td</option></datalist></td><td>project description</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[2]/td</option></datalist></td><td>street</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[3]/td</option></datalist></td><td>12345</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[4]/td</option></datalist></td><td>city</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit project</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//*[@id="page-top"]/div/div[1]/div[2]/div[1]/div/div[1]/a[2]<datalist><option>//body[@id='page-top']/div/div/div/div[2]/div/div/a/i</option><option>//div[2]/div/div/a/i</option><option>css=i.fa.fa-plus</option><option>//*[@id="page-top"]/div/div[1]/div[2]/div[1]/div/div[1]/a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=description<datalist><option>id=description</option><option>//input[@id='description']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#description</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=street<datalist><option>id=street</option><option>name=address.street</option><option>//input[@id='street']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/input</option><option>//div[2]/input</option><option>css=#street</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#postCode</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=city<datalist><option>id=city</option><option>name=address.city</option><option>//input[@id='city']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div/input</option><option>//div[2]/div/input</option><option>css=#city</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=description<datalist><option>id=description</option><option>//input[@id='description']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#description</option></datalist></td><td>other description</td>
+</tr>
+<tr><td>type</td><td>id=street<datalist><option>id=street</option><option>name=address.street</option><option>//input[@id='street']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/input</option><option>//div[2]/input</option><option>css=#street</option></datalist></td><td>other street</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#postCode</option></datalist></td><td>234567</td>
+</tr>
+<tr><td>type</td><td>id=city<datalist><option>id=city</option><option>name=address.city</option><option>//input[@id='city']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div[2]/div/input</option><option>//div[2]/div/input</option><option>css=#city</option></datalist></td><td>other city</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span</option></datalist></td><td>size must be between 0 and 5</td>
+</tr>
+<tr><td>type</td><td>id=postCode<datalist><option>id=postCode</option><option>name=address.postCode</option><option>//input[@id='postCode']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#postCode</option></datalist></td><td>23456</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[1]/td</option></datalist></td><td>other description</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[2]/td</option></datalist></td><td>other street</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[3]/td</option></datalist></td><td>23456</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="projectDetail"]/tbody/tr[4]/td</option></datalist></td><td>other city</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create project invoice</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//*[@id="page-top"]/div/div[1]/div[2]/div[2]/div/div[1]/a<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[4]/div/div[1]/a</option><option>//body[@id='page-top']/div/div/div[2]/div[3]/div/div/a</option><option>//a[contains(@href, './7/estimates/create')]</option><option>//div[3]/div/div/a</option><option>//*[@id="page-top"]/div/div[1]/div[2]/div[2]/div/div[1]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span</option></datalist></td><td>Le numéro de document doit être composé de 7 chiffres</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[4]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[4]/span</option><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>select</td><td>id=taxRate<datalist><option>id=taxRate</option><option>name=taxRate</option><option>//select[@id='taxRate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/select</option><option>//select</option><option>css=#taxRate</option></datalist></td><td>label=6%</td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-01-01</td>
+</tr>
+<tr><td>type</td><td>id=paymentDate<datalist><option>id=paymentDate</option><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-01-15</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[1]/td</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[2]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[2]/td</option></datalist></td><td>01/01/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[3]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[3]/td</option></datalist></td><td>15/01/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[4]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[4]/td</option></datalist></td><td>6%</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$0.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$0.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$0.00</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add project invoice lines</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div[2]/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[1]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[1]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[3]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[3]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="clientDetail"]/tbody/tr[4]/td/div/span<datalist><option>//*[@id="clientDetail"]/tbody/tr[4]/td/div/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description1</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=m</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>10</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>50</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div[2]/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]</option></datalist></td><td>description1</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]</option></datalist></td><td>10.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]</option></datalist></td><td>m</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]</option></datalist></td><td>$50.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]</option></datalist></td><td>$500.00</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description2</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=m³</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>5</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>5</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-primary.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[1]</option></datalist></td><td>description2</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[2]</option></datalist></td><td>5.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[3]</option></datalist></td><td>m³</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[4]</option></datalist></td><td>$5.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[4]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$525.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$31.50</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$556.50</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit project invoice lines</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i<datalist><option>//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i</option><option>//td[6]/a/i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>//input[@id='code']</option><option>//table[@id='clientDetail']/tbody/tr/td/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>description3</td>
+</tr>
+<tr><td>select</td><td>id=unit<datalist><option>id=unit</option><option>name=unit</option><option>//select[@id='unit']</option><option>//table[@id='clientDetail']/tbody/tr[2]/td/div/select</option><option>//select</option><option>css=#unit</option></datalist></td><td>label=ff</td>
+</tr>
+<tr><td>type</td><td>id=quantity<datalist><option>id=quantity</option><option>name=quantity</option><option>//input[@id='quantity']</option><option>//table[@id='clientDetail']/tbody/tr[3]/td/div/input</option><option>//tr[3]/td/div/input</option><option>css=#quantity</option></datalist></td><td>1</td>
+</tr>
+<tr><td>type</td><td>id=price<datalist><option>id=price</option><option>name=price</option><option>//input[@id='price']</option><option>//table[@id='clientDetail']/tbody/tr[4]/td/div/input</option><option>//tr[4]/td/div/input</option><option>css=#price</option></datalist></td><td>125</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/div/div[2]/div/form/button</option><option>//form/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[1]</option></datalist></td><td>description3</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[2]</option></datalist></td><td>1.000</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[3]</option></datalist></td><td>ff</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[4]</option></datalist></td><td>$125.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]<datalist><option>//*[@id="documentLineDetail"]/tbody/tr[1]/td[5]</option></datalist></td><td>$125.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$150.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$9.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[7]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$159.00</td>
+</tr>
+<tr><td>click</td><td>//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i<datalist><option>//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i</option><option>//td[6]/a[2]/i</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$1.50</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="documentLineDetail"]/tbody/tr[2]/td[5]</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[7]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$26.50</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">edit project invoice</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div/div/div/a[3]/i<datalist><option>//body[@id='page-top']/div/div/div/div/div/div/a[3]/i</option><option>//a[3]/i</option><option>css=i.fa.fa-edit</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span</option></datalist></td><td>Le numéro de document doit être composé de 7 chiffres</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span<datalist><option>//*[@id="page-top"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span</option></datalist></td><td>champ obligatoire</td>
+</tr>
+<tr><td>type</td><td>id=code<datalist><option>id=code</option><option>name=code</option><option>//input[@id='code']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div/input</option><option>//div/input</option><option>css=#code</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>select</td><td>id=taxRate<datalist><option>id=taxRate</option><option>name=taxRate</option><option>//select[@id='taxRate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[2]/select</option><option>//select</option><option>css=#taxRate</option></datalist></td><td>label=21%</td>
+</tr>
+<tr><td>type</td><td>id=creationDate<datalist><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-02-01</td>
+</tr>
+<tr><td>type</td><td>id=paymentDate<datalist><option>id=paymentDate</option><option>id=creationDate</option><option>name=creationDate</option><option>//input[@id='creationDate']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div/div/div[3]/input</option><option>//div[3]/input</option><option>css=#creationDate</option></datalist></td><td>2020-02-10</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//body[@id='page-top']/div/div/div/div[2]/form/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.btn.btn-warning.btn-block</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[1]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[1]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[1]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[1]/td</option></datalist></td><td>2020002</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[2]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[2]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[2]/td</option></datalist></td><td>01/02/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[3]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[3]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[2]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[3]/td</option></datalist></td><td>10/02/2020</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[4]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[4]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[3]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[4]/td</option></datalist></td><td>21%</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[4]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[5]/td</option></datalist></td><td>$25.00</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[5]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[6]/td</option></datalist></td><td>$5.25</td>
+</tr>
+<tr><td>assertText</td><td>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td<datalist><option>//*[@id="serviceDetail"]/tbody/tr[7]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[6]/td</option><option>//*[@id="estimateDetail"]/tbody/tr[7]/td</option><option>//*[@id="projectInvoiceDetail"]/tbody/tr[7]/td</option></datalist></td><td>$30.25</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">delete project invoice</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div[2]/div/div/div/a/i<datalist><option>//body[@id='page-top']/div/div/div[2]/div/div/div/a/i</option><option>//div/div/a/i</option><option>css=i.fa.fa-trash.text-white</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[3]<datalist><option>xpath=(//button[@type='submit'])[3]</option><option>//div[@id='deleteProjectInvoice']/div/form/div/div[3]/button[2]</option><option>//div[3]/div/form/div/div[3]/button[2]</option><option>css=form[name="deleteEstimate"] &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-danger</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">delete project</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//body[@id='page-top']/div/div/div/div/div/div/a/i<datalist><option>//body[@id='page-top']/div/div/div/div/div/div/a/i</option><option>//div/div/a/i</option><option>css=i.fa.fa-trash.text-white</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[@id='deleteProject']/div/form/div/div[3]/button[2]</option><option>//div[3]/div/form/div/div[3]/button[2]</option><option>css=form[name="deleteProject"] &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-danger</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
