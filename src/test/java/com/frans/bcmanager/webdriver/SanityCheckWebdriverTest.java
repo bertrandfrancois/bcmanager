@@ -171,15 +171,15 @@ public class SanityCheckWebdriverTest {
     private void createEstimate() {
         driver.findElement(By.xpath("//body[@id='page-top']/div/div/div[2]/div[3]/div/div/a")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("Le numéro de document doit être composé de 7 chiffres", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
+        assertEquals("Le numéro de document doit commencer par D suivi de 7 chiffres (ex:D2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
         driver.findElement(By.id("code")).clear();
-        driver.findElement(By.id("code")).sendKeys("2020001");
+        driver.findElement(By.id("code")).sendKeys("D2020001");
         new Select(driver.findElement(By.id("taxRate"))).selectByVisibleText("6%");
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("2020-01-01");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("2020001", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[1]/td")).getText());
+        assertEquals("D2020001", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[1]/td")).getText());
         assertEquals("01/01/2020", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[2]/td")).getText());
         assertEquals("6%", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[3]/td")).getText());
         assertEquals("$0.00", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[4]/td")).getText());
@@ -257,15 +257,15 @@ public class SanityCheckWebdriverTest {
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("Le numéro de document doit être composé de 7 chiffres", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
+        assertEquals("Le numéro de document doit commencer par D suivi de 7 chiffres (ex:D2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
         driver.findElement(By.id("code")).clear();
-        driver.findElement(By.id("code")).sendKeys("2020002");
+        driver.findElement(By.id("code")).sendKeys("D2020002");
         new Select(driver.findElement(By.id("taxRate"))).selectByVisibleText("21%");
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("2020-02-01");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("2020002", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[1]/td")).getText());
+        assertEquals("D2020002", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[1]/td")).getText());
         assertEquals("01/02/2020", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[2]/td")).getText());
         assertEquals("21%", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[3]/td")).getText());
         assertEquals("$25.00", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[4]/td")).getText());
@@ -282,18 +282,18 @@ public class SanityCheckWebdriverTest {
     private void createServiceInvoice(){
         driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[4]/div/div[1]/a")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("Le numéro de document doit être composé de 7 chiffres", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
+        assertEquals("Le numéro de document doit commencer par F suivi de 7 chiffres (ex:F2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[4]/span")).getText());
         driver.findElement(By.id("code")).clear();
-        driver.findElement(By.id("code")).sendKeys("2020002");
+        driver.findElement(By.id("code")).sendKeys("F2020002");
         new Select(driver.findElement(By.id("taxRate"))).selectByVisibleText("6%");
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("2020-01-01");
         driver.findElement(By.id("paymentDate")).clear();
         driver.findElement(By.id("paymentDate")).sendKeys("2020-01-15");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("2020002", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[1]/td")).getText());
+        assertEquals("F2020002", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[1]/td")).getText());
         assertEquals("01/01/2020", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[2]/td")).getText());
         assertEquals("15/01/2020", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[3]/td")).getText());
         assertEquals("6%", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[4]/td")).getText());
@@ -372,17 +372,17 @@ public class SanityCheckWebdriverTest {
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("Le numéro de document doit être composé de 7 chiffres", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
+        assertEquals("Le numéro de document doit commencer par F suivi de 7 chiffres (ex:F2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
         driver.findElement(By.id("code")).clear();
-        driver.findElement(By.id("code")).sendKeys("2020002");
+        driver.findElement(By.id("code")).sendKeys("F2020002");
         new Select(driver.findElement(By.id("taxRate"))).selectByVisibleText("21%");
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("2020-02-01");
         driver.findElement(By.id("paymentDate")).clear();
         driver.findElement(By.id("paymentDate")).sendKeys("2020-02-10");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("2020002", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[1]/td")).getText());
+        assertEquals("F2020002", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[1]/td")).getText());
         assertEquals("01/02/2020", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[2]/td")).getText());
         assertEquals("10/02/2020", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[3]/td")).getText());
         assertEquals("21%", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[4]/td")).getText());
@@ -461,18 +461,18 @@ public class SanityCheckWebdriverTest {
     private void createProjectInvoice(){
         driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div[2]/div[2]/div/div[1]/a")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("Le numéro de document doit être composé de 7 chiffres", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
+        assertEquals("Le numéro de document doit commencer par F suivi de 7 chiffres (ex:F2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[4]/span")).getText());
         driver.findElement(By.id("code")).clear();
-        driver.findElement(By.id("code")).sendKeys("2020002");
+        driver.findElement(By.id("code")).sendKeys("F2020002");
         new Select(driver.findElement(By.id("taxRate"))).selectByVisibleText("6%");
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("2020-01-01");
         driver.findElement(By.id("paymentDate")).clear();
         driver.findElement(By.id("paymentDate")).sendKeys("2020-01-15");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("2020002", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[1]/td")).getText());
+        assertEquals("F2020002", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[1]/td")).getText());
         assertEquals("01/01/2020", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[2]/td")).getText());
         assertEquals("15/01/2020", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[3]/td")).getText());
         assertEquals("6%", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[4]/td")).getText());
@@ -517,6 +517,7 @@ public class SanityCheckWebdriverTest {
 
 
     }
+
     private void editProjectInvoiceLines(){
         driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i")).click();
         driver.findElement(By.id("code")).clear();
@@ -539,8 +540,6 @@ public class SanityCheckWebdriverTest {
         assertEquals("$25.00", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$1.50", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[6]/td")).getText());
         assertEquals("$26.50", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[7]/td")).getText());
-
-
     }
     private void editProjectInvoice(){
         driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div/div/div/a[3]/i")).click();
@@ -549,17 +548,17 @@ public class SanityCheckWebdriverTest {
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("Le numéro de document doit être composé de 7 chiffres", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
+        assertEquals("Le numéro de document doit commencer par F suivi de 7 chiffres (ex:F2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
         driver.findElement(By.id("code")).clear();
-        driver.findElement(By.id("code")).sendKeys("2020002");
+        driver.findElement(By.id("code")).sendKeys("F2020002");
         new Select(driver.findElement(By.id("taxRate"))).selectByVisibleText("21%");
         driver.findElement(By.id("creationDate")).clear();
         driver.findElement(By.id("creationDate")).sendKeys("2020-02-01");
         driver.findElement(By.id("paymentDate")).clear();
         driver.findElement(By.id("paymentDate")).sendKeys("2020-02-10");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("2020002", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[1]/td")).getText());
+        assertEquals("F2020002", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[1]/td")).getText());
         assertEquals("01/02/2020", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[2]/td")).getText());
         assertEquals("10/02/2020", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[3]/td")).getText());
         assertEquals("21%", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[4]/td")).getText());

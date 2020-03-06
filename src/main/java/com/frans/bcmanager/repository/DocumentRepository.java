@@ -1,13 +1,14 @@
 package com.frans.bcmanager.repository;
 
 import com.frans.bcmanager.model.Document;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface DocumentRepository extends CrudRepository<Document, Long> {
 
-    Optional<Document> findByCode(String value);
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE d.document_code = ?1",
+           nativeQuery = true)
     List<Document> findDocumentsByCode(String value);
 }

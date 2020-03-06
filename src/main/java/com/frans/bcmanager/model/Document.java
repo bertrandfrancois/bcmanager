@@ -1,9 +1,7 @@
 package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
-import com.frans.bcmanager.validation.ClassCheck;
 import com.frans.bcmanager.validation.UniqueCode;
-import com.frans.bcmanager.validation.ValidCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.GroupSequence;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -39,18 +36,13 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@UniqueCode(groups = ClassCheck.class)
-@GroupSequence({Document.class, ClassCheck.class})
+@UniqueCode
 public abstract class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DOCUMENT_ID")
     private Long id;
-
-    @ValidCode
-    @Column(name = "DOCUMENT_CODE")
-    private String code;
 
     @Column(name = "CREATION_DATE")
     @NotNull
@@ -87,6 +79,8 @@ public abstract class Document {
     public BigDecimal getTotalTax() {
         return getSubTotal().multiply(taxRate.getValue());
     }
+
+    public abstract String getCode();
 
     public List<DocumentLine> getDocumentLines() {
         return documentLines.stream()

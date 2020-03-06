@@ -1,5 +1,6 @@
 package com.frans.bcmanager.model;
 
+import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ProjectInvoice extends Document {
 
+    @InvoiceCode
+    @Column(name = "DOCUMENT_CODE")
+    private String code;
+
     @Column(name = "PAYMENT_DATE")
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -28,5 +33,4 @@ public class ProjectInvoice extends Document {
     @ManyToOne
     @JoinColumn(name = "PROJECT_ID")
     private Project project;
-
 }
