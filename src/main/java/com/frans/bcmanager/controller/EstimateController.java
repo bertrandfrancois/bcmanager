@@ -5,7 +5,6 @@ import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Estimate;
 import com.frans.bcmanager.model.Mode;
-import com.frans.bcmanager.service.DocumentLineService;
 import com.frans.bcmanager.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,6 +55,7 @@ public class EstimateController {
         model.addAttribute("clientId", clientId);
         model.addAttribute("estimate", estimate);
         model.addAttribute("mode", Mode.NEW);
+        model.addAttribute("nextEstimateCode", documentService.getNextEstimateCode());
         return "estimate_form";
     }
 
@@ -67,6 +67,7 @@ public class EstimateController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.NEW);
+            model.addAttribute("nextEstimateCode", document.getCode());
             return "estimate_form";
         }
         Document savedDocument = documentService.save(document);

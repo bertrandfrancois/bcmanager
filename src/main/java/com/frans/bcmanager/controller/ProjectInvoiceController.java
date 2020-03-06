@@ -59,6 +59,7 @@ public class ProjectInvoiceController {
         model.addAttribute("projectId", projectId);
         model.addAttribute("projectInvoice", projectInvoice);
         model.addAttribute("mode", Mode.NEW);
+        model.addAttribute("nextInvoiceCode", documentService.getNextInvoiceCode());
         return "project_invoice_form";
     }
 
@@ -72,6 +73,7 @@ public class ProjectInvoiceController {
             model.addAttribute("clientId", clientId);
             model.addAttribute("projectId", projectId);
             model.addAttribute("mode", Mode.NEW);
+            model.addAttribute("nextInvoiceCode", document.getCode());
             return "project_invoice_form";
         }
         Document savedDocument = documentService.save(document);

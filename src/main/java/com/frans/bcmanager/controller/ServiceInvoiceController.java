@@ -53,6 +53,7 @@ public class ServiceInvoiceController {
         model.addAttribute("clientId", clientId);
         model.addAttribute("serviceInvoice", serviceInvoice);
         model.addAttribute("mode", Mode.NEW);
+        model.addAttribute("nextInvoiceCode", documentService.getNextInvoiceCode());
         return "service_invoice_form";
     }
 
@@ -64,6 +65,7 @@ public class ServiceInvoiceController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.NEW);
+            model.addAttribute("nextInvoiceCode", document.getCode());
             return "service_invoice_form";
         }
         Document savedDocument = documentService.save(document);

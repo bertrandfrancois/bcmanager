@@ -52,7 +52,8 @@
                                 <label for="code" th:text="#{document.code}" class="text-primary required"></label>
                                 <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="text-danger"></span>
                                 <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
-                                <input class="form-control" id="code" type="text" th:field="*{code}"/>
+                                <input th:if="${mode=='EDIT'}" class="form-control" id="code" type="text" th:field="*{code}"/>
+                                <input th:if="${mode=='NEW'}" class="form-control" id="code" type="text" th:value="${nextInvoiceCode}" name="code"/>
                             </div>
                             <div class="form-group">
                                 <label for="taxRate" th:text="#{document.taxRate}" class="text-primary required"></label>

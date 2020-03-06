@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -39,4 +40,21 @@ public class DocumentService implements BaseService<Document> {
         documentRepository.deleteById(id);
     }
 
+    public String getNextEstimateCode() {
+        Optional<String> lastEstimateCode = documentRepository.getLastEstimateCode();
+        if (lastEstimateCode.isPresent()) {
+            long nextNumber = Long.parseLong(lastEstimateCode.get().substring(1)) + 1;
+            return "D" + nextNumber;
+        }
+        return "";
+    }
+
+    public String getNextInvoiceCode() {
+        Optional<String> lastInvoiceCode = documentRepository.getLastInvoiceCode();
+        if (lastInvoiceCode.isPresent()) {
+            long nextNumber = Long.parseLong(lastInvoiceCode.get().substring(1)) + 1;
+            return "F" + nextNumber;
+        }
+        return "";
+    }
 }
