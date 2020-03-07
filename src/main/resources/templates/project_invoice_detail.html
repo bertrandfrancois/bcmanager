@@ -43,6 +43,12 @@
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;">
                             <i class="fa fa-trash text-white" aria-hidden="true"></i>
                         </a>
+                        <a th:href="@{'/clients/' + ${clientId} + '/projects/' + ${projectId} + '/documents/' +${document.id}+ '/updateStatus'}"
+                           style="margin-left:5px;"
+                           class="btn btn-warning btn-sm float-right">
+<!--                            <i class="fa fa-trash text-white"></i>-->
+                            <i class="fas fa-hand-holding-usd text-white"></i>
+                        </a>
                         <a class="btn btn-success btn-sm float-right"
                            style="margin-left:5px;"
                            th:href="@{'/display/projectInvoice/' + ${document.id}}"
@@ -85,6 +91,10 @@
                                 <tr>
                                     <th th:text="#{document.total}"></th>
                                     <td th:text="${{document.total}}"></td>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{document.status}"></th>
+                                    <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}"></td>
                                 </tr>
                             </table>
                         </div>

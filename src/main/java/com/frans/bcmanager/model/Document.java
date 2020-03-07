@@ -53,6 +53,10 @@ public abstract class Document {
     @Enumerated(EnumType.STRING)
     private TaxRate taxRate;
 
+    @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus status;
+
     @ManyToOne
     @JoinColumn(name = "CLIENT_ID")
     private Client client;

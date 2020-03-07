@@ -171,4 +171,13 @@ public class ServiceInvoiceController {
         documentService.save(document);
         return "redirect:/clients/" + clientId + "/services/" + documentId;
     }
+
+    @GetMapping("/{documentId}/updateStatus")
+    public String updateStatus(@PathVariable("clientId") long clientId,
+                                     @PathVariable("documentId") long documentId) {
+        Document document = documentService.find(documentId);
+        document.setStatus(document.getStatus().getNextStatus());
+        documentService.save(document);
+        return "redirect:/clients/" + clientId + "/services/" + documentId;
+    }
 }

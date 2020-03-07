@@ -36,6 +36,6 @@ public class ProjectInvoice extends Document {
 
     @Override
     public String getLink() {
-        return "/clients/"+ getClient().getId() + "/projects/" + getProject().getId() + "/documents/" + getId();
+        return "/clients/" + getClient().getId() + "/projects/" + getProject().getId() + "/documents/" + getId();
     }
 }

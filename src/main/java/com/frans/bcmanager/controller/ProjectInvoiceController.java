@@ -197,4 +197,14 @@ public class ProjectInvoiceController {
         documentService.save(document);
         return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId;
     }
+
+    @GetMapping("/{documentId}/updateStatus")
+    public String updateStatus(@PathVariable("clientId") long clientId,
+                               @PathVariable("projectId") long projectId,
+                               @PathVariable("documentId") long documentId) {
+        Document document = documentService.find(documentId);
+        document.setStatus(document.getStatus().getNextStatus());
+        documentService.save(document);
+        return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId;
+    }
 }
