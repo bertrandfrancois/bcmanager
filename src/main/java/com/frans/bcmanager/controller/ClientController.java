@@ -25,13 +25,6 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/clients")
-    public String clients(Model model) {
-        model.addAttribute("client", new Client());
-        model.addAttribute("clients", clientService.findAll());
-        return "clients";
-    }
-
     @GetMapping("/clients/create")
     public String createClient(Model model) {
         model.addAttribute("client", new Client());

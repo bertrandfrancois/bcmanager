@@ -9,8 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -33,5 +31,10 @@ public class ServiceInvoice extends Document {
     @Override
     public Project getProject() {
         return null;
+    }
+
+    @Override
+    public String getLink() {
+        return "/clients/" + getClient().getId() + "/services/" + getId();
     }
 }

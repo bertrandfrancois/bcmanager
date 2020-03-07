@@ -90,4 +90,8 @@ public class Client {
         this.projects = projects;
     }
 
+    public String getLink(){
+        return "/clients/" + id;
+    }
+
 }

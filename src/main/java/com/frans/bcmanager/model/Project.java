@@ -45,4 +45,8 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "CLIENT_ID")
     private Client client;
+
+    public String getLink(){
+        return "/clients/"+ getClient().getId() + "/projects/" + getId();
+    }
 }

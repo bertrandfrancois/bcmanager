@@ -2,6 +2,7 @@ package com.frans.bcmanager.service;
 
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.repository.DocumentRepository;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class DocumentService implements BaseService<Document> {
 
     @Override
     public List<Document> findAll() {
-        return null;
+        return Lists.newArrayList(documentRepository.findAll());
     }
 
     @Override
@@ -38,6 +39,10 @@ public class DocumentService implements BaseService<Document> {
     @Override
     public void delete(long id) {
         documentRepository.deleteById(id);
+    }
+
+    public List<Document> findTop5() {
+        return documentRepository.findTop5ByOrderByIdDesc();
     }
 
     public String getNextEstimateCode() {

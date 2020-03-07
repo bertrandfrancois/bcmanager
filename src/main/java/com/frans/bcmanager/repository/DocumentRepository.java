@@ -20,4 +20,6 @@ public interface DocumentRepository extends CrudRepository<Document, Long> {
     @Query(value = "SELECT MAX(document_code) FROM DOCUMENTS d WHERE d.document_code like 'D%'",
            nativeQuery = true)
     Optional<String> getLastEstimateCode();
+
+    List<Document> findTop5ByOrderByIdDesc();
 }

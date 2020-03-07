@@ -40,4 +40,8 @@ public class ProjectService implements BaseService<Project>{
     public void delete(long id) {
         projectRepository.deleteById(id);
     }
+
+    public List<Project> findTop5() {
+        return projectRepository.findTop5ByOrderByIdDesc();
+    }
 }

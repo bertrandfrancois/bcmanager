@@ -13,4 +13,5 @@ public interface BaseService<T> {
     T find(long id);
 
     void delete(long id);
+
 }

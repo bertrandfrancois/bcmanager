@@ -86,6 +86,8 @@ public abstract class Document {
 
     public abstract Project getProject();
 
+    public abstract String getLink();
+
     public List<DocumentLine> getDocumentLines() {
         return documentLines.stream()
                             .sorted(Comparator.comparing(DocumentLine::getId))

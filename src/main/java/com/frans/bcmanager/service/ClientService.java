@@ -39,4 +39,8 @@ public class ClientService implements BaseService<Client> {
     public void delete(long id) {
         clientRepository.deleteById(id);
     }
+
+    public List<Client> findTop5() {
+        return clientRepository.findTop5ByOrderByIdDesc();
+    }
 }

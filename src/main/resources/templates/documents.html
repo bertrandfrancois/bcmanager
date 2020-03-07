@@ -14,28 +14,28 @@
             <li class="breadcrumb-item">
                 <a th:href="@{/home}" th:text="#{menu.home}"></a>
             </li>
-            <li class="breadcrumb-item active"><span th:text="#{menu.projects}"></span></li>
+            <li class="breadcrumb-item active"><span th:text="#{menu.documents}"></span></li>
         </ol>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.projects}"></span>
+                <i class="fa fa-euro">&nbsp;</i><span th:text="#{menu.documents}"></span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-condensed table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th th:text="#{project.description}"></th>
-                            <th th:text="#{project.address}"></th>
+                            <th th:text="#{document.code}"></th>
+                            <th th:text="#{document.creationDate}"></th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="project : ${projects}">
-                            <td th:text="${project.description}" id="description"></td>
-                            <td th:text="${project.address}" id="address"></td>
+                        <tr th:each="document : ${documents}">
+                            <td th:text="${document.code}" id="code"></td>
+                            <td th:text="${#temporals.format(document.creationDate, 'dd/MM/yyyy')}" id="creationDate"></td>
                             <td>
-                                <a th:href="@{${project.link}}">
+                                <a th:href="@{${document.link}}">
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </td>

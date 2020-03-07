@@ -2,7 +2,9 @@ package com.frans.bcmanager.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,7 +12,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Embeddable
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Address {
@@ -29,4 +32,9 @@ public class Address {
     @Size(max = 30)
     @Column(name = "CITY")
     private String city;
+
+    @Override
+    public String toString() {
+        return street + ", " + postCode + " " + city;
+    }
 }

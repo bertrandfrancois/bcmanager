@@ -17,33 +17,48 @@
         </ol>
 
         <div class="row">
-            <!--<div class="col-lg-4">-->
-                <!--<div class="card mb-3">-->
-                    <!--<div class="card-header text-white bg-primary">-->
-                        <!--<i class="fa fa-users">&nbsp;</i><span th:text="#{menu.clients}"></span></div>-->
-                    <!--<div class="card-body">-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-lg-4">-->
-                <!--<div class="card mb-3">-->
-                    <!--<div class="card-header text-white bg-primary">-->
-                        <!--<i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.projects}"></span></div>-->
-                    <!--<div class="card-body">-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-lg-4">-->
-                <!--<div class="card mb-3">-->
-                    <!--<div class="card-header text-white bg-primary">-->
-                        <!--<i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.invoices}"></span></div>-->
-                    <!--<div class="card-body">-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="col-lg-4">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-users">&nbsp;</i><span th:text="#{menu.last.clients}"></span></div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr th:each="client : ${clients}">
+                                <td><span th:text="${client.lastName} + ' ' + ${client.firstName}"></span></td>
+                                <td><a th:href="@{${client.link}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.last.projects}"></span></div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr th:each="project : ${projects}">
+                                <td><span th:text="${project.description}"></span></td>
+                                <td><a th:href="@{${project.link}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.last.documents}"></span></div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr th:each="document : ${documents}">
+                                <td><span th:text="${document.code}"></span></td>
+                                <td><a th:href="@{${document.link}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.container-fluid-->

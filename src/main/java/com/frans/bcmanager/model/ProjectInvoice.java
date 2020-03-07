@@ -33,4 +33,9 @@ public class ProjectInvoice extends Document {
     @ManyToOne
     @JoinColumn(name = "PROJECT_ID")
     private Project project;
+
+    @Override
+    public String getLink() {
+        return "/clients/"+ getClient().getId() + "/projects/" + getProject().getId() + "/documents/" + getId();
+    }
 }

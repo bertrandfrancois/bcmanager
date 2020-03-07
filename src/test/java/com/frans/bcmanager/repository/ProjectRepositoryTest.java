@@ -27,15 +27,11 @@ public class ProjectRepositoryTest {
     private ProjectRepository repository;
 
     private Project project;
-    private Client client;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         project = ProjectTestBuilder.project().build();
-        client = ClientTestBuilder.client().build();
-        project.setClient(client);
-        client.setProjects(List.of(project));
-        entityManager.persist(client);
+        entityManager.persist(project);
     }
     @Test
     public void findOne() {

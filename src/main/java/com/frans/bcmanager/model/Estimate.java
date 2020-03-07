@@ -26,4 +26,9 @@ public class Estimate extends Document {
     public Project getProject() {
         return null;
     }
+
+    @Override
+    public String getLink() {
+        return "/clients/"+ getClient().getId() + "/estimates/" + getId();
+    }
 }
