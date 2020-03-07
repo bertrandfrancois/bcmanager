@@ -82,6 +82,10 @@ public abstract class Document {
 
     public abstract String getCode();
 
+    public abstract LocalDate getPaymentDate();
+
+    public abstract Project getProject();
+
     public List<DocumentLine> getDocumentLines() {
         return documentLines.stream()
                             .sorted(Comparator.comparing(DocumentLine::getId))

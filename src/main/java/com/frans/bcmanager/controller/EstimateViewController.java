@@ -1,7 +1,7 @@
 package com.frans.bcmanager.controller;
 
 import com.frans.bcmanager.model.Estimate;
-import com.frans.bcmanager.pdf.EstimatePdfView;
+import com.frans.bcmanager.pdf.PdfDocumentView;
 import com.frans.bcmanager.service.DocumentService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +27,9 @@ public class EstimateViewController {
         Estimate document = (Estimate) documentService.find(id);
         HashMap<String, Object> parameters = Maps.newHashMap();
         parameters.put("document", document);
+        parameters.put("documentType", "DEVIS");
 
-        return new ModelAndView(new EstimatePdfView(), parameters);
+        return new ModelAndView(new PdfDocumentView(), parameters);
     }
 
 }

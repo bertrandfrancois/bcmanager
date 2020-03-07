@@ -1,7 +1,7 @@
 package com.frans.bcmanager.controller;
 
 import com.frans.bcmanager.model.ProjectInvoice;
-import com.frans.bcmanager.pdf.ProjectInvoicePdfView;
+import com.frans.bcmanager.pdf.PdfDocumentView;
 import com.frans.bcmanager.service.DocumentService;
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,8 @@ public class ProjectInvoiceViewController {
         ProjectInvoice document = (ProjectInvoice) documentService.find(id);
         HashMap<String, Object> parameters = Maps.newHashMap();
         parameters.put("document", document);
+        parameters.put("documentType", "FACTURE");
 
-        return new ModelAndView(new ProjectInvoicePdfView(), parameters);
+        return new ModelAndView(new PdfDocumentView(), parameters);
     }
 }

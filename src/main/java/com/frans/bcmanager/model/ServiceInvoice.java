@@ -29,4 +29,9 @@ public class ServiceInvoice extends Document {
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate paymentDate;
+
+    @Override
+    public Project getProject() {
+        return null;
+    }
 }
