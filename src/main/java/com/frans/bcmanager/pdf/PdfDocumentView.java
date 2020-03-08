@@ -56,9 +56,11 @@ public class PdfDocumentView extends AbstractPdfView {
     protected void buildPdfDocument(Map<String, Object> model,
                                     Document document, PdfWriter writer, HttpServletRequest request,
                                     HttpServletResponse response) throws Exception {
-
         this.document = (com.frans.bcmanager.model.Document) model.get("document");
         this.documentType = (String) model.get("documentType");
+        document.addTitle(this.documentType + " " + this.document.getCode());
+        response.addHeader("Content-Disposition", "inline; filename=" + this.documentType + "_" + this.document.getCode() + ".pdf");
+
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator(',');
         symbols.setGroupingSeparator(' ');
