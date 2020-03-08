@@ -41,22 +41,26 @@
                     <div class="card-header">
                         <i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.estimate.detail}"></span>
                         <a data-toggle="modal" data-target="#deleteEstimate"
-                           class="btn btn-danger btn-sm float-right" style="margin-left:5px;">
+                           class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
+                           th:title="#{tooltip.delete}">
                             <i class="fa fa-trash text-white" aria-hidden="true"></i>
                         </a>
                         <a class="btn btn-success btn-sm float-right"
                            style="margin-left:5px;"
                            th:href="@{'/display/estimate/' + ${document.id}}"
-                           target="_blank">
+                           target="_blank"
+                           th:title="#{tooltip.pdf}">
                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                         </a>
                         <a th:href="@{${document.link} + '/copy'}"
                            style="margin-left:5px;"
-                           class="btn btn-info btn-sm float-right">
+                           class="btn btn-info btn-sm float-right"
+                           th:title="#{tooltip.copy}">
                             <i class="fa fa-clone" aria-hidden="true"></i>
                         </a>
                         <a th:href="@{'/clients/' + ${clientId} + '/estimates/' +${document.id}+ '/edit'}"
-                           class="btn btn-primary btn-sm float-right">
+                           class="btn btn-primary btn-sm float-right"
+                           th:title="#{tooltip.edit}">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
