@@ -46,6 +46,10 @@ public class DocumentService implements BaseService<Document> {
         return documentRepository.findTop5ByOrderByIdDesc();
     }
 
+    public List<Document> getUnpaidDocuments(){
+        return documentRepository.findUnPaidDocuments();
+    }
+
     public String getNextEstimateCode() {
         Optional<String> lastEstimateCode = documentRepository.getLastEstimateCode();
         if (lastEstimateCode.isPresent()) {

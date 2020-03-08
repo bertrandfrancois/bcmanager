@@ -34,19 +34,21 @@ public class HomeController {
         return "home";
     }
 
-    private void setupHomePageData(Model model) {
-        List<Client> clients = clientService.findTop5();
-        List<Document> documents = documentService.findTop5();
-        List<Project> projects = projectService.findTop5();
-        model.addAttribute("clients", clients);
-        model.addAttribute("projects", projects);
-        model.addAttribute("documents", documents);
-    }
-
     @PostMapping("/home")
     public String loginHome(Model model) {
         setupHomePageData(model);
         return "home";
+    }
+
+    private void setupHomePageData(Model model) {
+        List<Client> clients = clientService.findTop5();
+        List<Document> documents = documentService.findTop5();
+        List<Document> unpaidDocuments = documentService.getUnpaidDocuments();
+        List<Project> projects = projectService.findTop5();
+        model.addAttribute("clients", clients);
+        model.addAttribute("projects", projects);
+        model.addAttribute("documents", documents);
+        model.addAttribute("unpaidDocuments", unpaidDocuments);
     }
 
     @GetMapping("/clients")

@@ -60,6 +60,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-4" th:if="${!unpaidDocuments.isEmpty()}">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.unpaid.invoices}"></span></div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr th:each="document : ${unpaidDocuments}">
+                                <td><span th:text="${document.code}"></span></td>
+                                <td><a th:href="@{${document.link}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->

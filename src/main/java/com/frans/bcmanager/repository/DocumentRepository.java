@@ -22,4 +22,8 @@ public interface DocumentRepository extends CrudRepository<Document, Long> {
     Optional<String> getLastEstimateCode();
 
     List<Document> findTop5ByOrderByIdDesc();
+
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE status='NOT_PAID' and payment_date < now()\\:\\:date",
+           nativeQuery = true)
+    List<Document> findUnPaidDocuments();
 }
