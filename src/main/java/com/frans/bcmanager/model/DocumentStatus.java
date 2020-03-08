@@ -13,9 +13,9 @@ public enum DocumentStatus {
 
     static {
         PAID.nextStatus = NOT_PAID;
-        PAID.styleClass = "text-success";
+        PAID.styleClass = "text-success required";
         NOT_PAID.nextStatus = PAID;
-        NOT_PAID.styleClass = "text-danger";
+        NOT_PAID.styleClass = "text-danger required";
         NOT_RELEVANT.nextStatus = NOT_RELEVANT;
     }
 }

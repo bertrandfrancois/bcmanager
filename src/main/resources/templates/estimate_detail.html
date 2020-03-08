@@ -96,56 +96,58 @@
             <div th:replace="fragments/document_lines_form :: form"></div>
 
         </div>
-        <div class="row">
+        <div th:replace="fragments/document_lines_table :: document_lines"></div>
 
-            <div class="col-lg-12">
-                <div class="card mb-3 ">
-                    <div class="card-header">
-                        <i class="fa fa-list-ul">&nbsp;</i><span th:text="#{menu.estimate.lines}"></span>
-                        <!--<a th:href="@{'./' + ${project.id} + '/edit'}" class="btn btn-primary btn-sm float-right">-->
-                        <!--<i class="fa fa-edit" aria-hidden="true"></i>-->
-                        <!--</a>&nbsp;-->
-                    </div>
+        <!--        <div class="row">-->
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-condensed table-hover table-striped" id="documentLineDetail">
-                                <thead>
-                                <tr>
-                                    <th th:text="#{documentLine.description}"></th>
-                                    <th th:text="#{documentLine.quantity}"></th>
-                                    <th th:text="#{documentLine.unit}"></th>
-                                    <th th:text="#{documentLine.price}"></th>
-                                    <th th:text="#{documentLine.total}"></th>
-                                    <th th:text="Action"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
+<!--            <div class="col-lg-12">-->
+<!--                <div class="card mb-3 ">-->
+<!--                    <div class="card-header">-->
+<!--                        <i class="fa fa-list-ul">&nbsp;</i><span th:text="#{menu.estimate.lines}"></span>-->
+<!--                        &lt;!&ndash;<a th:href="@{'./' + ${project.id} + '/edit'}" class="btn btn-primary btn-sm float-right">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<i class="fa fa-edit" aria-hidden="true"></i>&ndash;&gt;-->
+<!--                        &lt;!&ndash;</a>&nbsp;&ndash;&gt;-->
+<!--                    </div>-->
 
-                                <tr th:each="documentLine : ${document.documentLines}">
-                                    <td th:text="${documentLine.description}"></td>
-                                    <td th:text="${{documentLine.quantity}}"></td>
-                                    <td th:text="${documentLine.unit.displayName}"></td>
-                                    <td th:text="${{documentLine.formattedPrice}}"></td>
-                                    <td th:text="${{documentLine.total}}"></td>
-                                    <td>
-                                        <a th:href="@{${document.link} + '/editLine/' + ${documentLine.id}}"
-                                           class="btn btn-primary btn-sm">
-                                            <i class="fa fa-edit" aria-hidden="true"></i>
-                                        </a>&nbsp;
-                                        <a th:href="@{${document.link} + '/deleteLine/' + ${documentLine.id}}"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash text-white" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                    <div class="card-body">-->
+<!--                        <div class="table-responsive">-->
+<!--                            <table class="table table-condensed table-hover table-striped" id="documentLineDetail">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th th:text="#{documentLine.description}"></th>-->
+<!--                                    <th th:text="#{documentLine.quantity}"></th>-->
+<!--                                    <th th:text="#{documentLine.unit}"></th>-->
+<!--                                    <th th:text="#{documentLine.price}"></th>-->
+<!--                                    <th th:text="#{documentLine.total}"></th>-->
+<!--                                    <th th:text="Action"></th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+
+<!--                                <tr th:each="documentLine : ${document.documentLines}">-->
+<!--                                    <td th:text="${documentLine.description}"></td>-->
+<!--                                    <td th:text="${{documentLine.quantity}}"></td>-->
+<!--                                    <td th:text="${documentLine.unit.displayName}"></td>-->
+<!--                                    <td th:text="${{documentLine.formattedPrice}}"></td>-->
+<!--                                    <td th:text="${{documentLine.total}}"></td>-->
+<!--                                    <td>-->
+<!--                                        <a th:href="@{${document.link} + '/editLine/' + ${documentLine.id}}"-->
+<!--                                           class="btn btn-primary btn-sm">-->
+<!--                                            <i class="fa fa-edit" aria-hidden="true"></i>-->
+<!--                                        </a>&nbsp;-->
+<!--                                        <a th:href="@{${document.link} + '/deleteLine/' + ${documentLine.id}}"-->
+<!--                                           class="btn btn-danger btn-sm">-->
+<!--                                            <i class="fa fa-trash text-white" aria-hidden="true"></i>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->

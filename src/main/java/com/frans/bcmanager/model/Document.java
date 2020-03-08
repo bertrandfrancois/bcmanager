@@ -29,6 +29,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.frans.bcmanager.model.DocumentStatus.PAID;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 @Entity(name = "DOCUMENTS")
@@ -93,6 +94,10 @@ public abstract class Document implements Cloneable {
     public abstract Project getProject();
 
     public abstract String getLink();
+
+    public boolean isPaid() {
+        return status == PAID;
+    }
 
     public List<DocumentLine> getDocumentLines() {
         return documentLines.stream()
