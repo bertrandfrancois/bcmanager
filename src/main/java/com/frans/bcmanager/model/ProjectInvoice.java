@@ -4,6 +4,7 @@ import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -17,13 +18,8 @@ import java.time.LocalDate;
 @Entity
 @DiscriminatorValue("PROJECT_INVOICE")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class ProjectInvoice extends Document {
-
-    @InvoiceCode
-    @Column(name = "DOCUMENT_CODE")
-    private String code;
 
     @Column(name = "PAYMENT_DATE")
     @NotNull
@@ -35,7 +31,14 @@ public class ProjectInvoice extends Document {
     private Project project;
 
     @Override
+    @InvoiceCode
+    public String getCode() {
+        return super.getCode();
+    }
+
+    @Override
     public String getLink() {
         return "/clients/" + getClient().getId() + "/projects/" + getProject().getId() + "/documents/" + getId();
     }
+
 }

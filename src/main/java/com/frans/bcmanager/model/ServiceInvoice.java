@@ -4,6 +4,7 @@ import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -14,19 +15,20 @@ import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("SERVICE_INVOICE")
-@Data
-@AllArgsConstructor
+@Data()
 @NoArgsConstructor
 public class ServiceInvoice extends Document {
-
-    @InvoiceCode
-    @Column(name = "DOCUMENT_CODE")
-    private String code;
 
     @Column(name = "PAYMENT_DATE")
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate paymentDate;
+
+    @Override
+    @InvoiceCode
+    public String getCode() {
+        return super.getCode();
+    }
 
     @Override
     public Project getProject() {

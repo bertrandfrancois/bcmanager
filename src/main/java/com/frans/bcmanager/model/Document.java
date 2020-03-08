@@ -2,6 +2,7 @@ package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.validation.UniqueCode;
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,12 +38,15 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 @AllArgsConstructor
 @NoArgsConstructor
 @UniqueCode
-public abstract class Document {
+public abstract class Document implements Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DOCUMENT_ID")
     private Long id;
+
+    @Column(name = "DOCUMENT_CODE")
+    private String code;
 
     @Column(name = "CREATION_DATE")
     @NotNull
@@ -84,8 +88,6 @@ public abstract class Document {
         return getSubTotal().multiply(taxRate.getValue());
     }
 
-    public abstract String getCode();
-
     public abstract LocalDate getPaymentDate();
 
     public abstract Project getProject();
@@ -112,5 +114,23 @@ public abstract class Document {
 
     public void deleteLine(long documentLineId) {
         this.documentLines.removeIf(dl -> dl.getId().equals(documentLineId));
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            List<DocumentLine> lines = Lists.newArrayList();
+            Document clone = (Document) super.clone();
+            clone.setId(null);
+            clone.setCode(null);
+            for (DocumentLine documentLine : documentLines) {
+                lines.add((DocumentLine) documentLine.clone());
+            }
+            clone.setDocumentLines(lines);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

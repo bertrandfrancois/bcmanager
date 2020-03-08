@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentLine {
+public class DocumentLine implements Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,5 +60,12 @@ public class DocumentLine {
         this.price = documentLine.price;
         this.quantity = documentLine.quantity;
         this.unit = documentLine.unit;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        DocumentLine clone = (DocumentLine) super.clone();
+        clone.setId(null);
+        return clone;
     }
 }

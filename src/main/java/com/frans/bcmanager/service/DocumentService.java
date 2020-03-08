@@ -1,6 +1,7 @@
 package com.frans.bcmanager.service;
 
 import com.frans.bcmanager.model.Document;
+import com.frans.bcmanager.model.Estimate;
 import com.frans.bcmanager.repository.DocumentRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,21 @@ public class DocumentService implements BaseService<Document> {
             return "F" + nextNumber;
         }
         return "";
+    }
+
+    public Estimate copyEstimate(long documentId) {
+        Optional<Document> document = documentRepository.findById(documentId);
+        Estimate copy = ((Estimate) document.get().clone());
+        copy.setCode(getNextEstimateCode());
+        documentRepository.save(copy);
+        return copy;
+    }
+
+    public Document copyInvoice(long documentId) {
+        Optional<Document> document = documentRepository.findById(documentId);
+        Document copy = ((Document) document.get().clone());
+        copy.setCode(getNextInvoiceCode());
+        documentRepository.save(copy);
+        return copy;
     }
 }

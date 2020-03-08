@@ -85,6 +85,12 @@ public class EstimateController {
         return "estimate_form";
     }
 
+    @GetMapping("/{documentId}/copy")
+    public String copyEstimate(@PathVariable("documentId") long documentId) {
+        Estimate estimate = documentService.copyEstimate(documentId);
+        return "redirect:" + estimate.getLink() + "?copySuccess";
+    }
+
     @PostMapping("/{documentId}/edit")
     public String editEstimate(@PathVariable("clientId") long clientId,
                                @PathVariable("documentId") long documentId,

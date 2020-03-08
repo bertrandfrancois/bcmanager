@@ -3,6 +3,7 @@ package com.frans.bcmanager.controller;
 import com.frans.bcmanager.factory.UrlFactory;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
+import com.frans.bcmanager.model.Estimate;
 import com.frans.bcmanager.model.Mode;
 import com.frans.bcmanager.model.ProjectInvoice;
 import com.frans.bcmanager.service.DocumentService;
@@ -111,6 +112,12 @@ public class ProjectInvoiceController {
         }
         documentService.save(serviceInvoice);
         return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId + "?editSuccess";
+    }
+
+    @GetMapping("/{documentId}/copy")
+    public String copyEstimate(@PathVariable("documentId") long documentId) {
+        ProjectInvoice invoice = (ProjectInvoice) documentService.copyInvoice(documentId);
+        return "redirect:" + invoice.getLink() + "?copySuccess";
     }
 
     @PostMapping("/{documentId}/delete")

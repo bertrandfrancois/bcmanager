@@ -1,21 +1,23 @@
 package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.validation.EstimateCode;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("ESTIMATE")
+@NoArgsConstructor
 @Data
-public class Estimate extends Document {
-
-    @EstimateCode
-    @Column(name = "DOCUMENT_CODE")
-    private String code;
+public class Estimate extends Document implements Cloneable {
 
     @Override
     public LocalDate getPaymentDate() {
@@ -28,7 +30,13 @@ public class Estimate extends Document {
     }
 
     @Override
+    @EstimateCode
+    public String getCode() {
+        return super.getCode();
+    }
+
+    @Override
     public String getLink() {
-        return "/clients/"+ getClient().getId() + "/estimates/" + getId();
+        return "/clients/" + getClient().getId() + "/estimates/" + getId();
     }
 }

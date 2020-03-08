@@ -95,7 +95,14 @@ public class ServiceInvoiceController {
             return "service_invoice_form";
         }
         documentService.save(serviceInvoice);
+
         return "redirect:/clients/" + clientId + "/services/" + documentId + "?editSuccess";
+    }
+
+    @GetMapping("/{documentId}/copy")
+    public String copyEstimate(@PathVariable("documentId") long documentId) {
+        ServiceInvoice invoice = (ServiceInvoice) documentService.copyInvoice(documentId);
+        return "redirect:" + invoice.getLink() + "?copySuccess";
     }
 
     @PostMapping("/{documentId}/delete")
@@ -174,7 +181,7 @@ public class ServiceInvoiceController {
 
     @GetMapping("/{documentId}/updateStatus")
     public String updateStatus(@PathVariable("clientId") long clientId,
-                                     @PathVariable("documentId") long documentId) {
+                               @PathVariable("documentId") long documentId) {
         Document document = documentService.find(documentId);
         document.setStatus(document.getStatus().getNextStatus());
         documentService.save(document);

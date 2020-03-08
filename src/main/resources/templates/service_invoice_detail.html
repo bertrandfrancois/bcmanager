@@ -31,6 +31,10 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.invoice.create.success}"></span>
         </div>
+        <div class="alert alert-success alert-dismissable" th:if="${param.copySuccess}">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.invoice.copy.success}"></span>
+        </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card mb-3 ">
@@ -50,6 +54,11 @@
                            th:href="@{'/display/serviceInvoice/' + ${document.id}}"
                            target="_blank">
                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                        </a>
+                        <a th:href="@{${document.link} + '/copy'}"
+                           style="margin-left:5px;"
+                           class="btn btn-info btn-sm float-right">
+                            <i class="fa fa-clone" aria-hidden="true"></i>
                         </a>
                         <a th:href="@{'/clients/' + ${clientId} + '/services/' +${document.id}+ '/edit'}"
                            class="btn btn-primary btn-sm float-right">
