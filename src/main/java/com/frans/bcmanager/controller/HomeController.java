@@ -28,19 +28,24 @@ public class HomeController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/home")
+    @GetMapping({"/home", "/"})
     public String home(Model model) {
+        setupHomePageData(model);
+        return "home";
+    }
+
+    private void setupHomePageData(Model model) {
         List<Client> clients = clientService.findTop5();
         List<Document> documents = documentService.findTop5();
         List<Project> projects = projectService.findTop5();
         model.addAttribute("clients", clients);
         model.addAttribute("projects", projects);
         model.addAttribute("documents", documents);
-        return "home";
     }
 
     @PostMapping("/home")
-    public String loginHome() {
+    public String loginHome(Model model) {
+        setupHomePageData(model);
         return "home";
     }
 
