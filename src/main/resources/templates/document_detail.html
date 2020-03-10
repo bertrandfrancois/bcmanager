@@ -19,10 +19,10 @@
                 <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${client.id}}" th:text="#{menu.client.detail}"></a>
+                <a th:href="@{${client.link}}" th:text="#{menu.client.detail}"></a>
             </li>
             <li class="breadcrumb-item">
-            <a th:href="@{'/clients/' + ${client.id} + '/projects/' + ${project.id}}" th:text="#{menu.project.detail}"></a>
+            <a th:href="@{${client.link} + '/projects/' + ${project.id}}" th:text="#{menu.project.detail}"></a>
             </li>
             <li class="breadcrumb-item active"><span th:text="#{menu.projectInvoice.detail}"></span></li>
         </ol>

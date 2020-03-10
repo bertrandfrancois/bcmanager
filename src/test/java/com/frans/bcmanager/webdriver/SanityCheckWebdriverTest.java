@@ -60,8 +60,8 @@ public class SanityCheckWebdriverTest {
 
     private void createClient() {
         driver.findElement(By.id("clients_link")).click();
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div/a/i")).click();
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        driver.findElement(By.id("addClient")).click();
+        driver.findElement(By.id("createClient")).click();
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[2]/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span")).getText());
@@ -106,7 +106,7 @@ public class SanityCheckWebdriverTest {
     }
 
     private void editClient() {
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div[2]/div/div/div/a[2]/i")).click();
+        driver.findElement(By.id("editClientAction")).click();
         driver.findElement(By.id("lastName")).clear();
         driver.findElement(By.id("lastName")).sendKeys("");
         driver.findElement(By.id("firstName")).clear();
@@ -169,7 +169,7 @@ public class SanityCheckWebdriverTest {
     }
 
     private void createEstimate() {
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div[2]/div[3]/div/div/a")).click();
+        driver.findElement(By.id("createEstimateAction")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         assertEquals("Le numéro de document doit commencer par D suivi de 7 chiffres (ex:D2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
@@ -226,7 +226,7 @@ public class SanityCheckWebdriverTest {
 
     }
     private void editEstimateLines(){
-        driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i")).click();
+        driver.findElement(By.id("editDocumentLineAction")).click();
         driver.findElement(By.id("code")).clear();
         driver.findElement(By.id("code")).sendKeys("description3");
         new Select(driver.findElement(By.id("unit"))).selectByVisibleText("ff");
@@ -243,7 +243,7 @@ public class SanityCheckWebdriverTest {
         assertEquals("$150.00", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[4]/td")).getText());
         assertEquals("$9.00", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$159.00", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[6]/td")).getText());
-        driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i")).click();
+        driver.findElement(By.id("deleteDocumentLineAction")).click();
         assertEquals("$25.00", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[4]/td")).getText());
         assertEquals("$1.50", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$26.50", driver.findElement(By.xpath("//*[@id=\"estimateDetail\"]/tbody/tr[6]/td")).getText());
@@ -251,7 +251,7 @@ public class SanityCheckWebdriverTest {
 
     }
     private void editEstimate(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div/div/div/a[3]/i")).click();
+        driver.findElement(By.id("editEstimateAction")).click();
         driver.findElement(By.id("code")).clear();
         driver.findElement(By.id("code")).sendKeys("");
         driver.findElement(By.id("creationDate")).clear();
@@ -275,12 +275,12 @@ public class SanityCheckWebdriverTest {
 
     }
     private void deleteEstimate(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div[2]/div/div/div/a/i")).click();
-        driver.findElement(By.xpath("(//button[@type='submit'])[3]")).click();
+        driver.findElement(By.id("deleteEstimateAction")).click();
+        driver.findElement(By.id("deleteDocumentButton")).click();
 
     }
     private void createServiceInvoice(){
-        driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[4]/div/div[1]/a")).click();
+        driver.findElement(By.id("createServiceAction")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         assertEquals("Le numéro de document doit commencer par F suivi de 7 chiffres (ex:F2020001)", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div/div[3]/span")).getText());
@@ -341,7 +341,7 @@ public class SanityCheckWebdriverTest {
 
     }
     private void editServiceInvoiceLines(){
-        driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i")).click();
+        driver.findElement(By.id("editDocumentLineAction")).click();
         driver.findElement(By.id("code")).clear();
         driver.findElement(By.id("code")).sendKeys("description3");
         new Select(driver.findElement(By.id("unit"))).selectByVisibleText("ff");
@@ -358,7 +358,7 @@ public class SanityCheckWebdriverTest {
         assertEquals("$150.00", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$9.00", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[6]/td")).getText());
         assertEquals("$159.00", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[7]/td")).getText());
-        driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i")).click();
+        driver.findElement(By.id("deleteDocumentLineAction")).click();
         assertEquals("$25.00", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$1.50", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[6]/td")).getText());
         assertEquals("$26.50", driver.findElement(By.xpath("//*[@id=\"serviceDetail\"]/tbody/tr[7]/td")).getText());
@@ -366,7 +366,7 @@ public class SanityCheckWebdriverTest {
 
     }
     private void editServiceInvoice(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div/div/div/a[3]/i")).click();
+        driver.findElement(By.id("editServiceAction")).click();
         driver.findElement(By.id("code")).clear();
         driver.findElement(By.id("code")).sendKeys("");
         driver.findElement(By.id("creationDate")).clear();
@@ -393,12 +393,12 @@ public class SanityCheckWebdriverTest {
 
     }
     private void deleteServiceInvoice(){
-        driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div[2]/div[1]/div/div[1]/a[1]")).click();
-        driver.findElement(By.xpath("//*[@id=\"deleteService\"]/div/form/div/div[3]/button[2]")).click();
+        driver.findElement(By.id("deleteServiceAction")).click();
+        driver.findElement(By.id("deleteDocumentButton")).click();
 
     }
     private void createProject(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div[2]/div/div/a/i")).click();
+        driver.findElement(By.id("createProjectAction")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[1]/span")).getText());
         assertEquals("champ obligatoire", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/span")).getText());
@@ -413,7 +413,8 @@ public class SanityCheckWebdriverTest {
         driver.findElement(By.id("city")).clear();
         driver.findElement(By.id("city")).sendKeys("city");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        assertEquals("size must be between 0 and 5", driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span")).getText());
+        assertEquals("size must be between 0 and 5",
+        driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[3]/span")).getText());
         driver.findElement(By.id("postCode")).clear();
         driver.findElement(By.id("postCode")).sendKeys("12345");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
@@ -424,7 +425,7 @@ public class SanityCheckWebdriverTest {
 
     }
     private void editProject(){
-        driver.findElement(By.xpath("//*[@id=\"page-top\"]/div/div[1]/div[2]/div[1]/div/div[1]/a[2]")).click();
+        driver.findElement(By.id("editProjectAction")).click();
         driver.findElement(By.id("description")).clear();
         driver.findElement(By.id("description")).sendKeys("");
         driver.findElement(By.id("street")).clear();
@@ -519,7 +520,7 @@ public class SanityCheckWebdriverTest {
     }
 
     private void editProjectInvoiceLines(){
-        driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a/i")).click();
+        driver.findElement(By.id("editDocumentLineAction")).click();
         driver.findElement(By.id("code")).clear();
         driver.findElement(By.id("code")).sendKeys("description3");
         new Select(driver.findElement(By.id("unit"))).selectByVisibleText("ff");
@@ -536,13 +537,13 @@ public class SanityCheckWebdriverTest {
         assertEquals("$150.00", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$9.00", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[6]/td")).getText());
         assertEquals("$159.00", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[7]/td")).getText());
-        driver.findElement(By.xpath("//table[@id='documentLineDetail']/tbody/tr/td[6]/a[2]/i")).click();
+        driver.findElement(By.id("deleteDocumentLineAction")).click();
         assertEquals("$25.00", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[5]/td")).getText());
         assertEquals("$1.50", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[6]/td")).getText());
         assertEquals("$26.50", driver.findElement(By.xpath("//*[@id=\"projectInvoiceDetail\"]/tbody/tr[7]/td")).getText());
     }
     private void editProjectInvoice(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div/div/div/a[3]/i")).click();
+        driver.findElement(By.id("editProjectInvoiceAction")).click();
         driver.findElement(By.id("code")).clear();
         driver.findElement(By.id("code")).sendKeys("");
         driver.findElement(By.id("creationDate")).clear();
@@ -569,12 +570,12 @@ public class SanityCheckWebdriverTest {
 
     }
     private void deleteProjectInvoice(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div[2]/div/div/div/a/i")).click();
-        driver.findElement(By.xpath("(//button[@type='submit'])[3]")).click();
+        driver.findElement(By.id("deleteProjectInvoiceAction")).click();
+        driver.findElement(By.id("deleteDocumentButton")).click();
 
     }
     private void deleteProject(){
-        driver.findElement(By.xpath("//body[@id='page-top']/div/div/div/div/div/div/a/i")).click();
-        driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
+        driver.findElement(By.id("deleteProjectAction")).click();
+        driver.findElement(By.id("deleteProjectButton")).click();
     }
 }

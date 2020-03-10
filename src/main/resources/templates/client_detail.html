@@ -3,7 +3,6 @@
 
 <head th:replace="fragments/head :: head_default"></head>
 
-
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav th:replace="fragments/nav :: nav"></nav>
@@ -34,10 +33,12 @@
                         <i class="fa fa-user">&nbsp;</i><span th:text="#{menu.client.detail}"></span>
                         <a data-toggle="modal" data-target="#deleteClient"
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
-                        id="deleteClientLink">
+                           id="deleteClientLink">
                             <i class="fa fa-trash text-white" aria-hidden="true"></i>
                         </a>
-                        <a th:href="@{'/clients/' + ${client.id} + '/edit'}" class="btn btn-primary btn-sm float-right">
+                        <a th:href="@{${client.link} + '/edit'}"
+                           class="btn btn-primary btn-sm float-right"
+                           id="editClientAction">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
@@ -87,7 +88,8 @@
                     <div class="card-header">
                         <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.projects}"></span>
                         <a th:href="@{'./'+ ${client.id} +'/projects/create'}"
-                           class="btn btn-primary btn-sm float-right">
+                           class="btn btn-primary btn-sm float-right"
+                           id="createProjectAction">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
@@ -126,7 +128,8 @@
                     <div class="card-header">
                         <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.estimates}"></span>
                         <a th:href="@{'./'+ ${client.id} +'/estimates/create'}"
-                           class="btn btn-primary btn-sm float-right">
+                           class="btn btn-primary btn-sm float-right"
+                           id="createEstimateAction">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
@@ -165,7 +168,8 @@
                     <div class="card-header">
                         <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.services}"></span>
                         <a th:href="@{'./'+ ${client.id} +'/services/create'}"
-                           class="btn btn-primary btn-sm float-right">
+                           class="btn btn-primary btn-sm float-right"
+                           id="createServiceAction">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>

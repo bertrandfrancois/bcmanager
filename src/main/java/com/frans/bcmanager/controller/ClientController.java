@@ -40,7 +40,7 @@ public class ClientController {
         }
         Client newClient = clientService.save(client);
 
-        return "redirect:/clients/" + newClient.getId() + "?createSuccess";
+        return "redirect:" + newClient.getLink() + "?createSuccess";
     }
 
     @GetMapping("/clients/{id}")
@@ -67,8 +67,8 @@ public class ClientController {
             model.addAttribute("mode", Mode.EDIT);
             return "client_form";
         }
-        clientService.save(client);
-        return "redirect:/clients/" + id + "?editSuccess";
+        Client savedClient = clientService.save(client);
+        return "redirect:" + savedClient.getLink() + "?editSuccess";
     }
 
     @PostMapping("/clients/{id}/delete")

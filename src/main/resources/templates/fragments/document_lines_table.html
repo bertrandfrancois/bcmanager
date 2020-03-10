@@ -35,11 +35,13 @@
                             <td th:text="${{documentLine.total}}"></td>
                             <td th:if="${!document.isPaid()}">
                                 <a th:href="@{${document.link} + '/editLine/' + ${documentLine.id}}"
-                                   class="btn btn-primary btn-sm">
+                                   class="btn btn-primary btn-sm"
+                                   id="editDocumentLineAction">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>&nbsp;
                                 <a th:href="@{${document.link} + '/deleteLine/' + ${documentLine.id}}"
-                                   class="btn btn-danger btn-sm">
+                                   class="btn btn-danger btn-sm"
+                                   id="deleteDocumentLineAction">
                                     <i class="fa fa-trash text-white" aria-hidden="true"></i>
                                 </a>
                             </td>

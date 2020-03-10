@@ -19,7 +19,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-users">&nbsp;</i><span th:text="#{menu.clients}"></span>
-                <a th:href="@{/clients/create}" class="btn btn-primary btn-sm float-right">
+                <a th:href="@{/clients/create}" class="btn btn-primary btn-sm float-right" id="addClient">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                 </a>
             </div>
@@ -44,7 +44,7 @@
                             <td th:text="${client.address.postCode}" id="postCode"></td>
                             <td th:text="${client.address.city}" id="city"></td>
                             <td>
-                                <a th:href="@{'/clients/' + ${client.id}}">
+                                <a th:href="@{${client.link}}">
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </td>

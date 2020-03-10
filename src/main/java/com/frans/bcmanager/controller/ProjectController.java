@@ -62,7 +62,7 @@ public class ProjectController {
             return "project_form";
         }
         Project savedProject = projectService.save(project);
-        return "redirect:/clients/" + clientId + "/projects/" + savedProject.getId() + "?createSuccess";
+        return "redirect:" + savedProject.getLink() + "?createSuccess";
     }
 
     @GetMapping("/{projectId}/edit")

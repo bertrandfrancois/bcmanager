@@ -20,7 +20,7 @@
             </li>
 
             <li th:if="${mode == 'EDIT'}" class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${clientId} + '/projects/' + ${project.id}}" th:text="#{menu.project.detail}"></a>
+                <a th:href="@{${project.link}}" th:text="#{menu.project.detail}"></a>
             </li>
 
             <li th:if="${mode == 'EDIT'}" class="breadcrumb-item active"><span th:text="#{menu.project.edit}"></span></li>
@@ -42,7 +42,6 @@
                       th:object="${project}"
                       method="post">
                     <input id="id" type="hidden" th:field="*{id}"/>
-                    <!--                    <input id="client" type="hidden" th:field="*{client.id}" th:value="${$clientId}"/>-->
                     <input id="client" type="hidden" th:name="client.id" th:value="${clientId}"/>
                     <div class="row">
                         <div class="col-lg-6">
@@ -82,7 +81,7 @@
                                 <span th:text="#{button.cancel}"></span>
                             </a>
                             <a th:if="${mode == 'EDIT'}"
-                               th:href="@{'/clients/' + ${clientId} + '/projects/' + ${project.id}}"
+                               th:href="@{${project.link}}"
                                class="btn btn-danger btn-block">
                                 <span th:text="#{button.cancel}"></span>
                             </a>

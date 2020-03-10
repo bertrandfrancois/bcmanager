@@ -34,7 +34,7 @@
             <div class="col-lg-4">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.last.projects}"></span></div>
+                        <i class="fa fa-wrench"></i><span th:text="#{menu.last.projects}"></span></div>
                     <div class="card-body">
                         <table class="table">
                             <tr th:each="project : ${projects}">
@@ -48,7 +48,7 @@
             <div class="col-lg-4">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.last.documents}"></span></div>
+                        <i class="fa fa-euro-sign">&nbsp;</i><span th:text="#{menu.last.documents}"></span></div>
                     <div class="card-body">
                         <table class="table">
                             <tr th:each="document : ${documents}">
@@ -64,7 +64,7 @@
             <div class="col-lg-4" th:if="${!unpaidDocuments.isEmpty()}">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.unpaid.invoices}"></span></div>
+                        <i class="fa fa-euro-sign">&nbsp;</i><span th:text="#{menu.unpaid.invoices}"></span></div>
                     <div class="card-body">
                         <table class="table">
                             <tr th:each="document : ${unpaidDocuments}">

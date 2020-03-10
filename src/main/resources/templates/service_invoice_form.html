@@ -19,7 +19,7 @@
                 <a th:href="@{'/clients/' + ${clientId}}" th:text="#{menu.client.detail}"></a>
             </li>
             <li th:if="${mode == 'EDIT'}" class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${clientId}+ 'services/' + ${serviceInvoice.id}}" th:text="#{menu.service.detail}"></a>
+                <a th:href="@{${serviceInvoice.link}}" th:text="#{menu.service.detail}"></a>
             </li>
             <li th:if="${mode == 'NEW'}" class="breadcrumb-item active"><span th:text="#{menu.service.new}"></span></li>
             <li th:if="${mode == 'EDIT'}" class="breadcrumb-item active"><span th:text="#{menu.service.edit}"></span></li>
@@ -36,7 +36,7 @@
             <div class="card-body">
                 <form th:action="${mode == 'NEW'} ?
                                  @{'/clients/' + ${clientId} + '/services/create'} :
-                                 @{'/clients/' + ${clientId}+ '/services/' + ${serviceInvoice.id} + '/edit'}"
+                                 @{${serviceInvoice.link} + '/edit'}"
                       th:name="createDocument"
                       th:object="${serviceInvoice}"
                       th:method="post">
@@ -51,7 +51,12 @@
                                 <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="text-danger"></span>
                                 <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
                                 <input th:if="${mode=='EDIT'}" class="form-control" id="code" type="text" th:field="*{code}"/>
-                                <input th:if="${mode=='NEW'}" class="form-control" id="code" type="text" th:value="${nextInvoiceCode}" name="code"/>
+                                <input th:if="${mode=='NEW'}"
+                                       class="form-control"
+                                       id="code"
+                                       type="text"
+                                       th:value="${nextInvoiceCode}"
+                                       name="code"/>
                             </div>
                             <div class="form-group">
                                 <label for="taxRate" th:text="#{document.taxRate}" class="text-primary required"></label>
@@ -89,7 +94,7 @@
                                 <span th:text="#{button.cancel}"></span>
                             </a>
                             <a th:if="${mode == 'EDIT'}"
-                               th:href="@{'/clients/' + ${clientId} + '/services/' + ${serviceInvoice.id}}"
+                               th:href="@{${serviceInvoice.link}}"
                                class="btn btn-danger btn-block">
                                 <span th:text="#{button.cancel}"></span>
                             </a>

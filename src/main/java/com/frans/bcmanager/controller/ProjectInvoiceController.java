@@ -3,7 +3,6 @@ package com.frans.bcmanager.controller;
 import com.frans.bcmanager.factory.UrlFactory;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
-import com.frans.bcmanager.model.Estimate;
 import com.frans.bcmanager.model.Mode;
 import com.frans.bcmanager.model.ProjectInvoice;
 import com.frans.bcmanager.service.DocumentService;
@@ -78,7 +77,7 @@ public class ProjectInvoiceController {
             return "project_invoice_form";
         }
         Document savedDocument = documentService.save(document);
-        return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + savedDocument.getId() + "?createSuccess";
+        return "redirect:" + savedDocument.getLink() + "?createSuccess";
     }
 
     @GetMapping("/{documentId}/edit")
@@ -149,7 +148,7 @@ public class ProjectInvoiceController {
 
         document.addDocumentLine(documentLine);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + document.getId();
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/editLine/{documentLineId}")
@@ -191,7 +190,7 @@ public class ProjectInvoiceController {
         }
         document.editDocumentLine(documentLine);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + document.getId();
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/deleteLine/{documentLineId}")
@@ -202,7 +201,7 @@ public class ProjectInvoiceController {
         Document document = documentService.find(documentId);
         document.deleteLine(documentLineId);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId;
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/updateStatus")
@@ -212,6 +211,6 @@ public class ProjectInvoiceController {
         Document document = documentService.find(documentId);
         document.setStatus(document.getStatus().getNextStatus());
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId;
+        return "redirect:" + document.getLink();
     }
 }

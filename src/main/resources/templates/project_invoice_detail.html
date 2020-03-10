@@ -42,14 +42,15 @@
             <div class="col-lg-6">
                 <div class="card mb-3 ">
                     <div class="card-header">
-                        <i class="fa fa-eur">&nbsp;</i><span th:text="#{menu.invoice.detail}"></span>
-                        <a data-toggle="modal" data-target="#deleteProjectInvoice"
+                        <i class="fa fa-euro-sign">&nbsp;</i><span th:text="#{menu.invoice.detail}"></span>
+                        <a data-toggle="modal" data-target="#deleteDocument"
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
-                           th:title="#{tooltip.delete}">
+                           th:title="#{tooltip.delete}"
+                           id="deleteProjectInvoiceAction">
 
                             <i class="fa fa-trash text-white" aria-hidden="true"></i>
                         </a>
-                        <a th:href="@{'/clients/' + ${clientId} + '/projects/' + ${projectId} + '/documents/' +${document.id}+ '/updateStatus'}"
+                        <a th:href="@{${document.link} + '/updateStatus'}"
                            style="margin-left:5px;"
                            class="btn btn-warning btn-sm float-right"
                            th:title="#{tooltip.status}">
@@ -71,7 +72,8 @@
                         <a th:href="@{${document.link} + '/edit'}"
                            th:if="${!document.isPaid()}"
                            class="btn btn-primary btn-sm float-right"
-                           th:title="#{tooltip.edit}">
+                           th:title="#{tooltip.edit}"
+                           id="editProjectInvoiceAction">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
@@ -121,58 +123,6 @@
         </div>
         <div th:replace="fragments/document_lines_table :: document_lines"></div>
 
-        <!--        <div class="row">-->
-
-<!--            <div class="col-lg-12">-->
-<!--                <div class="card mb-3 ">-->
-<!--                    <div class="card-header">-->
-<!--                        <i class="fa fa-list-ul">&nbsp;</i><span th:text="#{menu.invoice.lines}"></span>-->
-<!--                        &lt;!&ndash;<a th:href="@{'./' + ${projectId} + '/edit'}" class="btn btn-primary btn-sm float-right">&ndash;&gt;-->
-<!--                        &lt;!&ndash;<i class="fa fa-edit" aria-hidden="true"></i>&ndash;&gt;-->
-<!--                        &lt;!&ndash;</a>&nbsp;&ndash;&gt;-->
-<!--                    </div>-->
-
-<!--                    <div class="card-body">-->
-<!--                        <div class="table-responsive">-->
-<!--                            <table class="table table-condensed table-hover table-striped" id="documentLineDetail">-->
-<!--                                <thead>-->
-<!--                                <tr>-->
-<!--                                    <th th:text="#{documentLine.description}"></th>-->
-<!--                                    <th th:text="#{documentLine.quantity}"></th>-->
-<!--                                    <th th:text="#{documentLine.unit}"></th>-->
-<!--                                    <th th:text="#{documentLine.price}"></th>-->
-<!--                                    <th th:text="#{documentLine.total}"></th>-->
-<!--                                    <th th:text="Action"></th>-->
-<!--                                </tr>-->
-<!--                                </thead>-->
-<!--                                <tbody>-->
-
-<!--                                <tr th:each="documentLine : ${document.documentLines}">-->
-<!--                                    <td th:text="${documentLine.description}"></td>-->
-<!--                                    <td th:text="${{documentLine.quantity}}"></td>-->
-<!--                                    <td th:text="${documentLine.unit.displayName}"></td>-->
-<!--                                    <td th:text="${{documentLine.formattedPrice}}"></td>-->
-<!--                                    <td th:text="${{documentLine.total}}"></td>-->
-<!--                                    <td>-->
-<!--                                        <a th:href="@{${document.link} + '/editLine/' + ${documentLine.id}}"-->
-<!--                                           th:if="${!document.isPaid()}"-->
-<!--                                           class="btn btn-primary btn-sm">-->
-<!--                                            <i class="fa fa-edit" aria-hidden="true"></i>-->
-<!--                                        </a>&nbsp;-->
-<!--                                        <a th:href="@{${document.link} + '/deleteLine/' + ${documentLine.id}}"-->
-<!--                                           th:if="${!document.isPaid()}"-->
-<!--                                           class="btn btn-danger btn-sm">-->
-<!--                                            <i class="fa fa-trash text-white" aria-hidden="true"></i>-->
-<!--                                        </a>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -188,7 +138,7 @@
     </a>
     <!-- Logout Modal-->
     <div th:replace="fragments/modals :: logout"></div>
-    <div th:replace="fragments/modals :: deleteProjectInvoice"></div>
+    <div th:replace="fragments/modals :: deleteDocument"></div>
 
     <!-- Bootstrap core JavaScript-->
     <th:block th:include="fragments/scripts :: scripts"/>

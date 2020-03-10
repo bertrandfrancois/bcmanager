@@ -69,7 +69,7 @@ public class ServiceInvoiceController {
             return "service_invoice_form";
         }
         Document savedDocument = documentService.save(document);
-        return "redirect:/clients/" + clientId + "/services/" + savedDocument.getId() + "?createSuccess";
+        return "redirect:" + savedDocument.getLink() + "?createSuccess";
     }
 
     @GetMapping("/{documentId}/edit")
@@ -94,9 +94,9 @@ public class ServiceInvoiceController {
             model.addAttribute("clientId", clientId);
             return "service_invoice_form";
         }
-        documentService.save(serviceInvoice);
+        Document document = documentService.save(serviceInvoice);
 
-        return "redirect:/clients/" + clientId + "/services/" + documentId + "?editSuccess";
+        return "redirect:" + document.getLink() + "?editSuccess";
     }
 
     @GetMapping("/{documentId}/copy")
@@ -130,7 +130,7 @@ public class ServiceInvoiceController {
 
         document.addDocumentLine(documentLine);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/services/" + document.getId();
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/editLine/{documentLineId}")
@@ -166,7 +166,7 @@ public class ServiceInvoiceController {
         }
         document.editDocumentLine(documentLine);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/services/" + document.getId();
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/deleteLine/{documentLineId}")
@@ -176,7 +176,7 @@ public class ServiceInvoiceController {
         Document document = documentService.find(documentId);
         document.deleteLine(documentLineId);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/services/" + documentId;
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/updateStatus")
@@ -185,6 +185,6 @@ public class ServiceInvoiceController {
         Document document = documentService.find(documentId);
         document.setStatus(document.getStatus().getNextStatus());
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/services/" + documentId;
+        return "redirect:" + document.getLink();
     }
 }

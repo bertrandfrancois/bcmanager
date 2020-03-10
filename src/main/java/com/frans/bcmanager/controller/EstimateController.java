@@ -71,7 +71,7 @@ public class EstimateController {
             return "estimate_form";
         }
         Document savedDocument = documentService.save(document);
-        return "redirect:/clients/" + clientId + "/estimates/" + savedDocument.getId() + "?createSuccess";
+        return "redirect:" + savedDocument.getLink() + "?createSuccess";
     }
 
     @GetMapping("/{documentId}/edit")
@@ -131,7 +131,7 @@ public class EstimateController {
 
         document.addDocumentLine(documentLine);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/estimates/" + document.getId();
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/editLine/{documentLineId}")
@@ -168,7 +168,7 @@ public class EstimateController {
         }
         document.editDocumentLine(documentLine);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/estimates/" + document.getId();
+        return "redirect:" + document.getLink();
     }
 
     @GetMapping("/{documentId}/deleteLine/{documentLineId}")
@@ -178,6 +178,6 @@ public class EstimateController {
         Document document = documentService.find(documentId);
         document.deleteLine(documentLineId);
         documentService.save(document);
-        return "redirect:/clients/" + clientId + "/estimates/" + documentId;
+        return "redirect:" + document.getLink();
     }
 }

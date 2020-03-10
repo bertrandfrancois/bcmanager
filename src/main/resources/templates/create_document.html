@@ -17,10 +17,10 @@
                 <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${client.id}}" th:text="#{menu.client.detail}"></a>
+                <a th:href="@{${client.link}}" th:text="#{menu.client.detail}"></a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${client.id} + '/projects/' + ${project.id}}"
+                <a th:href="@{${client.link} + '/projects/' + ${project.id}}"
                    th:text="#{menu.project.detail}"></a>
             </li>
             <li class="breadcrumb-item active"><span th:text="#{menu.document.new}"></span></li>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <a th:href="@{'/clients/' + ${client.id}}" class="btn btn-danger btn-block"><span
+                            <a th:href="@{${client.link}}" class="btn btn-danger btn-block"><span
                                     th:text="#{button.cancel}"></span></a>
                         </div>
                         <div class="col-lg-6">

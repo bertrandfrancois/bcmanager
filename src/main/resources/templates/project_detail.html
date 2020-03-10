@@ -35,10 +35,13 @@
                     <div class="card-header">
                         <i class="fa fa-user">&nbsp;</i><span th:text="#{menu.project.detail}"></span>
                         <a data-toggle="modal" data-target="#deleteProject"
-                           class="btn btn-danger btn-sm float-right" style="margin-left:5px;">
+                           class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
+                        id="deleteProjectAction">
                             <i class="fa fa-trash text-white" aria-hidden="true"></i>
                         </a>
-                        <a th:href="@{'./' + ${project.id} + '/edit'}" class="btn btn-primary btn-sm float-right">
+                        <a th:href="@{${project.link} + '/edit'}"
+                           class="btn btn-primary btn-sm float-right"
+                        id="editProjectAction">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
@@ -71,7 +74,7 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.invoices}"></span>
-                        <a th:href="@{'./'+ ${project.id} +'/documents/create'}"
+                        <a th:href="@{${project.link} +'/documents/create'}"
                            class="btn btn-primary btn-sm float-right">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
@@ -94,7 +97,7 @@
                                 <tr th:each="document : ${project.documents}">
                                     <td th:text="${document.code}"></td>
                                     <td>
-                                        <a th:href="@{'./' + ${project.id} +'/documents/' + ${document.id}}">
+                                        <a th:href="@{${document.link}}">
                                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                         </a>
                                     </td>
