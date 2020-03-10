@@ -3,8 +3,8 @@
 <div class="col-lg-6" th:fragment="form" th:if="${!document.isPaid()}">
     <div class="card mb-3 ">
         <div class="card-header">
-            <i th:if="${mode == 'NEW'}" class="fa fa-plus">&nbsp;</i>
-            <i th:if="${mode == 'EDIT'}" class="fa fa-edit">&nbsp;</i>
+            <i th:if="${mode == 'NEW'}" class="fas fa-plus">&nbsp;</i>
+            <i th:if="${mode == 'EDIT'}" class="fas fa-edit">&nbsp;</i>
             <span th:if="${mode == 'NEW'}" th:text="#{menu.documentLine.new}"></span>
             <span th:if="${mode == 'EDIT'}" th:text="#{menu.documentLine.edit}"></span>
         </div>
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
                                           class="text-danger"></span>
-                                    <!--<span class="input-group-addon"><i class="fa fa-euro-sign"></i>-->
+                                    <!--<span class="input-group-addon"><i class="fas fa-euro-sign"></i>-->
                                     <!--</span>-->
                                     <input class="form-control" id="price" type="text" th:field="*{price}"/>
                                 </div>

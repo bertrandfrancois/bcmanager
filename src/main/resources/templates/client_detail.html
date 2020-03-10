@@ -20,26 +20,26 @@
         </ol>
         <div class="alert alert-success alert-dismissable" th:if="${param.editSuccess}">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.client.edit.success}"></span>
+            <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.client.edit.success}"></span>
         </div>
         <div class="alert alert-success alert-dismissable" th:if="${param.createSuccess}">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.client.create.success}"></span>
+            <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span th:text="#{info.client.create.success}"></span>
         </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-user">&nbsp;</i><span th:text="#{menu.client.detail}"></span>
+                        <i class="fas fa-user">&nbsp;</i><span class="text-icon" th:text="#{menu.client.detail}"></span>
                         <a data-toggle="modal" data-target="#deleteClient"
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
                            id="deleteClientLink">
-                            <i class="fa fa-trash text-white" aria-hidden="true"></i>
+                            <i class="fas fa-trash text-white" aria-hidden="true"></i>
                         </a>
                         <a th:href="@{${client.link} + '/edit'}"
                            class="btn btn-primary btn-sm float-right"
                            id="editClientAction">
-                            <i class="fa fa-edit" aria-hidden="true"></i>
+                            <i class="fas fa-edit" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
 
@@ -86,11 +86,11 @@
             <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.projects}"></span>
+                        <i class="fas fa-wrench">&nbsp;</i><span class="text-icon" th:text="#{menu.projects}"></span>
                         <a th:href="@{'./'+ ${client.id} +'/projects/create'}"
                            class="btn btn-primary btn-sm float-right"
                            id="createProjectAction">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
 
@@ -112,7 +112,7 @@
                                     <td th:text="${project.description}"></td>
                                     <td>
                                         <a th:href="@{'./' + ${client.id} +'/projects/' + ${project.id}}">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -126,11 +126,11 @@
             <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.estimates}"></span>
+                        <i class="fas fa-wrench">&nbsp;</i><span class="text-icon" th:text="#{menu.estimates}"></span>
                         <a th:href="@{'./'+ ${client.id} +'/estimates/create'}"
                            class="btn btn-primary btn-sm float-right"
                            id="createEstimateAction">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
 
@@ -152,7 +152,7 @@
                                     <td th:text="${estimate.code}"></td>
                                     <td>
                                         <a th:href="@{'./' + ${client.id} +'/estimates/' + ${estimate.id}}">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -166,11 +166,11 @@
             <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-wrench">&nbsp;</i><span th:text="#{menu.services}"></span>
+                        <i class="fas fa-wrench">&nbsp;</i><span class="text-icon" th:text="#{menu.services}"></span>
                         <a th:href="@{'./'+ ${client.id} +'/services/create'}"
                            class="btn btn-primary btn-sm float-right"
                            id="createServiceAction">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </a>&nbsp;
                     </div>
 
@@ -192,7 +192,7 @@
                                     <td th:text="${service.code}"></td>
                                     <td>
                                         <a th:href="@{'./' + ${client.id} +'/services/' + ${service.id}}">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -215,7 +215,7 @@
     </footer>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
+        <i class="fas fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
     <div th:replace="fragments/modals :: logout"></div>

@@ -18,9 +18,9 @@
         </ol>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-users">&nbsp;</i><span th:text="#{menu.clients}"></span>
+                <i class="fas fa-users">&nbsp;</i><span class="text-icon" th:text="#{menu.clients}"></span>
                 <a th:href="@{/clients/create}" class="btn btn-primary btn-sm float-right" id="addClient">
-                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="card-body">
@@ -45,7 +45,7 @@
                             <td th:text="${client.address.city}" id="city"></td>
                             <td>
                                 <a th:href="@{${client.link}}">
-                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>
@@ -65,7 +65,7 @@
     </footer>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
+        <i class="fas fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
     <div th:replace="fragments/modals :: logout"></div>

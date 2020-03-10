@@ -18,7 +18,7 @@
         </ol>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-euro-signo">&nbsp;</i><span th:text="#{menu.documents}"></span>
+                <i class="fas fa-euro-sign">&nbsp;</i><span class="text-icon" th:text="#{menu.documents}"></span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -36,7 +36,7 @@
                             <td th:text="${#temporals.format(document.creationDate, 'dd/MM/yyyy')}" id="creationDate"></td>
                             <td>
                                 <a th:href="@{${document.link}}">
-                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>
@@ -56,7 +56,7 @@
     </footer>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
+        <i class="fas fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
     <div th:replace="fragments/modals :: logout"></div>
