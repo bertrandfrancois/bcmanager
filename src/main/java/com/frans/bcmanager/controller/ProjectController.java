@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/clients/{clientId}/projects")
+@RequestMapping("/clients/{client}/projects")
 public class ProjectController {
 
     private ProjectService projectService;
@@ -29,8 +29,8 @@ public class ProjectController {
         this.urlFactory = urlFactory;
     }
 
-    @GetMapping("/{projectId}")
-    public String showProject(@PathVariable("clientId") long clientId, @PathVariable("projectId") long projectId, Model model) {
+    @GetMapping("/{id}")
+    public String showProject(@PathVariable("client") long clientId, @PathVariable("id") long projectId, Model model) {
         Project project = projectService.find(projectId);
         model.addAttribute("project", project);
         model.addAttribute("clientId", clientId);
@@ -39,7 +39,7 @@ public class ProjectController {
     }
 
     @GetMapping("/create")
-    public String createProject(@PathVariable("clientId") long clientId, Model model) {
+    public String createProject(@PathVariable("client") long clientId, Model model) {
         Project project = new Project();
         model.addAttribute("project", project);
         model.addAttribute("clientId", clientId);
@@ -52,7 +52,7 @@ public class ProjectController {
     @PostMapping("/create")
     public String saveProject(@Valid @ModelAttribute Project project,
                               BindingResult bindingResult,
-                              @PathVariable("clientId") long clientId,
+                              @PathVariable("client") long clientId,
                               Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clientId", clientId);
@@ -64,9 +64,9 @@ public class ProjectController {
         return "redirect:" + savedProject.getLink() + "?createSuccess";
     }
 
-    @GetMapping("/{projectId}/edit")
-    public String editProject(@PathVariable("clientId") long clientId,
-                              @PathVariable("projectId") long projectId,
+    @GetMapping("/{id}/edit")
+    public String editProject(@PathVariable("client") long clientId,
+                              @PathVariable("id") long projectId,
                               Model model) {
         Project project = projectService.find(projectId);
         model.addAttribute("project", project);
@@ -76,10 +76,10 @@ public class ProjectController {
         return "project_form";
     }
 
-    @PostMapping("/{projectId}/edit")
+    @PostMapping("/{id}/edit")
     public String editProject(@Valid @ModelAttribute Project project,
                               BindingResult bindingResult,
-                              @PathVariable("clientId") long clientId,
+                              @PathVariable("client") long clientId,
                               Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("client", clientId);
@@ -91,9 +91,9 @@ public class ProjectController {
         return "redirect:/clients/" + clientId + "/projects/" + project.getId() + "?editSuccess";
     }
 
-    @PostMapping("/{projectId}/delete")
-    public String deleteDocumentLine(@PathVariable("clientId") long clientId,
-                                     @PathVariable("projectId") long projectId) {
+    @PostMapping("/{id}/delete")
+    public String deleteDocumentLine(@PathVariable("client") long clientId,
+                                     @PathVariable("id") long projectId) {
         projectService.delete(projectId);
         return "redirect:/clients/" + clientId;
     }

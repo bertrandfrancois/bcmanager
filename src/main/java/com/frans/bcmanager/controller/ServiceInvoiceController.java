@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/clients/{clientId}/services")
+@RequestMapping("/clients/{client}/services")
 public class ServiceInvoiceController {
 
     private DocumentService documentService;
@@ -31,23 +31,23 @@ public class ServiceInvoiceController {
         this.urlFactory = urlFactory;
     }
 
-    @GetMapping("/{documentId}")
-    public String showServiceInvoiceDocument(@PathVariable("clientId") long clientId,
-                                             @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}")
+    public String showServiceInvoiceDocument(@PathVariable("client") long clientId,
+                                             @PathVariable("id") long id,
                                              Model model) {
-        ServiceInvoice document = (ServiceInvoice) documentService.find(documentId);
+        ServiceInvoice document = (ServiceInvoice) documentService.find(id);
         DocumentLine documentLine = new DocumentLine();
         model.addAttribute("client", clientId);
         model.addAttribute("document", document);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.NEW);
-        model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, documentId));
+        model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, id));
 
         return "service_invoice_detail";
     }
 
     @GetMapping("/create")
-    public String createServiceInvoiceDocument(@PathVariable("clientId") long clientId,
+    public String createServiceInvoiceDocument(@PathVariable("client") long clientId,
                                                Model model) {
         ServiceInvoice serviceInvoice = new ServiceInvoice();
         model.addAttribute("clientId", clientId);
@@ -60,7 +60,7 @@ public class ServiceInvoiceController {
     @PostMapping("/create")
     public String saveServiceInvoiceDocument(@Valid @ModelAttribute ServiceInvoice document,
                                              BindingResult bindingResult,
-                                             @PathVariable("clientId") long clientId,
+                                             @PathVariable("client") long clientId,
                                              Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clientId", clientId);
@@ -72,20 +72,20 @@ public class ServiceInvoiceController {
         return "redirect:" + savedDocument.getLink() + "?createSuccess";
     }
 
-    @GetMapping("/{documentId}/edit")
-    public String editServiceInvoice(@PathVariable("clientId") long clientId,
-                                     @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/edit")
+    public String editServiceInvoice(@PathVariable("client") long clientId,
+                                     @PathVariable("id") long id,
                                      Model model) {
-        ServiceInvoice serviceInvoice = (ServiceInvoice) documentService.find(documentId);
+        ServiceInvoice serviceInvoice = (ServiceInvoice) documentService.find(id);
         model.addAttribute("serviceInvoice", serviceInvoice);
         model.addAttribute("clientId", clientId);
         model.addAttribute("mode", Mode.EDIT);
         return "service_invoice_form";
     }
 
-    @PostMapping("/{documentId}/edit")
-    public String editServiceInvoice(@PathVariable("clientId") long clientId,
-                                     @PathVariable("documentId") long documentId,
+    @PostMapping("/{id}/edit")
+    public String editServiceInvoice(@PathVariable("client") long clientId,
+                                     @PathVariable("id") long id,
                                      @Valid @ModelAttribute ServiceInvoice serviceInvoice,
                                      BindingResult bindingResult,
                                      Model model) {
@@ -99,86 +99,86 @@ public class ServiceInvoiceController {
         return "redirect:" + document.getLink() + "?editSuccess";
     }
 
-    @GetMapping("/{documentId}/copy")
-    public String copyEstimate(@PathVariable("documentId") long documentId) {
-        ServiceInvoice invoice = (ServiceInvoice) documentService.copyInvoice(documentId);
+    @GetMapping("/{id}/copy")
+    public String copyEstimate(@PathVariable("id") long id) {
+        ServiceInvoice invoice = (ServiceInvoice) documentService.copyInvoice(id);
         return "redirect:" + invoice.getLink() + "?copySuccess";
     }
 
-    @PostMapping("/{documentId}/delete")
-    public String deleteServiceInvoiceDocument(@PathVariable("clientId") long clientId,
-                                               @PathVariable("documentId") long documentId) {
-        documentService.delete(documentId);
+    @PostMapping("/{id}/delete")
+    public String deleteServiceInvoiceDocument(@PathVariable("client") long clientId,
+                                               @PathVariable("id") long id) {
+        documentService.delete(id);
         return "redirect:/clients/" + clientId;
     }
 
-    @PostMapping("/{documentId}/addLine")
+    @PostMapping("/{id}/addLine")
     public String addServiceInvoiceDocumentLine(@Valid @ModelAttribute DocumentLine documentLine,
                                                 BindingResult bindingResult,
-                                                @PathVariable("clientId") long clientId,
-                                                @PathVariable("documentId") long documentId,
+                                                @PathVariable("client") long clientId,
+                                                @PathVariable("id") long id,
                                                 Model model) {
-        Document document = documentService.find(documentId);
+        Document document = documentService.find(id);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
             model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.NEW);
-            model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, documentId));
+            model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, id));
             return "service_invoice_detail";
         }
         documentService.addDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/editLine/{documentLineId}")
-    public String editServiceInvoiceDocumentLine(@PathVariable("clientId") long clientId,
-                                                 @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/editLine/{documentLineId}")
+    public String editServiceInvoiceDocumentLine(@PathVariable("client") long clientId,
+                                                 @PathVariable("id") long id,
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
-        Document document = documentService.find(documentId);
+        Document document = documentService.find(id);
         DocumentLine documentLine = document.getDocumentLines().stream().filter(dl -> dl.getId().equals(documentLineId)).findFirst().get();
         model.addAttribute("document", document);
         model.addAttribute("clientId", clientId);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.EDIT);
-        model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, documentId, documentLineId));
+        model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, id, documentLineId));
 
         return "service_invoice_detail";
     }
 
-    @PostMapping("/{documentId}/editLine/{documentLineId}")
+    @PostMapping("/{id}/editLine/{documentLineId}")
     public String editServiceInvoiceDocumentLine(@Valid @ModelAttribute DocumentLine documentLine,
                                                  BindingResult bindingResult,
-                                                 @PathVariable("clientId") long clientId,
-                                                 @PathVariable("documentId") long documentId,
+                                                 @PathVariable("client") long clientId,
+                                                 @PathVariable("id") long id,
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
-        Document document = documentService.find(documentId);
+        Document document = documentService.find(id);
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
             model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.EDIT);
-            model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, documentId, documentLineId));
+            model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, id, documentLineId));
             return "service_invoice_detail";
         }
         documentService.editDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/deleteLine/{documentLineId}")
-    public String deleteDocumentLine(@PathVariable("clientId") long clientId,
-                                     @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/deleteLine/{documentLineId}")
+    public String deleteDocumentLine(@PathVariable("client") long clientId,
+                                     @PathVariable("id") long id,
                                      @PathVariable("documentLineId") long documentLineId) {
-        Document document = documentService.find(documentId);
+        Document document = documentService.find(id);
         documentService.deleteDocumentLine(document, documentLineId);
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/updateStatus")
-    public String updateStatus(@PathVariable("clientId") long clientId,
-                               @PathVariable("documentId") long documentId) {
-        Document document = documentService.find(documentId);
+    @GetMapping("/{id}/updateStatus")
+    public String updateStatus(@PathVariable("client") long clientId,
+                               @PathVariable("id") long id) {
+        Document document = documentService.find(id);
         documentService.updateStatus(document);
         return "redirect:" + document.getLink();
     }

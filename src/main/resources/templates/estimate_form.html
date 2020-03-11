@@ -40,8 +40,6 @@
                       th:name="createDocument"
                       th:object="${estimate}"
                       th:method="post">
-                    <input id="id" type="hidden" th:field="*{id}"/>
-                    <input id="client" type="hidden" th:name="client.id" th:value="${clientId}"/>
                     <input id="documentLines" type="hidden" th:field="*{documentLines}"/>
                     <input id="status" type="hidden" name="status" th:value="NOT_RELEVANT"/>
 
@@ -52,7 +50,12 @@
                                 <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="text-danger"></span>
                                 <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
                                 <input th:if="${mode=='EDIT'}" class="form-control" id="code" type="text" th:field="*{code}"/>
-                                <input th:if="${mode=='NEW'}" class="form-control" id="code" type="text" th:value="${nextEstimateCode}" name="code"/>
+                                <input th:if="${mode=='NEW'}"
+                                       class="form-control"
+                                       id="code"
+                                       type="text"
+                                       th:value="${nextEstimateCode}"
+                                       name="code"/>
                             </div>
                             <div class="form-group">
                                 <label for="taxRate" th:text="#{document.taxRate}" class="text-primary required"></label>

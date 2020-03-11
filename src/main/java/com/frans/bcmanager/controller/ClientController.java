@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/clients")
 public class ClientController {
 
     private final ClientService clientService;
@@ -25,14 +27,14 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/clients/create")
+    @GetMapping("/create")
     public String createClient(Model model) {
         model.addAttribute("client", new Client());
         model.addAttribute("mode", Mode.NEW);
         return "client_form";
     }
 
-    @PostMapping("/clients/create")
+    @PostMapping("/create")
     public String createClient(@Valid @ModelAttribute Client client, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("mode", Mode.NEW);
@@ -43,7 +45,7 @@ public class ClientController {
         return "redirect:" + newClient.getLink() + "?createSuccess";
     }
 
-    @GetMapping("/clients/{id}")
+    @GetMapping("/{id}")
     public String showClient(@PathVariable long id, Model model) {
         Client client = clientService.find(id);
         Project project = new Project();
@@ -53,7 +55,7 @@ public class ClientController {
         return "client_detail";
     }
 
-    @GetMapping("/clients/{id}/edit")
+    @GetMapping("/{id}/edit")
     public String editClient(@PathVariable long id, Model model) {
         Client client = clientService.find(id);
         model.addAttribute("client", client);
@@ -61,7 +63,7 @@ public class ClientController {
         return "client_form";
     }
 
-    @PostMapping("/clients/{id}/edit")
+    @PostMapping("/{id}/edit")
     public String editClient(@PathVariable long id, @Valid @ModelAttribute Client client, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("mode", Mode.EDIT);
@@ -71,7 +73,7 @@ public class ClientController {
         return "redirect:" + savedClient.getLink() + "?editSuccess";
     }
 
-    @PostMapping("/clients/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String deleteClient(@PathVariable long id) {
         clientService.delete(id);
         return "redirect:/clients";

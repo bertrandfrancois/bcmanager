@@ -40,8 +40,6 @@
                       th:name="createDocument"
                       th:object="${serviceInvoice}"
                       th:method="post">
-                    <input id="id" type="hidden" th:field="*{id}"/>
-                    <input id="client" type="hidden" name="client.id" th:value="${clientId}"/>
                     <input id="documentLines" type="hidden" th:field="*{documentLines}"/>
                     <input id="status" type="hidden" name="status" th:value="NOT_PAID"/>
                     <div class="row">
@@ -62,7 +60,6 @@
                                 <label for="taxRate" th:text="#{document.taxRate}" class="text-primary required"></label>
                                 <span th:if="${#fields.hasErrors('taxRate')}" th:errors="*{taxRate}"
                                       class="text-danger"></span>
-                                <!--<input class="form-control" id="taxRate" type="text" th:field="*{taxRate}"/>-->
                                 <select class="form-control" th:field="*{taxRate}" id="taxRate">
                                     <option th:each="rate : ${T(com.frans.bcmanager.enums.TaxRate).values()}"
                                             th:value="${rate}"

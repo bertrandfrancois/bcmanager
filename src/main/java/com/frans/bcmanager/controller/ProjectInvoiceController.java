@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/clients/{clientId}/projects/{projectId}/documents/")
+@RequestMapping("/clients/{client}/projects/{project}/documents/")
 public class ProjectInvoiceController {
 
     private DocumentService documentService;
@@ -33,10 +33,10 @@ public class ProjectInvoiceController {
         this.urlFactory = urlFactory;
     }
 
-    @GetMapping("/{documentId}")
-    public String showProjectInvoiceDocument(@PathVariable("clientId") long clientId,
-                                             @PathVariable("documentId") long documentId,
-                                             @PathVariable("projectId") long projectId,
+    @GetMapping("/{id}")
+    public String showProjectInvoiceDocument(@PathVariable("client") long clientId,
+                                             @PathVariable("id") long documentId,
+                                             @PathVariable("project") long projectId,
                                              Model model) {
         ProjectInvoice document = (ProjectInvoice) documentService.find(documentId);
         DocumentLine documentLine = new DocumentLine();
@@ -51,8 +51,8 @@ public class ProjectInvoiceController {
     }
 
     @GetMapping("/create")
-    public String createProjectInvoiceDocument(@PathVariable("clientId") long clientId,
-                                               @PathVariable("projectId") long projectId,
+    public String createProjectInvoiceDocument(@PathVariable("client") long clientId,
+                                               @PathVariable("project") long projectId,
                                                Model model) {
         ProjectInvoice projectInvoice = new ProjectInvoice();
         model.addAttribute("clientId", clientId);
@@ -66,8 +66,8 @@ public class ProjectInvoiceController {
     @PostMapping("/create")
     public String saveProjectInvoiceDocument(@Valid @ModelAttribute ProjectInvoice document,
                                              BindingResult bindingResult,
-                                             @PathVariable("clientId") long clientId,
-                                             @PathVariable("projectId") long projectId,
+                                             @PathVariable("client") long clientId,
+                                             @PathVariable("project") long projectId,
                                              Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clientId", clientId);
@@ -80,10 +80,10 @@ public class ProjectInvoiceController {
         return "redirect:" + savedDocument.getLink() + "?createSuccess";
     }
 
-    @GetMapping("/{documentId}/edit")
-    public String editProjectInvoice(@PathVariable("clientId") long clientId,
-                                     @PathVariable("projectId") long projectId,
-                                     @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/edit")
+    public String editProjectInvoice(@PathVariable("client") long clientId,
+                                     @PathVariable("project") long projectId,
+                                     @PathVariable("id") long documentId,
                                      Model model) {
         ProjectInvoice serviceInvoice = (ProjectInvoice) documentService.find(documentId);
         model.addAttribute("projectInvoice", serviceInvoice);
@@ -94,10 +94,10 @@ public class ProjectInvoiceController {
         return "project_invoice_form";
     }
 
-    @PostMapping("/{documentId}/edit")
-    public String editProjectInvoice(@PathVariable("clientId") long clientId,
-                                     @PathVariable("projectId") long projectId,
-                                     @PathVariable("documentId") long documentId,
+    @PostMapping("/{id}/edit")
+    public String editProjectInvoice(@PathVariable("client") long clientId,
+                                     @PathVariable("project") long projectId,
+                                     @PathVariable("id") long documentId,
                                      @Valid @ModelAttribute ProjectInvoice serviceInvoice,
                                      BindingResult bindingResult,
                                      Model model) {
@@ -113,26 +113,26 @@ public class ProjectInvoiceController {
         return "redirect:/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId + "?editSuccess";
     }
 
-    @GetMapping("/{documentId}/copy")
-    public String copyEstimate(@PathVariable("documentId") long documentId) {
+    @GetMapping("/{id}/copy")
+    public String copyEstimate(@PathVariable("id") long documentId) {
         ProjectInvoice invoice = (ProjectInvoice) documentService.copyInvoice(documentId);
         return "redirect:" + invoice.getLink() + "?copySuccess";
     }
 
-    @PostMapping("/{documentId}/delete")
-    public String deleteProjectInvoiceDocument(@PathVariable("clientId") long clientId,
-                                               @PathVariable("projectId") long projectId,
-                                               @PathVariable("documentId") long documentId) {
+    @PostMapping("/{id}/delete")
+    public String deleteProjectInvoiceDocument(@PathVariable("client") long clientId,
+                                               @PathVariable("project") long projectId,
+                                               @PathVariable("id") long documentId) {
         documentService.delete(documentId);
         return "redirect:/clients/" + clientId + "/projects/" + projectId;
     }
 
-    @PostMapping("/{documentId}/addLine")
+    @PostMapping("/{id}/addLine")
     public String addProjectInvoiceDocumentLine(@Valid @ModelAttribute DocumentLine documentLine,
                                                 BindingResult bindingResult,
-                                                @PathVariable("clientId") long clientId,
-                                                @PathVariable("projectId") long projectId,
-                                                @PathVariable("documentId") long documentId,
+                                                @PathVariable("client") long clientId,
+                                                @PathVariable("project") long projectId,
+                                                @PathVariable("id") long documentId,
                                                 Model model) {
         Document document = documentService.find(documentId);
 
@@ -150,10 +150,10 @@ public class ProjectInvoiceController {
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/editLine/{documentLineId}")
-    public String editProjectInvoiceDocumentLine(@PathVariable("clientId") long clientId,
-                                                 @PathVariable("projectId") long projectId,
-                                                 @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/editLine/{documentLineId}")
+    public String editProjectInvoiceDocumentLine(@PathVariable("client") long clientId,
+                                                 @PathVariable("project") long projectId,
+                                                 @PathVariable("id") long documentId,
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
         Document document = documentService.find(documentId);
@@ -169,12 +169,12 @@ public class ProjectInvoiceController {
         return "project_invoice_detail";
     }
 
-    @PostMapping("/{documentId}/editLine/{documentLineId}")
+    @PostMapping("/{id}/editLine/{documentLineId}")
     public String editProjectInvoiceDocumentLine(@Valid @ModelAttribute DocumentLine documentLine,
                                                  BindingResult bindingResult,
-                                                 @PathVariable("clientId") long clientId,
-                                                 @PathVariable("projectId") long projectId,
-                                                 @PathVariable("documentId") long documentId,
+                                                 @PathVariable("client") long clientId,
+                                                 @PathVariable("project") long projectId,
+                                                 @PathVariable("id") long documentId,
                                                  @PathVariable("documentLineId") long documentLineId,
                                                  Model model) {
         Document document = documentService.find(documentId);
@@ -191,10 +191,10 @@ public class ProjectInvoiceController {
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/deleteLine/{documentLineId}")
-    public String deleteDocumentLine(@PathVariable("clientId") long clientId,
-                                     @PathVariable("projectId") long projectId,
-                                     @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/deleteLine/{documentLineId}")
+    public String deleteDocumentLine(@PathVariable("client") long clientId,
+                                     @PathVariable("project") long projectId,
+                                     @PathVariable("id") long documentId,
                                      @PathVariable("documentLineId") long documentLineId) {
         Document document = documentService.find(documentId);
         document.deleteLine(documentLineId);
@@ -202,10 +202,10 @@ public class ProjectInvoiceController {
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/updateStatus")
-    public String updateStatus(@PathVariable("clientId") long clientId,
-                               @PathVariable("projectId") long projectId,
-                               @PathVariable("documentId") long documentId) {
+    @GetMapping("/{id}/updateStatus")
+    public String updateStatus(@PathVariable("client") long clientId,
+                               @PathVariable("project") long projectId,
+                               @PathVariable("id") long documentId) {
         Document document = documentService.find(documentId);
         documentService.updateStatus(document);
         return "redirect:" + document.getLink();

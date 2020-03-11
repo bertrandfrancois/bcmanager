@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/clients/{clientId}/estimates")
+@RequestMapping("/clients/{client}/estimates")
 public class EstimateController {
 
     private DocumentService documentService;
@@ -33,9 +33,9 @@ public class EstimateController {
         this.urlFactory = urlFactory;
     }
 
-    @GetMapping("/{documentId}")
-    public String showEstimateDocument(@PathVariable("clientId") long clientId,
-                                       @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}")
+    public String showEstimateDocument(@PathVariable("client") long clientId,
+                                       @PathVariable("id") long documentId,
                                        Model model) {
         Estimate document = (Estimate) documentService.find(documentId);
         DocumentLine documentLine = new DocumentLine();
@@ -49,7 +49,7 @@ public class EstimateController {
     }
 
     @GetMapping("/create")
-    public String createEstimateDocument(@PathVariable("clientId") long clientId,
+    public String createEstimateDocument(@PathVariable("client") long clientId,
                                          Model model) {
         Estimate estimate = new Estimate();
         model.addAttribute("clientId", clientId);
@@ -62,7 +62,7 @@ public class EstimateController {
     @PostMapping("/create")
     public String saveEstimateDocument(@Valid @ModelAttribute Estimate document,
                                        BindingResult bindingResult,
-                                       @PathVariable("clientId") long clientId,
+                                       @PathVariable("client") long clientId,
                                        Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clientId", clientId);
@@ -74,9 +74,9 @@ public class EstimateController {
         return "redirect:" + savedDocument.getLink() + "?createSuccess";
     }
 
-    @GetMapping("/{documentId}/edit")
-    public String editEstimate(@PathVariable("clientId") long clientId,
-                               @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/edit")
+    public String editEstimate(@PathVariable("client") long clientId,
+                               @PathVariable("id") long documentId,
                                Model model) {
         Estimate estimate = (Estimate) documentService.find(documentId);
         model.addAttribute("estimate", estimate);
@@ -85,15 +85,15 @@ public class EstimateController {
         return "estimate_form";
     }
 
-    @GetMapping("/{documentId}/copy")
-    public String copyEstimate(@PathVariable("documentId") long documentId) {
+    @GetMapping("/{id}/copy")
+    public String copyEstimate(@PathVariable("id") long documentId) {
         Estimate estimate = documentService.copyEstimate(documentId);
         return "redirect:" + estimate.getLink() + "?copySuccess";
     }
 
-    @PostMapping("/{documentId}/edit")
-    public String editEstimate(@PathVariable("clientId") long clientId,
-                               @PathVariable("documentId") long documentId,
+    @PostMapping("/{id}/edit")
+    public String editEstimate(@PathVariable("client") long clientId,
+                               @PathVariable("id") long documentId,
                                @Valid @ModelAttribute Estimate estimate,
                                BindingResult bindingResult,
                                Model model) {
@@ -106,18 +106,18 @@ public class EstimateController {
         return "redirect:/clients/" + clientId + "/estimates/" + documentId + "?editSuccess";
     }
 
-    @PostMapping("/{documentId}/delete")
-    public String deleteEstimateDocument(@PathVariable("clientId") long clientId,
-                                         @PathVariable("documentId") long documentId) {
+    @PostMapping("/{id}/delete")
+    public String deleteEstimateDocument(@PathVariable("client") long clientId,
+                                         @PathVariable("id") long documentId) {
         documentService.delete(documentId);
         return "redirect:/clients/" + clientId;
     }
 
-    @PostMapping("/{documentId}/addLine")
+    @PostMapping("/{id}/addLine")
     public String addEstimateDocumentLine(@Valid @ModelAttribute DocumentLine documentLine,
                                           BindingResult bindingResult,
-                                          @PathVariable("clientId") long clientId,
-                                          @PathVariable("documentId") long documentId,
+                                          @PathVariable("client") long clientId,
+                                          @PathVariable("id") long documentId,
                                           Model model) {
         Document document = documentService.find(documentId);
 
@@ -132,9 +132,9 @@ public class EstimateController {
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/editLine/{documentLineId}")
-    public String editEstimateDocumentLine(@PathVariable("clientId") long clientId,
-                                           @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/editLine/{documentLineId}")
+    public String editEstimateDocumentLine(@PathVariable("client") long clientId,
+                                           @PathVariable("id") long documentId,
                                            @PathVariable("documentLineId") long documentLineId,
                                            Model model) {
         Document document = documentService.find(documentId);
@@ -148,11 +148,11 @@ public class EstimateController {
         return "estimate_detail";
     }
 
-    @PostMapping("/{documentId}/editLine/{documentLineId}")
+    @PostMapping("/{id}/editLine/{documentLineId}")
     public String editEstimateDocumentLine(@Valid @ModelAttribute DocumentLine documentLine,
                                            BindingResult bindingResult,
-                                           @PathVariable("clientId") long clientId,
-                                           @PathVariable("documentId") long documentId,
+                                           @PathVariable("client") long clientId,
+                                           @PathVariable("id") long documentId,
                                            @PathVariable("documentLineId") long documentLineId,
                                            Model model) {
         Document document = documentService.find(documentId);
@@ -168,9 +168,9 @@ public class EstimateController {
         return "redirect:" + document.getLink();
     }
 
-    @GetMapping("/{documentId}/deleteLine/{documentLineId}")
-    public String deleteDocumentLine(@PathVariable("clientId") long clientId,
-                                     @PathVariable("documentId") long documentId,
+    @GetMapping("/{id}/deleteLine/{documentLineId}")
+    public String deleteDocumentLine(@PathVariable("client") long clientId,
+                                     @PathVariable("id") long documentId,
                                      @PathVariable("documentLineId") long documentLineId) {
         Document document = documentService.find(documentId);
         documentService.deleteDocumentLine(document, documentLineId);
