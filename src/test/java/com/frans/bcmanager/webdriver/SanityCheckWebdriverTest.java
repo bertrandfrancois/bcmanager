@@ -574,6 +574,7 @@ public class SanityCheckWebdriverTest {
         driver.findElement(By.id("deleteDocumentButton")).click();
 
     }
+
     private void deleteProject(){
         driver.findElement(By.id("deleteProjectAction")).click();
         driver.findElement(By.id("deleteProjectButton")).click();

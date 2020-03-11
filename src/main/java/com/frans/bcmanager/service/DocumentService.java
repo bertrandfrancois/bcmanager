@@ -1,6 +1,7 @@
 package com.frans.bcmanager.service;
 
 import com.frans.bcmanager.model.Document;
+import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Estimate;
 import com.frans.bcmanager.repository.DocumentRepository;
 import com.google.common.collect.Lists;
@@ -82,5 +83,22 @@ public class DocumentService implements BaseService<Document> {
         copy.setCode(getNextInvoiceCode());
         documentRepository.save(copy);
         return copy;
+    }
+
+    public void addDocumentLine(Document document, DocumentLine documentLine) {
+        document.addDocumentLine(documentLine);
+
+    }
+
+    public void editDocumentLine(Document document, DocumentLine documentLine) {
+        document.editDocumentLine(documentLine);
+    }
+
+    public void deleteDocumentLine(Document document, long documentLineId) {
+        document.deleteLine(documentLineId);
+    }
+
+    public void updateStatus(Document document) {
+        document.setStatus(document.getStatus().getNextStatus());
     }
 }

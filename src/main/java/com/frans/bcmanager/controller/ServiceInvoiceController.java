@@ -127,9 +127,7 @@ public class ServiceInvoiceController {
             model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, documentId));
             return "service_invoice_detail";
         }
-
-        document.addDocumentLine(documentLine);
-        documentService.save(document);
+        documentService.addDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
@@ -164,8 +162,7 @@ public class ServiceInvoiceController {
             model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, documentId, documentLineId));
             return "service_invoice_detail";
         }
-        document.editDocumentLine(documentLine);
-        documentService.save(document);
+        documentService.editDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
@@ -174,8 +171,7 @@ public class ServiceInvoiceController {
                                      @PathVariable("documentId") long documentId,
                                      @PathVariable("documentLineId") long documentLineId) {
         Document document = documentService.find(documentId);
-        document.deleteLine(documentLineId);
-        documentService.save(document);
+        documentService.deleteDocumentLine(document, documentLineId);
         return "redirect:" + document.getLink();
     }
 
@@ -183,8 +179,7 @@ public class ServiceInvoiceController {
     public String updateStatus(@PathVariable("clientId") long clientId,
                                @PathVariable("documentId") long documentId) {
         Document document = documentService.find(documentId);
-        document.setStatus(document.getStatus().getNextStatus());
-        documentService.save(document);
+        documentService.updateStatus(document);
         return "redirect:" + document.getLink();
     }
 }

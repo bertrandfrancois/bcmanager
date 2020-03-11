@@ -146,8 +146,7 @@ public class ProjectInvoiceController {
             return "project_invoice_detail";
         }
 
-        document.addDocumentLine(documentLine);
-        documentService.save(document);
+        documentService.addDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
@@ -188,8 +187,7 @@ public class ProjectInvoiceController {
             model.addAttribute("url", urlFactory.editProjectInvoiceDocumentLine(clientId, projectId, documentId, documentLineId));
             return "project_invoice_detail";
         }
-        document.editDocumentLine(documentLine);
-        documentService.save(document);
+        documentService.editDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
@@ -209,8 +207,7 @@ public class ProjectInvoiceController {
                                @PathVariable("projectId") long projectId,
                                @PathVariable("documentId") long documentId) {
         Document document = documentService.find(documentId);
-        document.setStatus(document.getStatus().getNextStatus());
-        documentService.save(document);
+        documentService.updateStatus(document);
         return "redirect:" + document.getLink();
     }
 }

@@ -128,9 +128,7 @@ public class EstimateController {
             model.addAttribute("url", urlFactory.newEstimateDocumentLine(clientId, documentId));
             return "estimate_detail";
         }
-
-        document.addDocumentLine(documentLine);
-        documentService.save(document);
+        documentService.addDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
@@ -166,8 +164,7 @@ public class EstimateController {
             model.addAttribute("url", urlFactory.editEstimateDocumentLine(clientId, documentId, documentLineId));
             return "estimate_detail";
         }
-        document.editDocumentLine(documentLine);
-        documentService.save(document);
+        documentService.editDocumentLine(document, documentLine);
         return "redirect:" + document.getLink();
     }
 
@@ -176,8 +173,7 @@ public class EstimateController {
                                      @PathVariable("documentId") long documentId,
                                      @PathVariable("documentLineId") long documentLineId) {
         Document document = documentService.find(documentId);
-        document.deleteLine(documentLineId);
-        documentService.save(document);
+        documentService.deleteDocumentLine(document, documentLineId);
         return "redirect:" + document.getLink();
     }
 }
