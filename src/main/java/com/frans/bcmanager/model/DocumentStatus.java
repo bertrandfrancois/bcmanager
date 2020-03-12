@@ -6,16 +6,20 @@ import lombok.Getter;
 public enum DocumentStatus {
     PAID,
     NOT_PAID,
-    NOT_RELEVANT;
+    NOT_ACCEPTED,
+    ACCEPTED;
 
     private DocumentStatus nextStatus;
     private String styleClass;
 
     static {
         PAID.nextStatus = NOT_PAID;
-        PAID.styleClass = "text-success required";
         NOT_PAID.nextStatus = PAID;
+        NOT_ACCEPTED.nextStatus = ACCEPTED;
+        ACCEPTED.nextStatus = NOT_ACCEPTED;
+        PAID.styleClass = "text-success required";
         NOT_PAID.styleClass = "text-danger required";
-        NOT_RELEVANT.nextStatus = NOT_RELEVANT;
+        ACCEPTED.styleClass = "text-success required";
+        NOT_ACCEPTED.styleClass = "text-danger required";
     }
 }

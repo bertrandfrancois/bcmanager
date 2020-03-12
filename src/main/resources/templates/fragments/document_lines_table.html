@@ -22,7 +22,7 @@
                             <th th:text="#{documentLine.unit}"></th>
                             <th th:text="#{documentLine.price}"></th>
                             <th th:text="#{documentLine.total}"></th>
-                            <th th:text="Action" th:if="${!document.isPaid()}"></th>
+                            <th th:text="Action" th:if="${document.canBeEdited()}"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,7 +33,7 @@
                             <td th:text="${documentLine.unit.displayName}"></td>
                             <td th:text="${{documentLine.formattedPrice}}"></td>
                             <td th:text="${{documentLine.total}}"></td>
-                            <td th:if="${!document.isPaid()}">
+                            <td th:if="${document.canBeEdited()}">
                                 <a th:href="@{${document.link} + '/editLine/' + ${documentLine.id}}"
                                    class="btn btn-primary btn-sm"
                                    id="editDocumentLineAction">

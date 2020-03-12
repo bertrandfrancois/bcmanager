@@ -53,6 +53,12 @@
                            th:title="#{tooltip.pdf}">
                             <i class="fas fa-file-pdf" aria-hidden="true"></i>
                         </a>
+                        <a th:href="@{${document.link} + '/updateStatus'}"
+                           style="margin-left:5px;"
+                           class="btn btn-warning btn-sm float-right"
+                           th:title="#{tooltip.status}">
+                            <i class="fas fa-check text-white"></i>
+                        </a>
                         <a th:href="@{${document.link} + '/copy'}"
                            style="margin-left:5px;"
                            class="btn btn-info btn-sm float-right"
@@ -62,9 +68,10 @@
                         <a th:href="@{${document.link} + '/edit'}"
                            class="btn btn-primary btn-sm float-right"
                            th:title="#{tooltip.edit}"
-                           id="editEstimateAction">
+                           id="editEstimateAction"
+                           th:if="${document.canBeEdited()}">
                             <i class="fas fa-edit" aria-hidden="true"></i>
-                        </a>&nbsp;
+                        </a>
                     </div>
 
                     <div class="card-body">
@@ -93,6 +100,10 @@
                                 <tr>
                                     <th th:text="#{document.total}"></th>
                                     <td th:text="${{document.total}}"></td>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{document.status}"></th>
+                                    <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}"></td>
                                 </tr>
                             </table>
                         </div>

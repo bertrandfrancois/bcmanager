@@ -18,7 +18,7 @@
                 <a th:href="@{/clients}" th:text="#{menu.clients}"></a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{'/clients/' + ${clientId}}" th:text="#{menu.client.detail}"></a>
+                <a th:href="@{'/clients/' + ${document.client.id}}" th:text="#{menu.client.detail}"></a>
             </li>
             <li class="breadcrumb-item active"><span th:text="#{menu.invoice.detail}"></span></li>
         </ol>
@@ -66,12 +66,12 @@
                             <i class="fas fa-clone" aria-hidden="true"></i>
                         </a>
                         <a th:href="@{${document.link}+ '/edit'}"
-                           th:if="${!document.isPaid()}"
+                           th:if="${document.canBeEdited()}"
                            class="btn btn-primary btn-sm float-right"
                            th:title="#{tooltip.edit}"
                            id="editServiceAction">
                             <i class="fas fa-edit" aria-hidden="true"></i>
-                        </a>&nbsp;
+                        </a>
                     </div>
 
                     <div class="card-body">

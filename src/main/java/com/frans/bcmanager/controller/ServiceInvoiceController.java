@@ -37,7 +37,6 @@ public class ServiceInvoiceController {
                                              Model model) {
         ServiceInvoice document = (ServiceInvoice) documentService.find(id);
         DocumentLine documentLine = new DocumentLine();
-        model.addAttribute("client", clientId);
         model.addAttribute("document", document);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.NEW);
@@ -122,7 +121,6 @@ public class ServiceInvoiceController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
-            model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.NEW);
             model.addAttribute("url", urlFactory.newServiceInvoiceDocumentLine(clientId, id));
             return "service_invoice_detail";
@@ -139,7 +137,6 @@ public class ServiceInvoiceController {
         Document document = documentService.find(id);
         DocumentLine documentLine = document.getDocumentLines().stream().filter(dl -> dl.getId().equals(documentLineId)).findFirst().get();
         model.addAttribute("document", document);
-        model.addAttribute("clientId", clientId);
         model.addAttribute("documentLine", documentLine);
         model.addAttribute("mode", Mode.EDIT);
         model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, id, documentLineId));
@@ -157,7 +154,6 @@ public class ServiceInvoiceController {
         Document document = documentService.find(id);
         if (bindingResult.hasErrors()) {
             model.addAttribute("document", document);
-            model.addAttribute("clientId", clientId);
             model.addAttribute("mode", Mode.EDIT);
             model.addAttribute("url", urlFactory.editServiceInvoiceDocumentLine(clientId, id, documentLineId));
             return "service_invoice_detail";

@@ -132,6 +132,16 @@ public class EstimateController {
         return "redirect:" + document.getLink();
     }
 
+
+    @GetMapping("/{id}/updateStatus")
+    public String updateStatus(@PathVariable("client") long clientId,
+                               @PathVariable("id") long id) {
+        Document document = documentService.find(id);
+        documentService.updateStatus(document);
+        return "redirect:" + document.getLink();
+    }
+
+
     @GetMapping("/{id}/editLine/{documentLineId}")
     public String editEstimateDocumentLine(@PathVariable("client") long clientId,
                                            @PathVariable("id") long documentId,
