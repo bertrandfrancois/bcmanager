@@ -3,7 +3,9 @@ package com.frans.bcmanager.model;
  import com.google.common.collect.Lists;
  import lombok.AllArgsConstructor;
  import lombok.Data;
+ import lombok.Getter;
  import lombok.NoArgsConstructor;
+ import lombok.Setter;
 
  import javax.persistence.CascadeType;
  import javax.persistence.Column;
@@ -21,7 +23,8 @@ import javax.validation.constraints.NotEmpty;
  import java.util.List;
 
 @Entity(name="PROJECTS")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Project {
@@ -48,5 +51,10 @@ public class Project {
 
     public String getLink(){
         return "/clients/"+ getClient().getId() + "/projects/" + getId();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

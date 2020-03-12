@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<div class="col-lg-6" th:fragment="form" th:if="${!document.canBeEdited()}">
+    <div class="card mb-3 ">
+        <div class="card-header">
+            <i class="fas fa-euro-sign">&nbsp;</i>
+            <span th:text="#{menu.estimate.convert}"></span>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <form th:action="@{${url}}"
+                      name="convertToInvoice"
+                      th:object="${conversionDTO}"
+                      method="post">
+                    <table class="table table-condensed table-hover table-striped" id="clientDetail">
+                        <tr>
+                            <th th:text="#{document.code}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" id="code" type="text" th:field="*{code}" readonly/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{menu.project}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('project')}" th:errors="*{project}"
+                                          class="text-danger"></span>
+
+                                    <select class="form-control" th:field="*{project}">
+                                        <option th:value="0"></option>
+                                        <option th:each="project : ${projects}"
+                                                th:value="${project.id}"
+                                                th:text="${project.description}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{menu.project}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-control" th:field="*{taxRate}" id="taxRate">
+                                        <option th:each="rate : ${T(com.frans.bcmanager.enums.TaxRate).values()}"
+                                                th:value="${rate}"
+                                                th:text="${{rate.value}}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{document.creationDate}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"
+                                          class="text-danger"></span>
+                                    <input class="form-control" id="creationDate" type="date" th:field="*{creationDate}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th th:text="#{document.paymentDate}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('paymentDate')}" th:errors="*{paymentDate}"
+                                          class="text-danger"></span>
+                                    <input class="form-control" id="paymentDate" type="date" th:field="*{paymentDate}"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn btn-primary btn-block" th:text="#{button.create}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

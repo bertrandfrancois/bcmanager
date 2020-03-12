@@ -37,7 +37,6 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 @Inheritance(strategy = SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @UniqueCode
 public abstract class Document implements Cloneable {
@@ -70,6 +69,21 @@ public abstract class Document implements Cloneable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "DOCUMENT_ID")
     protected List<DocumentLine> documentLines = List.of();
+
+    public Document(String code,
+                    LocalDate creationDate,
+                    TaxRate taxRate,
+                    DocumentStatus status,
+                    Client client,
+                    List<DocumentLine> documentLines) {
+
+        this.code = code;
+        this.creationDate = creationDate;
+        this.taxRate = taxRate;
+        this.status = status;
+        this.client = client;
+        this.documentLines = documentLines;
+    }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public BigDecimal getSubTotal() {

@@ -1,7 +1,9 @@
 package com.frans.bcmanager.model;
 
+import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,12 +16,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("PROJECT_INVOICE")
 @Data
 @NoArgsConstructor
 public class ProjectInvoice extends Document {
+
+    @Builder
+    public ProjectInvoice(String code,
+                          LocalDate creationDate,
+                          LocalDate paymentDate,
+                          TaxRate taxRate,
+                          DocumentStatus status,
+                          Client client,
+                          Project project,
+                          List<DocumentLine> documentLines) {
+        super(code, creationDate, taxRate, status, client, documentLines);
+        this.paymentDate = paymentDate;
+        this.project = project;
+    }
 
     @Column(name = "PAYMENT_DATE")
     @NotNull

@@ -63,7 +63,7 @@ public class DocumentLine implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         DocumentLine clone = (DocumentLine) super.clone();
         clone.setId(null);
         return clone;

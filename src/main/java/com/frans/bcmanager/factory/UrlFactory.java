@@ -36,4 +36,8 @@ public class UrlFactory {
     public String editProjectInvoiceDocumentLine(long clientId, long projectId, long documentId, long documentLineId) {
         return "/clients/" + clientId + "/projects/" + projectId + "/documents/" + documentId + "/editLine/" + documentLineId;
     }
+
+    public String convertToInvoice(long clientId, long documentId) {
+        return "/clients/" + clientId + "/estimates/" + documentId + "/convertToInvoice";
+    }
 }

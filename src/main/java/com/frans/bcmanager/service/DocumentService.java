@@ -1,5 +1,6 @@
 package com.frans.bcmanager.service;
 
+import com.frans.bcmanager.model.ConversionDTO;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Estimate;
@@ -17,10 +18,13 @@ import java.util.Optional;
 public class DocumentService implements BaseService<Document> {
 
     private final DocumentRepository documentRepository;
+    private final ConvertEstimateToInvoiceService convertEstimateToInvoiceService;
 
     @Autowired
-    public DocumentService(DocumentRepository documentRepository) {
+    public DocumentService(DocumentRepository documentRepository,
+                           ConvertEstimateToInvoiceService convertEstimateToInvoiceService) {
         this.documentRepository = documentRepository;
+        this.convertEstimateToInvoiceService = convertEstimateToInvoiceService;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class DocumentService implements BaseService<Document> {
         return documentRepository.findTop5ByOrderByIdDesc();
     }
 
-    public List<Document> getUnpaidDocuments(){
+    public List<Document> getUnpaidDocuments() {
         return documentRepository.findUnPaidDocuments();
     }
 
@@ -87,7 +91,6 @@ public class DocumentService implements BaseService<Document> {
 
     public void addDocumentLine(Document document, DocumentLine documentLine) {
         document.addDocumentLine(documentLine);
-
     }
 
     public void editDocumentLine(Document document, DocumentLine documentLine) {
@@ -100,5 +103,11 @@ public class DocumentService implements BaseService<Document> {
 
     public void updateStatus(Document document) {
         document.setStatus(document.getStatus().getNextStatus());
+    }
+
+    public Document convertEstimateToInvoice(Estimate estimate, ConversionDTO conversionDTO) {
+        Document document = convertEstimateToInvoiceService.convert(estimate, conversionDTO);
+        save(document);
+        return document;
     }
 }

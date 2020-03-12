@@ -1,11 +1,15 @@
 package com.frans.bcmanager.controller;
 
 import com.frans.bcmanager.factory.UrlFactory;
+import com.frans.bcmanager.model.ConversionDTO;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
+import com.frans.bcmanager.model.DocumentStatus;
 import com.frans.bcmanager.model.Estimate;
 import com.frans.bcmanager.model.Mode;
+import com.frans.bcmanager.model.Project;
 import com.frans.bcmanager.service.DocumentService;
+import com.frans.bcmanager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,19 +21,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/clients/{client}/estimates")
 public class EstimateController {
 
-    private DocumentService documentService;
-
-    private UrlFactory urlFactory;
+    private final DocumentService documentService;
+    private final ProjectService projectService;
+    private final UrlFactory urlFactory;
 
     @Autowired
     public EstimateController(DocumentService documentService,
+                              ProjectService projectService,
                               UrlFactory urlFactory) {
         this.documentService = documentService;
+        this.projectService = projectService;
         this.urlFactory = urlFactory;
     }
 
@@ -42,10 +49,35 @@ public class EstimateController {
         model.addAttribute("clientId", clientId);
         model.addAttribute("document", document);
         model.addAttribute("documentLine", documentLine);
-        model.addAttribute("mode", Mode.NEW);
-        model.addAttribute("url", urlFactory.newEstimateDocumentLine(clientId, documentId));
-
+        if (document.getStatus() == DocumentStatus.ACCEPTED) {
+            List<Project> projects = projectService.findAll();
+            model.addAttribute("projects", projects);
+            model.addAttribute("conversionDTO", new ConversionDTO(documentService.getNextInvoiceCode()));
+            model.addAttribute("url", urlFactory.convertToInvoice(clientId, documentId));
+        } else {
+            model.addAttribute("mode", Mode.NEW);
+            model.addAttribute("url", urlFactory.newEstimateDocumentLine(clientId, documentId));
+        }
         return "estimate_detail";
+    }
+
+    @PostMapping("/{id}/convertToInvoice")
+    public String convertToInvoice(@Valid @ModelAttribute ConversionDTO conversionDTO,
+                                   BindingResult bindingResult,
+                                   @PathVariable("client") long clientId,
+                                   @PathVariable("id") long documentId,
+                                   Model model) {
+        Estimate document = (Estimate) documentService.find(documentId);
+        if (bindingResult.hasErrors()) {
+            List<Project> projects = projectService.findAll();
+            model.addAttribute("clientId", clientId);
+            model.addAttribute("document", document);
+            model.addAttribute("projects", projects);
+            model.addAttribute("url", urlFactory.convertToInvoice(clientId, documentId));
+            return "estimate_detail";
+        }
+        Document invoice = documentService.convertEstimateToInvoice(document, conversionDTO);
+        return "redirect:" + invoice.getLink();
     }
 
     @GetMapping("/create")
@@ -132,7 +164,6 @@ public class EstimateController {
         return "redirect:" + document.getLink();
     }
 
-
     @GetMapping("/{id}/updateStatus")
     public String updateStatus(@PathVariable("client") long clientId,
                                @PathVariable("id") long id) {
@@ -140,7 +171,6 @@ public class EstimateController {
         documentService.updateStatus(document);
         return "redirect:" + document.getLink();
     }
-
 
     @GetMapping("/{id}/editLine/{documentLineId}")
     public String editEstimateDocumentLine(@PathVariable("client") long clientId,
