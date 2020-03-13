@@ -25,21 +25,23 @@ public class ConvertEstimateToInvoiceService {
                                  .code(conversionDTO.getCode())
                                  .creationDate(conversionDTO.getCreationDate())
                                  .paymentDate(conversionDTO.getPaymentDate())
-                                 .taxRate(conversionDTO.getTaxRate())
+                                 .taxRate(estimate.getTaxRate())
                                  .client(estimate.getClient())
                                  .status(DocumentStatus.NOT_PAID)
                                  .documentLines(documentLines)
+                                 .linkedDocument(estimate)
                                  .build();
         }
         return ProjectInvoice.builder()
                              .code(conversionDTO.getCode())
                              .creationDate(conversionDTO.getCreationDate())
                              .paymentDate(conversionDTO.getPaymentDate())
-                             .taxRate(conversionDTO.getTaxRate())
+                             .taxRate(estimate.getTaxRate())
                              .project(conversionDTO.getProject())
                              .client(estimate.getClient())
                              .status(DocumentStatus.NOT_PAID)
                              .documentLines(documentLines)
+                             .linkedDocument(estimate)
                              .build();
     }
 

@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
-<div class="col-lg-6" th:fragment="form" th:if="${!document.canBeEdited()}">
+<div class="col-lg-6" th:fragment="form" th:if="${!document.canBeEdited() && document.getLinkedDocument()==null}">
     <div class="card mb-3 ">
         <div class="card-header">
             <i class="fas fa-euro-sign">&nbsp;</i>
@@ -18,7 +18,18 @@
                             <th th:text="#{document.code}"></th>
                             <td>
                                 <div class="form-group">
-                                    <input class="form-control" id="code" type="text" th:field="*{code}" readonly/>
+                                    <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
+                                    <input th:if="${conversionDTO.code != ''}"
+                                           class="form-control"
+                                           id="code"
+                                           type="text"
+                                           th:field="*{code}"
+                                           readonly/>
+                                    <input th:if="${conversionDTO.code == ''}"
+                                           class="form-control"
+                                           id="code"
+                                           type="text"
+                                           th:field="*{code}"/>
                                 </div>
                             </td>
                         </tr>
@@ -34,19 +45,6 @@
                                         <option th:each="project : ${projects}"
                                                 th:value="${project.id}"
                                                 th:text="${project.description}">
-                                        </option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th th:text="#{menu.project}"></th>
-                            <td>
-                                <div class="form-group">
-                                    <select class="form-control" th:field="*{taxRate}" id="taxRate">
-                                        <option th:each="rate : ${T(com.frans.bcmanager.enums.TaxRate).values()}"
-                                                th:value="${rate}"
-                                                th:text="${{rate.value}}">
                                         </option>
                                     </select>
                                 </div>

@@ -77,7 +77,7 @@ public class EstimateController {
             return "estimate_detail";
         }
         Document invoice = documentService.convertEstimateToInvoice(document, conversionDTO);
-        return "redirect:" + invoice.getLink();
+        return "redirect:" + invoice.getLink() + "?createSuccess";
     }
 
     @GetMapping("/create")

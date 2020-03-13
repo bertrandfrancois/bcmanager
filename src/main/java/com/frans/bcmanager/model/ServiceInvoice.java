@@ -28,15 +28,15 @@ public class ServiceInvoice extends Document {
     private LocalDate paymentDate;
 
     @Builder
-    public ServiceInvoice(
-                          String code,
+    public ServiceInvoice(String code,
                           LocalDate creationDate,
                           LocalDate paymentDate,
                           TaxRate taxRate,
                           DocumentStatus status,
                           Client client,
-                          List<DocumentLine> documentLines) {
-        super(code, creationDate, taxRate, status, client, documentLines);
+                          List<DocumentLine> documentLines,
+                          Document linkedDocument) {
+        super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
         this.paymentDate = paymentDate;
     }
 

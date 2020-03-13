@@ -3,7 +3,6 @@ package com.frans.bcmanager.model;
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.validation.UniqueCode;
 import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +21,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -70,12 +70,17 @@ public abstract class Document implements Cloneable {
     @JoinColumn(name = "DOCUMENT_ID")
     protected List<DocumentLine> documentLines = List.of();
 
+    @OneToOne
+    @JoinColumn(name = "LINKED_DOCUMENT_ID")
+    private Document linkedDocument;
+
     public Document(String code,
                     LocalDate creationDate,
                     TaxRate taxRate,
                     DocumentStatus status,
                     Client client,
-                    List<DocumentLine> documentLines) {
+                    List<DocumentLine> documentLines,
+                    Document linkedDocument) {
 
         this.code = code;
         this.creationDate = creationDate;
@@ -83,6 +88,7 @@ public abstract class Document implements Cloneable {
         this.status = status;
         this.client = client;
         this.documentLines = documentLines;
+        this.linkedDocument = linkedDocument;
     }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)

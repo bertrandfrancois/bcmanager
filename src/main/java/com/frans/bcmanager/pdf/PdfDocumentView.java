@@ -85,7 +85,7 @@ public class PdfDocumentView extends AbstractPdfView {
         tableTitle.setWidthPercentage(100);
         Image image1;
         try {
-            image1 = Image.getInstance("https://bcmanager.herokuapp.com/images/logo.jpg");
+            image1 = Image.getInstance("src/main/resources/static/images/logo.jpg");
             image1.scalePercent(100f);
             PdfPCell cellLeft = new PdfPCell(image1);
             cellLeft.setBorder(0);

@@ -1,6 +1,6 @@
 package com.frans.bcmanager.model;
 
-import com.frans.bcmanager.enums.TaxRate;
+import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +27,12 @@ public class ConversionDTO {
     @NotNull
     private String code;
 
-    @NotNull
-    private TaxRate taxRate;
-
     public ConversionDTO(String code) {
         this.code = code;
+    }
+
+    @InvoiceCode
+    public String getCode() {
+        return code;
     }
 }

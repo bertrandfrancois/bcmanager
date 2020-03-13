@@ -43,7 +43,8 @@
                         <a data-toggle="modal" data-target="#deleteDocument"
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
                            th:title="#{tooltip.delete}"
-                           id="deleteEstimateAction">
+                           id="deleteEstimateAction"
+                           th:if="${document.linkedDocument == null && document.canBeEdited()}">
                             <i class="fas fa-trash text-white" aria-hidden="true"></i>
                         </a>
                         <a class="btn btn-success btn-sm float-right"
@@ -104,6 +105,14 @@
                                 <tr>
                                     <th th:text="#{document.status}"></th>
                                     <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}"></td>
+                                </tr>
+                                <tr th:if="${document.linkedDocument != null}">
+                                    <th th:text="#{document.linkedInvoice}"></th>
+                                    <td>
+                                        <a th:href="${document.linkedDocument.link}">
+                                            <span th:text="${document.linkedDocument.code}"></span>
+                                        </a>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
