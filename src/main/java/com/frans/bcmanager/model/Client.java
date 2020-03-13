@@ -51,7 +51,7 @@ public class Client {
     private String phoneNumber;
 
     @Email
-    @Size(max = 30)
+    @Size(max = 60)
     @Column(name = "MAIL")
     private String mail;
 

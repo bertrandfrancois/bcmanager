@@ -1,6 +1,7 @@
 package com.frans.bcmanager.pdf;
 
 import com.frans.bcmanager.model.DocumentLine;
+import com.frans.bcmanager.model.Enterprise;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -19,24 +20,15 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Map;
 
-import static com.frans.bcmanager.pdf.DocumentConstants.BIC;
-import static com.frans.bcmanager.pdf.DocumentConstants.CITY;
-import static com.frans.bcmanager.pdf.DocumentConstants.EMAIL;
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_DATE;
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_DOCUMENT_CODE;
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_GREET;
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_INFO;
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_OUTRO;
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_TITLE;
-import static com.frans.bcmanager.pdf.DocumentConstants.IBAN;
 import static com.frans.bcmanager.pdf.DocumentConstants.LEGAL_INFORMATIONS;
 import static com.frans.bcmanager.pdf.DocumentConstants.MIN_HEIGHT;
-import static com.frans.bcmanager.pdf.DocumentConstants.NAME;
-import static com.frans.bcmanager.pdf.DocumentConstants.PHONE_NUMBER;
 import static com.frans.bcmanager.pdf.DocumentConstants.PROJECT;
-import static com.frans.bcmanager.pdf.DocumentConstants.REGISTER_DATE;
-import static com.frans.bcmanager.pdf.DocumentConstants.STREET;
-import static com.frans.bcmanager.pdf.DocumentConstants.TVA;
 import static com.lowagie.text.Element.ALIGN_JUSTIFIED;
 import static com.lowagie.text.Element.ALIGN_LEFT;
 import static com.lowagie.text.Element.ALIGN_MIDDLE;
@@ -49,6 +41,7 @@ public class PdfDocumentView extends AbstractPdfView {
 
     private com.frans.bcmanager.model.Document document;
     private String documentType;
+    private Enterprise enterprise;
     private DecimalFormat twoDecimals;
     private DecimalFormat threeDecimals;
 
@@ -57,6 +50,7 @@ public class PdfDocumentView extends AbstractPdfView {
                                     Document document, PdfWriter writer, HttpServletRequest request,
                                     HttpServletResponse response) throws Exception {
         this.document = (com.frans.bcmanager.model.Document) model.get("document");
+        this.enterprise = (com.frans.bcmanager.model.Enterprise) model.get("enterprise");
         this.documentType = (String) model.get("documentType");
         document.addTitle(this.documentType + " " + this.document.getCode());
         response.addHeader("Content-Disposition", "inline; filename=" + this.documentType + "_" + this.document.getCode() + ".pdf");
@@ -115,24 +109,24 @@ public class PdfDocumentView extends AbstractPdfView {
         String postCode = document.getProject() != null ? document.getProject().getAddress().getPostCode() : "";
         String city = document.getProject() != null ? document.getProject().getAddress().getCity() : "";
 
-        createInfosCell(tableInfo, NAME, true);
+        createInfosCell(tableInfo, enterprise.getName(), true);
         createInfosCell(tableInfo, document.getClient().getLastName() + " " + document.getClient().getFirstName(), true);
-        createInfosCell(tableInfo, STREET, true);
+        createInfosCell(tableInfo, enterprise.getAddress().getStreet(), true);
         createInfosCell(tableInfo, document.getClient().getAddress().getStreet(), true);
-        createInfosCell(tableInfo, CITY, true);
+        createInfosCell(tableInfo, enterprise.getAddress().getCity(), true);
         createInfosCell(tableInfo, document.getClient().getAddress().getPostCode() + " " + document.getClient().getAddress().getCity(),
                         true);
-        createInfosCell(tableInfo, PHONE_NUMBER, true);
+        createInfosCell(tableInfo, enterprise.getPhoneNumber(), true);
         createInfosCell(tableInfo, "Tel. : " + document.getClient().getPhoneNumber(), true);
-        createInfosCell(tableInfo, EMAIL, true);
+        createInfosCell(tableInfo, enterprise.getMail(), true);
         createInfosCell(tableInfo, "Email : " + document.getClient().getMail(), !document.getClient().getMail().isEmpty());
-        createInfosCell(tableInfo, BIC, true);
+        createInfosCell(tableInfo, enterprise.getBicNumber(), true);
         createInfosCell(tableInfo, "N° TVA : " + document.getClient().getTaxNumber(), !document.getClient().getTaxNumber().isEmpty());
-        createInfosCell(tableInfo, IBAN, true);
+        createInfosCell(tableInfo, enterprise.getIbanNumber(), true);
         createInfosCell(tableInfo, "", true);
-        createInfosCell(tableInfo, TVA, true);
+        createInfosCell(tableInfo, enterprise.getTaxNumber(), true);
         createInfosCell(tableInfo, PROJECT, document.getProject() != null);
-        createInfosCell(tableInfo, REGISTER_DATE, true);
+        createInfosCell(tableInfo, enterprise.getRegisterDate().format(ofPattern("dd/MM/yyyy")), true);
         createInfosCell(tableInfo, street, document.getProject() != null);
         createInfosCell(tableInfo, "", true);
         createInfosCell(tableInfo, postCode + " " + city, document.getProject() != null);

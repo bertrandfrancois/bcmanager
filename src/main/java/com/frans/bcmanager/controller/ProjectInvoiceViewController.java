@@ -3,6 +3,7 @@ package com.frans.bcmanager.controller;
 import com.frans.bcmanager.model.ProjectInvoice;
 import com.frans.bcmanager.pdf.PdfDocumentView;
 import com.frans.bcmanager.service.DocumentService;
+import com.frans.bcmanager.service.EnterpriseService;
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,11 @@ import java.util.HashMap;
 public class ProjectInvoiceViewController {
 
     private final DocumentService documentService;
+    private final EnterpriseService enterpriseService;
 
-    public ProjectInvoiceViewController(DocumentService documentService) {
+    public ProjectInvoiceViewController(DocumentService documentService, EnterpriseService enterpriseService) {
         this.documentService = documentService;
+        this.enterpriseService = enterpriseService;
     }
 
     @GetMapping("/display/projectInvoice/{documentId}")
@@ -25,6 +28,7 @@ public class ProjectInvoiceViewController {
         ProjectInvoice document = (ProjectInvoice) documentService.find(id);
         HashMap<String, Object> parameters = Maps.newHashMap();
         parameters.put("document", document);
+        parameters.put("enterprise", enterpriseService.getEnterprise().get());
         parameters.put("documentType", "FACTURE");
 
         return new ModelAndView(new PdfDocumentView(), parameters);
