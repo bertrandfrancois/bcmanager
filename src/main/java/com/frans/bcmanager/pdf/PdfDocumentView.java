@@ -1,5 +1,6 @@
 package com.frans.bcmanager.pdf;
 
+import com.frans.bcmanager.format.StructuredCommunicationFormatter;
 import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Enterprise;
 import com.lowagie.text.Chunk;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Map;
 
 import static com.frans.bcmanager.pdf.DocumentConstants.FONT_DATE;
@@ -44,6 +46,7 @@ public class PdfDocumentView extends AbstractPdfView {
     private Enterprise enterprise;
     private DecimalFormat twoDecimals;
     private DecimalFormat threeDecimals;
+    private StructuredCommunicationFormatter structuredCommunicationFormatter = new StructuredCommunicationFormatter();
 
     @Override
     protected void buildPdfDocument(Map<String, Object> model,
@@ -267,8 +270,7 @@ public class PdfDocumentView extends AbstractPdfView {
                 ofPattern("dd/MM/yyyy")) + ".\n\n" : "";
 
         String com = document.getStructuredCommunication();
-        greet += com != null ? "Communication structurée : +++" + com.substring(0, 3) + "/" + com.substring(3,7) + "/" + com.substring(7,12) + "+++\n\n" : "";
-
+        greet += com != null ? "Communication structurée : " + structuredCommunicationFormatter.print(com, Locale.FRENCH) + "\n\n" : "";
 
         greet += "Nous restons à votre disposition pour toute information complémentaire.\nCordialement,\n\nBoris Bertrand\n\n";
         Chunk phraseGreet = new Chunk(greet);
