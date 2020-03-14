@@ -43,6 +43,7 @@
                       th:object="${projectInvoice}"
                       th:method="post">
                     <input id="documentLines" type="hidden" th:field="*{documentLines}"/>
+                    <input id="structuredCommunication" type="hidden" th:field="*{structuredCommunication}"/>
                     <input id="status" type="hidden" name="status" th:value="NOT_PAID"/>
                     <div class="row">
                         <div class="col-lg-6">

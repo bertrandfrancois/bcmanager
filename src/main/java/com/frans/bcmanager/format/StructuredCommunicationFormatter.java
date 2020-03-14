@@ -9,7 +9,7 @@ public class StructuredCommunicationFormatter implements Formatter<String> {
 
     @Override
     public String parse(String s, Locale locale) throws ParseException {
-        return s;
+        return s.substring(3, 6) + s.substring(7, 11) + s.substring(12, 17);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class StructuredCommunicationFormatter implements Formatter<String> {
         String part2 = s.substring(3, 7);
         String part3 = s.substring(7, 12);
 
-        return "+++" + part1 + "/" + part2 + "/" + part3 +  "+++";
+        return "+++" + part1 + "/" + part2 + "/" + part3 + "+++";
     }
 }
