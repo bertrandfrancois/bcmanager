@@ -114,6 +114,8 @@ public abstract class Document implements Cloneable {
 
     public abstract String getLink();
 
+    public abstract String getStructuredCommunication();
+
     public abstract boolean canBeEdited();
 
     public List<DocumentLine> getDocumentLines() {

@@ -1,6 +1,8 @@
 package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
+import com.frans.bcmanager.format.StructuredCommunication;
+import com.frans.bcmanager.service.StructuredCommunicationFactory;
 import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,6 +29,11 @@ public class ServiceInvoice extends Document {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate paymentDate;
 
+    @Column(name="STRUCTURED_COMMUNICATION")
+    @StructuredCommunication
+    @NotNull
+    private String structuredCommunication;
+
     @Builder
     public ServiceInvoice(String code,
                           LocalDate creationDate,
@@ -38,6 +45,7 @@ public class ServiceInvoice extends Document {
                           Document linkedDocument) {
         super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
         this.paymentDate = paymentDate;
+        this.structuredCommunication = StructuredCommunicationFactory.create(code);
     }
 
     @Override
@@ -59,5 +67,9 @@ public class ServiceInvoice extends Document {
     @Override
     public boolean canBeEdited() {
         return getStatus() == DocumentStatus.NOT_PAID;
+    }
+
+    public String getStructuredCommunication() {
+        return structuredCommunication;
     }
 }

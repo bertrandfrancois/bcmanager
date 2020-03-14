@@ -265,6 +265,11 @@ public class PdfDocumentView extends AbstractPdfView {
     private Paragraph createGreetings() {
         String greet = document.getPaymentDate() != null ? "Date Limite de paiement : " + document.getPaymentDate().format(
                 ofPattern("dd/MM/yyyy")) + ".\n\n" : "";
+
+        String com = document.getStructuredCommunication();
+        greet += com != null ? "Communication structurée : +++" + com.substring(0, 3) + "/" + com.substring(3,7) + "/" + com.substring(7,12) + "+++\n\n" : "";
+
+
         greet += "Nous restons à votre disposition pour toute information complémentaire.\nCordialement,\n\nBoris Bertrand\n\n";
         Chunk phraseGreet = new Chunk(greet);
         phraseGreet.setFont(FONT_GREET);

@@ -27,6 +27,7 @@
                         <tr>
                             <th th:text="#{document.code}"></th>
                             <th th:text="#{document.creationDate}"></th>
+                            <th th:text="#{document.structuredCommunication}"></th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -34,6 +35,7 @@
                         <tr th:each="document : ${documents}">
                             <td th:text="${document.code}" id="code"></td>
                             <td th:text="${#temporals.format(document.creationDate, 'dd/MM/yyyy')}" id="creationDate"></td>
+                            <td th:text="${{document.structuredCommunication}}" id="structuredCommunication"></td>
                             <td>
                                 <a th:href="@{${document.link}}">
                                     <i class="fas fa-arrow-right" aria-hidden="true"></i>

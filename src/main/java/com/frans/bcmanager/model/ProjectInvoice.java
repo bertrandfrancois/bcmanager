@@ -1,6 +1,8 @@
 package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
+import com.frans.bcmanager.format.StructuredCommunication;
+import com.frans.bcmanager.service.StructuredCommunicationFactory;
 import com.frans.bcmanager.validation.InvoiceCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,6 +40,7 @@ public class ProjectInvoice extends Document {
         super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
         this.paymentDate = paymentDate;
         this.project = project;
+        this.structuredCommunication = StructuredCommunicationFactory.create(code);
     }
 
     @Column(name = "PAYMENT_DATE")
@@ -48,6 +51,11 @@ public class ProjectInvoice extends Document {
     @ManyToOne
     @JoinColumn(name = "PROJECT_ID")
     private Project project;
+
+    @Column(name="STRUCTURED_COMMUNICATION")
+    @StructuredCommunication
+    @NotNull
+    private String structuredCommunication;
 
     @Override
     @InvoiceCode
@@ -63,5 +71,9 @@ public class ProjectInvoice extends Document {
     @Override
     public boolean canBeEdited() {
         return getStatus() == DocumentStatus.NOT_PAID;
+    }
+
+    public String getStructuredCommunication() {
+        return structuredCommunication;
     }
 }
