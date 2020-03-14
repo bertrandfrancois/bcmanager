@@ -39,4 +39,8 @@ public class Estimate extends Document implements Cloneable {
     public boolean canBeEdited() {
         return getStatus() == DocumentStatus.NOT_ACCEPTED && getLinkedDocument() == null;
     }
+
+    public boolean canBeConverted() {
+        return getStatus() == DocumentStatus.ACCEPTED && getLinkedDocument() == null;
+    }
 }
