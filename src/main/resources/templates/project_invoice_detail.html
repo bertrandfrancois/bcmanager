@@ -46,6 +46,7 @@
                         <a data-toggle="modal" data-target="#deleteDocument"
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
                            th:title="#{tooltip.delete}"
+                           th:if="${document.canBeEdited()}"
                            id="deleteProjectInvoiceAction">
 
                             <i class="fas fa-trash text-white" aria-hidden="true"></i>

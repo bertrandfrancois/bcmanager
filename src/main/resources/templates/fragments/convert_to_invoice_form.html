@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
-<div class="col-lg-6" th:fragment="form" th:if="${!document.canBeEdited() && document.getLinkedDocument()==null}">
+<div class="col-lg-6" th:fragment="form" th:if="${!document.canBeEdited()}">
     <div class="card mb-3 ">
         <div class="card-header">
             <i class="fas fa-euro-sign">&nbsp;</i>

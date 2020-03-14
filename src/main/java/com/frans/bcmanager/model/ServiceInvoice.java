@@ -55,4 +55,9 @@ public class ServiceInvoice extends Document {
     public String getLink() {
         return "/clients/" + getClient().getId() + "/services/" + getId();
     }
+
+    @Override
+    public boolean canBeEdited() {
+        return getStatus() == DocumentStatus.NOT_PAID;
+    }
 }

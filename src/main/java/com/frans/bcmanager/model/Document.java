@@ -29,8 +29,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.frans.bcmanager.model.DocumentStatus.NOT_ACCEPTED;
-import static com.frans.bcmanager.model.DocumentStatus.NOT_PAID;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 @Entity(name = "DOCUMENTS")
@@ -116,9 +114,7 @@ public abstract class Document implements Cloneable {
 
     public abstract String getLink();
 
-    public boolean canBeEdited() {
-        return status == NOT_ACCEPTED || status == NOT_PAID;
-    }
+    public abstract boolean canBeEdited();
 
     public List<DocumentLine> getDocumentLines() {
         return documentLines.stream()

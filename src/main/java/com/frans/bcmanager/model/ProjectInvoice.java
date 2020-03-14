@@ -60,4 +60,8 @@ public class ProjectInvoice extends Document {
         return "/clients/" + getClient().getId() + "/projects/" + getProject().getId() + "/documents/" + getId();
     }
 
+    @Override
+    public boolean canBeEdited() {
+        return getStatus() == DocumentStatus.NOT_PAID;
+    }
 }

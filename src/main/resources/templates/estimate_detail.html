@@ -44,7 +44,7 @@
                            class="btn btn-danger btn-sm float-right" style="margin-left:5px;"
                            th:title="#{tooltip.delete}"
                            id="deleteEstimateAction"
-                           th:if="${document.linkedDocument == null && document.canBeEdited()}">
+                           th:if="${document.canBeEdited()}">
                             <i class="fas fa-trash text-white" aria-hidden="true"></i>
                         </a>
                         <a class="btn btn-success btn-sm float-right"
