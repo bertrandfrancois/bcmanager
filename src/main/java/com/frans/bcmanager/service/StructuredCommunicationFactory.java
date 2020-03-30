@@ -7,14 +7,14 @@ import static org.apache.commons.lang3.StringUtils.leftPad;
 
 public class StructuredCommunicationFactory {
 
-    public static String create(String documentCode) {
+    public static String create() {
+
         StringBuilder stringBuilder = new StringBuilder();
         Random rand = new Random();
-        stringBuilder.append(documentCode.substring(1));
-
-        stringBuilder.append(leftPad(valueOf(rand.nextInt(1000)), 3, "0"));
-
-        int controlNumber = Integer.parseInt(stringBuilder.toString()) % 97;
+        for (int i = 0; i < 10; i++) {
+            stringBuilder.append(rand.nextInt(10));
+        }
+        long controlNumber = Long.parseLong(stringBuilder.toString()) % 97;
         if (controlNumber == 0) {
             stringBuilder.append("97");
         } else {

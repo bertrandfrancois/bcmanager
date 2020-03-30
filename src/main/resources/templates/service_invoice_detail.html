@@ -115,13 +115,13 @@
                                     <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}"></td>
                                 </tr>
                                 <tr th:if="${document.linkedDocument != null}">
-                                    <th th:text="#{document.linkedEstimate}"></th>
-                                    <td>
-                                        <a th:href="${document.linkedDocument.link}">
-                                            <span th:text="${document.linkedDocument.code}"></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <th th:text="#{document.linkedEstimate}"></th>
+                                <td>
+                                    <a th:href="${document.linkedDocument.link}">
+                                        <span th:text="${document.linkedDocument.code}"></span>
+                                    </a>
+                                </td>
+                            </tr>
                             </table>
                         </div>
                     </div>

@@ -108,7 +108,6 @@ public class DocumentService implements BaseService<Document> {
     public Document convertEstimateToInvoice(Estimate estimate, ConversionDTO conversionDTO) {
         Document invoice = convertEstimateToInvoiceService.convert(estimate, conversionDTO);
         this.save(invoice);
-        //        invoice.setLinkedDocument(estimate);
         estimate.setLinkedDocument(invoice);
         return invoice;
     }

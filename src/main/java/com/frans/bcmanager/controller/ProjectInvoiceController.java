@@ -54,7 +54,7 @@ public class ProjectInvoiceController {
     public String createProjectInvoiceDocument(@PathVariable("client") long clientId,
                                                @PathVariable("project") long projectId,
                                                Model model) {
-        ProjectInvoice projectInvoice = new ProjectInvoice();
+        ProjectInvoice projectInvoice = ProjectInvoice.create();
         model.addAttribute("clientId", clientId);
         model.addAttribute("projectId", projectId);
         model.addAttribute("projectInvoice", projectInvoice);

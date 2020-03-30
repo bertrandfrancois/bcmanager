@@ -48,7 +48,7 @@ public class ServiceInvoiceController {
     @GetMapping("/create")
     public String createServiceInvoiceDocument(@PathVariable("client") long clientId,
                                                Model model) {
-        ServiceInvoice serviceInvoice = new ServiceInvoice();
+        ServiceInvoice serviceInvoice = ServiceInvoice.create();
         model.addAttribute("clientId", clientId);
         model.addAttribute("serviceInvoice", serviceInvoice);
         model.addAttribute("mode", Mode.NEW);

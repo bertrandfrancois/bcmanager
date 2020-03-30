@@ -4,11 +4,9 @@ import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.format.StructuredCommunication;
 import com.frans.bcmanager.service.StructuredCommunicationFactory;
 import com.frans.bcmanager.validation.InvoiceCode;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -16,7 +14,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,20 +24,29 @@ import java.util.List;
 @NoArgsConstructor
 public class ProjectInvoice extends Document {
 
+    private ProjectInvoice(String structuredCommunication) {
+        this.structuredCommunication = structuredCommunication;
+    }
+
+    public static ProjectInvoice create() {
+        return new ProjectInvoice(StructuredCommunicationFactory.create());
+    }
+
     @Builder
     public ProjectInvoice(String code,
                           LocalDate creationDate,
                           LocalDate paymentDate,
                           TaxRate taxRate,
                           DocumentStatus status,
+                          String structuredCommunication,
                           Client client,
                           Project project,
                           List<DocumentLine> documentLines,
                           Document linkedDocument) {
         super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
         this.paymentDate = paymentDate;
+        this.structuredCommunication = structuredCommunication;
         this.project = project;
-        this.structuredCommunication = StructuredCommunicationFactory.create(code);
     }
 
     @Column(name = "PAYMENT_DATE")
@@ -52,9 +58,9 @@ public class ProjectInvoice extends Document {
     @JoinColumn(name = "PROJECT_ID")
     private Project project;
 
-    @Column(name="STRUCTURED_COMMUNICATION")
-    @StructuredCommunication
+    @Column(name = "STRUCTURED_COMMUNICATION")
     @NotNull
+    @StructuredCommunication
     private String structuredCommunication;
 
     @Override

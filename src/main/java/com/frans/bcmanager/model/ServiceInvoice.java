@@ -29,10 +29,18 @@ public class ServiceInvoice extends Document {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate paymentDate;
 
-    @Column(name="STRUCTURED_COMMUNICATION")
-    @StructuredCommunication
+    @Column(name = "STRUCTURED_COMMUNICATION")
     @NotNull
+    @StructuredCommunication
     private String structuredCommunication;
+
+    private ServiceInvoice(String structuredCommunication) {
+        this.structuredCommunication = structuredCommunication;
+    }
+
+    public static ServiceInvoice create(){
+        return new ServiceInvoice(StructuredCommunicationFactory.create());
+    }
 
     @Builder
     public ServiceInvoice(String code,
@@ -40,12 +48,13 @@ public class ServiceInvoice extends Document {
                           LocalDate paymentDate,
                           TaxRate taxRate,
                           DocumentStatus status,
+                          String structuredCommunication,
                           Client client,
                           List<DocumentLine> documentLines,
                           Document linkedDocument) {
         super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
         this.paymentDate = paymentDate;
-        this.structuredCommunication = StructuredCommunicationFactory.create(code);
+        this.structuredCommunication = structuredCommunication;
     }
 
     @Override

@@ -30,6 +30,7 @@ public class ConvertEstimateToInvoiceService {
                                  .status(DocumentStatus.NOT_PAID)
                                  .documentLines(documentLines)
                                  .linkedDocument(estimate)
+                                 .structuredCommunication(StructuredCommunicationFactory.create())
                                  .build();
         }
         return ProjectInvoice.builder()
@@ -42,6 +43,7 @@ public class ConvertEstimateToInvoiceService {
                              .status(DocumentStatus.NOT_PAID)
                              .documentLines(documentLines)
                              .linkedDocument(estimate)
+                             .structuredCommunication(StructuredCommunicationFactory.create())
                              .build();
     }
 
