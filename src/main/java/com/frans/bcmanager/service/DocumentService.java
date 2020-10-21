@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Long.parseLong;
+
 @Service
 @Transactional
 public class DocumentService implements BaseService<Document> {
@@ -61,21 +63,11 @@ public class DocumentService implements BaseService<Document> {
     }
 
     public String getNextEstimateCode() {
-        Optional<String> lastEstimateCode = documentRepository.getLastEstimateCode();
-        if (lastEstimateCode.isPresent()) {
-            long nextNumber = Long.parseLong(lastEstimateCode.get().substring(1)) + 1;
-            return "D" + nextNumber;
-        }
-        return "";
+        return documentRepository.getLastEstimateCode().map(s -> String.valueOf(parseLong(s) + 1)).orElse("");
     }
 
     public String getNextInvoiceCode() {
-        Optional<String> lastInvoiceCode = documentRepository.getLastInvoiceCode();
-        if (lastInvoiceCode.isPresent()) {
-            long nextNumber = Long.parseLong(lastInvoiceCode.get().substring(1)) + 1;
-            return "F" + nextNumber;
-        }
-        return "";
+        return documentRepository.getLastInvoiceCode().map(s -> String.valueOf(parseLong(s) + 1)).orElse("");
     }
 
     public Estimate copyEstimate(long documentId) {

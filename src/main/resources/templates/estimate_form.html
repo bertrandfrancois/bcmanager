@@ -47,7 +47,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="code" th:text="#{document.code}" class="text-primary required"></label>
-                                <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="text-danger"></span>
+                                <span th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}" class="text-danger"></span>
                                 <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
                                 <input th:if="${mode=='EDIT'}" class="form-control" id="code" type="text" th:field="*{code}"/>
                                 <input th:if="${mode=='NEW'}"

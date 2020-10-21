@@ -5,6 +5,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 
 public class TaxNumberValidator implements ConstraintValidator<TaxNumber, String> {
@@ -24,8 +25,8 @@ public class TaxNumberValidator implements ConstraintValidator<TaxNumber, String
     private boolean hasValidCheckNumber(String taxNumber) {
         String base = taxNumber.substring(0, 8);
         String checkNumber = taxNumber.substring(8);
-        int modulo = valueOf(base) % 97;
+        int modulo = parseInt(base) % 97;
 
-        return valueOf(checkNumber) == (97 - modulo);
+        return parseInt(checkNumber) == (97 - modulo);
     }
 }

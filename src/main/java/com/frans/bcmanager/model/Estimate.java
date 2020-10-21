@@ -2,6 +2,8 @@ package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.validation.DocumentCode;
+import com.frans.bcmanager.validation.UniqueEstimateCode;
+import com.frans.bcmanager.validation.UniqueInvoiceCode;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 @DiscriminatorValue("ESTIMATE")
 @NoArgsConstructor
 @Data
+@UniqueEstimateCode
 public class Estimate extends Document implements Cloneable {
 
     @Override

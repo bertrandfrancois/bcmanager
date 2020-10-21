@@ -3,6 +3,7 @@ package com.frans.bcmanager.model;
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.format.StructuredCommunication;
 import com.frans.bcmanager.validation.DocumentCode;
+import com.frans.bcmanager.validation.UniqueInvoiceCode;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@UniqueInvoiceCode
 public class ServiceInvoice extends Document {
 
     @Column(name = "PAYMENT_DATE")

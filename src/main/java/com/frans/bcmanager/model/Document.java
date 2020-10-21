@@ -36,7 +36,6 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 @DiscriminatorColumn(name = "TYPE")
 @Data
 @NoArgsConstructor
-@UniqueInvoiceCode
 public abstract class Document implements Cloneable {
 
     @Id
