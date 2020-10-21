@@ -4,6 +4,8 @@ import com.frans.bcmanager.model.ConversionDTO;
 import com.frans.bcmanager.model.Document;
 import com.frans.bcmanager.model.DocumentLine;
 import com.frans.bcmanager.model.Estimate;
+import com.frans.bcmanager.model.ProjectInvoice;
+import com.frans.bcmanager.model.ServiceInvoice;
 import com.frans.bcmanager.repository.DocumentRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,15 @@ public class DocumentService implements BaseService<Document> {
 
     private final DocumentRepository documentRepository;
     private final ConvertEstimateToInvoiceService convertEstimateToInvoiceService;
+    private final StructuredCommunicationFactory structuredCommunicationFactory;
 
     @Autowired
     public DocumentService(DocumentRepository documentRepository,
-                           ConvertEstimateToInvoiceService convertEstimateToInvoiceService) {
+                           ConvertEstimateToInvoiceService convertEstimateToInvoiceService,
+                           StructuredCommunicationFactory structuredCommunicationFactory) {
         this.documentRepository = documentRepository;
         this.convertEstimateToInvoiceService = convertEstimateToInvoiceService;
+        this.structuredCommunicationFactory = structuredCommunicationFactory;
     }
 
     @Override
@@ -85,6 +90,7 @@ public class DocumentService implements BaseService<Document> {
         Optional<Document> document = documentRepository.findById(documentId);
         Document copy = ((Document) document.get().clone());
         copy.setCode(getNextInvoiceCode());
+        copy.setStructuredCommunication(structuredCommunicationFactory.create());
         documentRepository.save(copy);
         return copy;
     }
@@ -110,5 +116,17 @@ public class DocumentService implements BaseService<Document> {
         this.save(invoice);
         estimate.setLinkedDocument(invoice);
         return invoice;
+    }
+
+    public ProjectInvoice newProjectInvoice() {
+        ProjectInvoice projectInvoice = new ProjectInvoice();
+        projectInvoice.setStructuredCommunication(structuredCommunicationFactory.create());
+        return projectInvoice;
+    }
+
+    public ServiceInvoice newServiceInvoice() {
+        ServiceInvoice serviceInvoice = new ServiceInvoice();
+        serviceInvoice.setStructuredCommunication(structuredCommunicationFactory.create());
+        return serviceInvoice;
     }
 }

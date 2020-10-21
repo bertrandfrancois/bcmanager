@@ -41,6 +41,10 @@ public class Estimate extends Document implements Cloneable {
     }
 
     @Override
+    public void setStructuredCommunication(String structuredCommunication) {
+    }
+
+    @Override
     public boolean canBeEdited() {
         return getStatus() == DocumentStatus.NOT_ACCEPTED && getLinkedDocument() == null;
     }

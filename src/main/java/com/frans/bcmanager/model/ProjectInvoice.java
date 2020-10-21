@@ -28,10 +28,6 @@ public class ProjectInvoice extends Document {
         this.structuredCommunication = structuredCommunication;
     }
 
-    public static ProjectInvoice create() {
-        return new ProjectInvoice(StructuredCommunicationFactory.create());
-    }
-
     @Builder
     public ProjectInvoice(String code,
                           LocalDate creationDate,
@@ -82,4 +78,6 @@ public class ProjectInvoice extends Document {
     public String getStructuredCommunication() {
         return structuredCommunication;
     }
+
+
 }

@@ -116,6 +116,8 @@ public abstract class Document implements Cloneable {
 
     public abstract String getStructuredCommunication();
 
+    public abstract void setStructuredCommunication(String structuredCommunication);
+
     public abstract boolean canBeEdited();
 
     public List<DocumentLine> getDocumentLines() {

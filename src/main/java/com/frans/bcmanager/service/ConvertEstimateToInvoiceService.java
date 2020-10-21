@@ -16,6 +16,12 @@ import java.util.function.Consumer;
 @Service
 public class ConvertEstimateToInvoiceService {
 
+    private final StructuredCommunicationFactory structuredCommunicationFactory;
+
+    public ConvertEstimateToInvoiceService(StructuredCommunicationFactory structuredCommunicationFactory) {
+        this.structuredCommunicationFactory = structuredCommunicationFactory;
+    }
+
     public Document convert(Estimate estimate, ConversionDTO conversionDTO) {
         List<DocumentLine> documentLines = Lists.newArrayList();
         estimate.getDocumentLines().forEach(cloneDocumentLines(documentLines));
@@ -30,7 +36,7 @@ public class ConvertEstimateToInvoiceService {
                                  .status(DocumentStatus.NOT_PAID)
                                  .documentLines(documentLines)
                                  .linkedDocument(estimate)
-                                 .structuredCommunication(StructuredCommunicationFactory.create())
+                                 .structuredCommunication(structuredCommunicationFactory.create())
                                  .build();
         }
         return ProjectInvoice.builder()
@@ -43,7 +49,7 @@ public class ConvertEstimateToInvoiceService {
                              .status(DocumentStatus.NOT_PAID)
                              .documentLines(documentLines)
                              .linkedDocument(estimate)
-                             .structuredCommunication(StructuredCommunicationFactory.create())
+                             .structuredCommunication(structuredCommunicationFactory.create())
                              .build();
     }
 

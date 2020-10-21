@@ -38,10 +38,6 @@ public class ServiceInvoice extends Document {
         this.structuredCommunication = structuredCommunication;
     }
 
-    public static ServiceInvoice create(){
-        return new ServiceInvoice(StructuredCommunicationFactory.create());
-    }
-
     @Builder
     public ServiceInvoice(String code,
                           LocalDate creationDate,

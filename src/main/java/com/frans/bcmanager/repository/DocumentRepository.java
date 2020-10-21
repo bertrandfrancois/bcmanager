@@ -13,6 +13,10 @@ public interface DocumentRepository extends CrudRepository<Document, Long> {
            nativeQuery = true)
     List<Document> findDocumentsByCode(String value);
 
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE d.structured_communication = ?1",
+           nativeQuery = true)
+    List<Document> findDocumentByStructuredCommunication(String structuredCommunication);
+
     @Query(value = "SELECT MAX(document_code) FROM DOCUMENTS d WHERE d.document_code like 'F%'",
            nativeQuery = true)
     Optional<String> getLastInvoiceCode();
