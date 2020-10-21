@@ -1,7 +1,7 @@
 package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
-import com.frans.bcmanager.validation.UniqueCode;
+import com.frans.bcmanager.validation.UniqueInvoiceCode;
 import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +36,7 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 @DiscriminatorColumn(name = "TYPE")
 @Data
 @NoArgsConstructor
-@UniqueCode
+@UniqueInvoiceCode
 public abstract class Document implements Cloneable {
 
     @Id

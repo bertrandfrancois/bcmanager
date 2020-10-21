@@ -7,10 +7,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = UniqueCodeValidator.class)
-@Target(ElementType.TYPE)
+@Constraint(validatedBy = DocumentCodeValidator.class)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueCode {
+public @interface DocumentCode {
 
     String message() default "";
 

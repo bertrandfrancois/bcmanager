@@ -2,8 +2,7 @@ package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.format.StructuredCommunication;
-import com.frans.bcmanager.service.StructuredCommunicationFactory;
-import com.frans.bcmanager.validation.InvoiceCode;
+import com.frans.bcmanager.validation.DocumentCode;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -60,7 +59,7 @@ public class ProjectInvoice extends Document {
     private String structuredCommunication;
 
     @Override
-    @InvoiceCode
+    @DocumentCode
     public String getCode() {
         return super.getCode();
     }
@@ -78,6 +77,4 @@ public class ProjectInvoice extends Document {
     public String getStructuredCommunication() {
         return structuredCommunication;
     }
-
-
 }

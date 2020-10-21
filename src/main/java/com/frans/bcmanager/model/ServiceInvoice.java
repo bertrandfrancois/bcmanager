@@ -2,8 +2,7 @@ package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.format.StructuredCommunication;
-import com.frans.bcmanager.service.StructuredCommunicationFactory;
-import com.frans.bcmanager.validation.InvoiceCode;
+import com.frans.bcmanager.validation.DocumentCode;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,7 +53,7 @@ public class ServiceInvoice extends Document {
     }
 
     @Override
-    @InvoiceCode
+    @DocumentCode
     public String getCode() {
         return super.getCode();
     }

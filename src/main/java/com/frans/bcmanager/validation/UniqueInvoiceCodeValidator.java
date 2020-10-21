@@ -6,23 +6,23 @@ import com.frans.bcmanager.repository.DocumentRepository;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniqueCodeValidator implements ConstraintValidator<UniqueCode, Document> {
+public class UniqueInvoiceCodeValidator implements ConstraintValidator<UniqueInvoiceCode, Document> {
 
     private DocumentRepository documentRepository;
 
-    public UniqueCodeValidator(DocumentRepository documentRepository) {
+    public UniqueInvoiceCodeValidator(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
     }
 
     @Override
-    public void initialize(UniqueCode constraintAnnotation) {
+    public void initialize(UniqueInvoiceCode constraintAnnotation) {
 
     }
 
     @Override
     public boolean isValid(Document document, ConstraintValidatorContext context) {
         return documentRepository
-                .findDocumentsByCode(document.getCode())
+                .findInvoiceByCode(document.getCode())
                 .stream()
                 .allMatch(d -> d.getId().equals(document.getId()));
     }

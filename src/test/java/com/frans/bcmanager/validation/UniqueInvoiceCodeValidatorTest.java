@@ -14,14 +14,14 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-public class UniqueCodeValidatorTest extends MockitoTest {
+public class UniqueInvoiceCodeValidatorTest extends MockitoTest {
 
     private static final String CODE = "CODE";
     private static final long DOCUMENT_ID = 1L;
     private static final long OTHER_DOCUMENT_ID = 2L;
 
     @InjectMocks
-    private UniqueCodeValidator uniqueCodeValidator;
+    private UniqueInvoiceCodeValidator uniqueInvoiceCodeValidator;
 
     @Mock
     private DocumentRepository documentRepository;
@@ -35,34 +35,34 @@ public class UniqueCodeValidatorTest extends MockitoTest {
     @BeforeEach
     public void setUp() {
         when(document.getCode()).thenReturn(CODE);
-        when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of());
+        when(documentRepository.findInvoiceByCode(CODE)).thenReturn(List.of());
     }
     @Test
     public void isValid() {
-        Assertions.assertThat(uniqueCodeValidator.isValid(document, context)).isTrue();
+        Assertions.assertThat(uniqueInvoiceCodeValidator.isValid(document, context)).isTrue();
     }
 
     @Test
     public void isValid_DocumentCodeExist_SameDocumentId_ReturnsTrue() {
         when(document.getId()).thenReturn(DOCUMENT_ID);
-        when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of(existingDocument));
+        when(documentRepository.findInvoiceByCode(CODE)).thenReturn(List.of(existingDocument));
         when(existingDocument.getId()).thenReturn(DOCUMENT_ID);
 
-        Assertions.assertThat(uniqueCodeValidator.isValid(document, context)).isTrue();
+        Assertions.assertThat(uniqueInvoiceCodeValidator.isValid(document, context)).isTrue();
     }
     @Test
     public void isValid_DocumentCodeExist_OtherDocumentId_ReturnsFalse() {
         when(document.getId()).thenReturn(DOCUMENT_ID);
-        when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of(existingDocument));
+        when(documentRepository.findInvoiceByCode(CODE)).thenReturn(List.of(existingDocument));
         when(existingDocument.getId()).thenReturn(OTHER_DOCUMENT_ID);
 
-        Assertions.assertThat(uniqueCodeValidator.isValid(document, context)).isFalse();
+        Assertions.assertThat(uniqueInvoiceCodeValidator.isValid(document, context)).isFalse();
     }
     @Test
     public void isValid_DocumentCodeExist_NewDocument_ReturnsFalse() {
         when(document.getId()).thenReturn(null);
-        when(documentRepository.findDocumentsByCode(CODE)).thenReturn(List.of(existingDocument));
+        when(documentRepository.findInvoiceByCode(CODE)).thenReturn(List.of(existingDocument));
 
-        Assertions.assertThat(uniqueCodeValidator.isValid(document, context)).isFalse();
+        Assertions.assertThat(uniqueInvoiceCodeValidator.isValid(document, context)).isFalse();
     }
 }

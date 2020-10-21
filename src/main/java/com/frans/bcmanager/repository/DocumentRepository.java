@@ -9,19 +9,23 @@ import java.util.Optional;
 
 public interface DocumentRepository extends CrudRepository<Document, Long> {
 
-    @Query(value = "SELECT * FROM DOCUMENTS d WHERE d.document_code = ?1",
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type in ('SERVICE_INVOICE', 'PROJECT_INVOICE') and d.document_code = ?1",
            nativeQuery = true)
-    List<Document> findDocumentsByCode(String value);
+    List<Document> findInvoiceByCode(String value);
+
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type = 'ESTIMATE' and d.document_code = ?1",
+           nativeQuery = true)
+    List<Document> findEstimateByCode(String value);
 
     @Query(value = "SELECT * FROM DOCUMENTS d WHERE d.structured_communication = ?1",
            nativeQuery = true)
     List<Document> findDocumentByStructuredCommunication(String structuredCommunication);
 
-    @Query(value = "SELECT MAX(document_code) FROM DOCUMENTS d WHERE d.document_code like 'F%'",
+    @Query(value = "SELECT MAX(document_code) FROM DOCUMENTS d where type in ('SERVICE_INVOICE', 'PROJECT_INVOICE')",
            nativeQuery = true)
     Optional<String> getLastInvoiceCode();
 
-    @Query(value = "SELECT MAX(document_code) FROM DOCUMENTS d WHERE d.document_code like 'D%'",
+    @Query(value = "SELECT MAX(document_code) FROM DOCUMENTS d WHERE type = 'ESTIMATE'",
            nativeQuery = true)
     Optional<String> getLastEstimateCode();
 

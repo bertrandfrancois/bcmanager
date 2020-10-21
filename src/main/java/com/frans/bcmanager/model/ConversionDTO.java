@@ -1,6 +1,6 @@
 package com.frans.bcmanager.model;
 
-import com.frans.bcmanager.validation.InvoiceCode;
+import com.frans.bcmanager.validation.DocumentCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +31,7 @@ public class ConversionDTO {
         this.code = code;
     }
 
-    @InvoiceCode
+    @DocumentCode
     public String getCode() {
         return code;
     }

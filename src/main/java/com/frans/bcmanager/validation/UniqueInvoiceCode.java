@@ -7,10 +7,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = InvoiceCodeValidator.class)
-@Target(ElementType.METHOD)
+@Constraint(validatedBy = UniqueInvoiceCodeValidator.class)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InvoiceCode {
+public @interface UniqueInvoiceCode {
 
     String message() default "";
 

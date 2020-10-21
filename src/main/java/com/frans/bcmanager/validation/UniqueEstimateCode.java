@@ -7,10 +7,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = EstimateCodeValidator.class)
-@Target(ElementType.METHOD)
+@Constraint(validatedBy = UniqueEstimateCodeValidator.class)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EstimateCode {
+public @interface UniqueEstimateCode {
 
     String message() default "";
 

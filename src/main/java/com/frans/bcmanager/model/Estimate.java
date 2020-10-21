@@ -1,12 +1,15 @@
 package com.frans.bcmanager.model;
 
-import com.frans.bcmanager.validation.EstimateCode;
+import com.frans.bcmanager.enums.TaxRate;
+import com.frans.bcmanager.validation.DocumentCode;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("ESTIMATE")
@@ -25,7 +28,7 @@ public class Estimate extends Document implements Cloneable {
     }
 
     @Override
-    @EstimateCode
+    @DocumentCode
     public String getCode() {
         return super.getCode();
     }
@@ -52,4 +55,16 @@ public class Estimate extends Document implements Cloneable {
     public boolean canBeConverted() {
         return getStatus() == DocumentStatus.ACCEPTED && getLinkedDocument() == null;
     }
+
+    @Builder
+    public Estimate(String code,
+                          LocalDate creationDate,
+                          TaxRate taxRate,
+                          DocumentStatus status,
+                          Client client,
+                          List<DocumentLine> documentLines,
+                          Document linkedDocument) {
+        super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
+    }
+
 }
