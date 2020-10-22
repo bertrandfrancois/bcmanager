@@ -17,7 +17,7 @@
         </ol>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-fw fa-users"></i><span class="text-icon" th:text="#{menu.last.clients}"></span></div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-fw fa-wrench"></i><span class="text-icon" th:text="#{menu.last.projects}"></span></div>
@@ -45,23 +45,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fas fa-fw fa-euro-sign"></i><span class="text-icon" th:text="#{menu.last.documents}"></span></div>
-                    <div class="card-body">
-                        <table class="table">
-                            <tr th:each="document : ${documents}">
-                                <td><span th:text="${document.code}"></span></td>
-                                <td><a th:href="@{${document.link}}"><i class="fas fa-arrow-right" aria-hidden="true"></i></a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="row">
-            <div class="col-lg-4" th:if="${!unpaidDocuments.isEmpty()}">
+            <div class="col-lg-6" th:if="${!unpaidDocuments.isEmpty()}">
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-euro-sign">&nbsp;</i><span class="text-icon" th:text="#{menu.unpaid.invoices}"></span></div>

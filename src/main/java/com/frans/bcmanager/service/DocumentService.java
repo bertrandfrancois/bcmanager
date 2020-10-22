@@ -62,10 +62,6 @@ public class DocumentService implements BaseService<Document> {
         documentRepository.deleteById(id);
     }
 
-    public List<Document> findTop5() {
-        return documentRepository.findTop5ByOrderByIdDesc();
-    }
-
     public List<Document> getUnpaidDocuments() {
         return documentRepository.findUnPaidDocuments();
     }

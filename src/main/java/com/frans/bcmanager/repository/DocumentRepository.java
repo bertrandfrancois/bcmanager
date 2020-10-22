@@ -29,17 +29,17 @@ public interface DocumentRepository extends CrudRepository<Document, Long> {
            nativeQuery = true)
     Optional<String> getLastEstimateCode();
 
-    List<Document> findTop5ByOrderByIdDesc();
-
     @Query(value = "SELECT * FROM DOCUMENTS d WHERE status='NOT_PAID' and payment_date < now()\\:\\:date",
            nativeQuery = true)
     List<Document> findUnPaidDocuments();
 
-    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type in ('SERVICE_INVOICE', 'PROJECT_INVOICE')",
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type in ('SERVICE_INVOICE', 'PROJECT_INVOICE')" +
+                   " ORDER BY document_code DESC",
            nativeQuery = true)
     List<Document> findAllInvoices();
 
-    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type = 'ESTIMATE'",
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type = 'ESTIMATE'" +
+                   " ORDER BY document_code DESC",
            nativeQuery = true)
     List<Document> findAllEstimates();
 }
