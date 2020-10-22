@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head :: head_table"></head>
+
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/home}" th:text="#{menu.home}"></a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="#{menu.estimates}"></span></li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-euro-sign">&nbsp;</i><span class="text-icon" th:text="#{menu.estimates}"></span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th th:text="#{document.code}"></th>
+                            <th th:text="#{document.creationDate}"></th>
+                            <th th:text="#{document.status}"></th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="document : ${documents}">
+                            <td th:text="${document.code}" id="code"></td>
+                            <td th:text="${#temporals.format(document.creationDate, 'dd/MM/yyyy')}" id="creationDate"></td>
+                            <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}" id="status"></td>
+                            <td>
+                                <a th:href="@{${document.link}}">
+                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div th:replace="fragments/modals :: logout"></div>
+
+    <!-- Bootstrap core JavaScript-->
+    <th:block th:include="fragments/scripts :: scripts_table"/>
+</div>
+</body>
+</html>

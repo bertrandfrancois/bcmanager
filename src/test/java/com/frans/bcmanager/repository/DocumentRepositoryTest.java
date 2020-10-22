@@ -146,4 +146,63 @@ public class DocumentRepositoryTest {
         assertThat(repository.findUnPaidDocuments()).containsExactly(projectInvoice);
 
     }
+
+    @Test
+    void findAllInvoices() {
+        ProjectInvoice projectInvoice = ProjectInvoice.builder()
+                                                      .creationDate(now())
+                                                      .paymentDate(now().plusDays(7))
+                                                      .code("2020789")
+                                                      .taxRate(TaxRate.T21)
+                                                      .build();
+
+        ServiceInvoice serviceInvoice = ServiceInvoice.builder()
+                                                      .creationDate(now())
+                                                      .paymentDate(now().plusDays(7))
+                                                      .code("2020456")
+                                                      .taxRate(TaxRate.T21)
+                                                      .build();
+
+        Estimate estimate = Estimate.builder()
+                                    .code("2020124")
+                                    .creationDate(now())
+                                    .taxRate(TaxRate.T21)
+                                    .build();
+
+        repository.save(projectInvoice);
+        repository.save(serviceInvoice);
+        repository.save(estimate);
+
+        assertThat(repository.findAllInvoices()).containsOnly(projectInvoice, serviceInvoice);
+
+    }
+
+    @Test
+    void findAllEstimates() {
+        ProjectInvoice projectInvoice = ProjectInvoice.builder()
+                                                      .creationDate(now())
+                                                      .paymentDate(now().plusDays(7))
+                                                      .code("2020789")
+                                                      .taxRate(TaxRate.T21)
+                                                      .build();
+
+        ServiceInvoice serviceInvoice = ServiceInvoice.builder()
+                                                      .creationDate(now())
+                                                      .paymentDate(now().plusDays(7))
+                                                      .code("2020456")
+                                                      .taxRate(TaxRate.T21)
+                                                      .build();
+
+        Estimate estimate = Estimate.builder()
+                                    .code("2020124")
+                                    .creationDate(now())
+                                    .taxRate(TaxRate.T21)
+                                    .build();
+
+        repository.save(projectInvoice);
+        repository.save(serviceInvoice);
+        repository.save(estimate);
+
+        assertThat(repository.findAllEstimates()).containsOnly(estimate);
+    }
 }

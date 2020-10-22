@@ -34,4 +34,12 @@ public interface DocumentRepository extends CrudRepository<Document, Long> {
     @Query(value = "SELECT * FROM DOCUMENTS d WHERE status='NOT_PAID' and payment_date < now()\\:\\:date",
            nativeQuery = true)
     List<Document> findUnPaidDocuments();
+
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type in ('SERVICE_INVOICE', 'PROJECT_INVOICE')",
+           nativeQuery = true)
+    List<Document> findAllInvoices();
+
+    @Query(value = "SELECT * FROM DOCUMENTS d WHERE type = 'ESTIMATE'",
+           nativeQuery = true)
+    List<Document> findAllEstimates();
 }

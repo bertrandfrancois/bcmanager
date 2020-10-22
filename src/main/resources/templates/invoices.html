@@ -14,11 +14,11 @@
             <li class="breadcrumb-item">
                 <a th:href="@{/home}" th:text="#{menu.home}"></a>
             </li>
-            <li class="breadcrumb-item active"><span th:text="#{menu.documents}"></span></li>
+            <li class="breadcrumb-item active"><span th:text="#{menu.invoices}"></span></li>
         </ol>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-euro-sign">&nbsp;</i><span class="text-icon" th:text="#{menu.documents}"></span>
+                <i class="fas fa-euro-sign">&nbsp;</i><span class="text-icon" th:text="#{menu.invoices}"></span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -28,6 +28,7 @@
                             <th th:text="#{document.code}"></th>
                             <th th:text="#{document.creationDate}"></th>
                             <th th:text="#{document.structuredCommunication}"></th>
+                            <th th:text="#{document.status}"></th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -36,6 +37,7 @@
                             <td th:text="${document.code}" id="code"></td>
                             <td th:text="${#temporals.format(document.creationDate, 'dd/MM/yyyy')}" id="creationDate"></td>
                             <td th:text="${{document.structuredCommunication}}" id="structuredCommunication"></td>
+                            <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}" id="status"></td>
                             <td>
                                 <a th:href="@{${document.link}}">
                                     <i class="fas fa-arrow-right" aria-hidden="true"></i>

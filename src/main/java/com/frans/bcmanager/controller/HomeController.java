@@ -66,11 +66,27 @@ public class HomeController {
         return "projects";
     }
 
+    @GetMapping("/invoices")
+    public String showInvoices(Model model) {
+        List<Document> documents = documentService.findAllInvoices();
+        model.addAttribute("documents", documents);
+
+        return "invoices";
+    }
+
+    @GetMapping("/estimates")
+    public String showEstimates(Model model) {
+        List<Document> documents = documentService.findAllEstimates();
+        model.addAttribute("documents", documents);
+
+        return "estimates";
+    }
+
     @GetMapping("/documents")
     public String showDocuments(Model model) {
         List<Document> documents = documentService.findAll();
         model.addAttribute("documents", documents);
 
-        return "documents";
+        return "invoices";
     }
 }

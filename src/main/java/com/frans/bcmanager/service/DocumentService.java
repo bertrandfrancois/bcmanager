@@ -39,6 +39,14 @@ public class DocumentService implements BaseService<Document> {
         return Lists.newArrayList(documentRepository.findAll());
     }
 
+    public List<Document> findAllInvoices() {
+        return Lists.newArrayList(documentRepository.findAllInvoices());
+    }
+
+    public List<Document> findAllEstimates() {
+        return Lists.newArrayList(documentRepository.findAllEstimates());
+    }
+
     @Override
     public Document save(Document document) {
         return documentRepository.save(document);
