@@ -46,7 +46,7 @@
 <div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="deleteProjectLabel"
      aria-hidden="true" th:fragment="deleteProject">
     <div class="modal-dialog" role="document">
-        <form th:action="@{'./' + ${projectId} + '/delete'}" name="deleteProject" method="post">
+        <form th:action="@{'./' + ${project.id} + '/delete'}" name="deleteProject" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteProjectLabel"><span th:text="#{menu.delete.project}"></span></h5>

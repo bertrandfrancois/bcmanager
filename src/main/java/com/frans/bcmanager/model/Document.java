@@ -1,7 +1,6 @@
 package com.frans.bcmanager.model;
 
 import com.frans.bcmanager.enums.TaxRate;
-import com.frans.bcmanager.validation.UniqueInvoiceCode;
 import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +18,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -67,9 +67,13 @@ public abstract class Document implements Cloneable {
     @JoinColumn(name = "DOCUMENT_ID")
     protected List<DocumentLine> documentLines = List.of();
 
-    @OneToOne
-    @JoinColumn(name = "LINKED_DOCUMENT_ID")
-    private Document linkedDocument;
+    @OneToMany
+    @JoinTable(
+            name = "LINKED_DOCUMENTS",
+            joinColumns = @JoinColumn(name = "DOCUMENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "LINKED_DOCUMENT_ID")
+    )
+    private List<Document> linkedDocuments;
 
     public Document(String code,
                     LocalDate creationDate,
@@ -77,7 +81,7 @@ public abstract class Document implements Cloneable {
                     DocumentStatus status,
                     Client client,
                     List<DocumentLine> documentLines,
-                    Document linkedDocument) {
+                    List<Document> linkedDocuments) {
 
         this.code = code;
         this.creationDate = creationDate;
@@ -85,7 +89,7 @@ public abstract class Document implements Cloneable {
         this.status = status;
         this.client = client;
         this.documentLines = documentLines;
-        this.linkedDocument = linkedDocument;
+        this.linkedDocuments = linkedDocuments;
     }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
@@ -99,12 +103,12 @@ public abstract class Document implements Cloneable {
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public BigDecimal getTotal() {
-        return getSubTotal().add(getSubTotal().multiply(taxRate.getValue()));
+        return getSubTotal().add(getSubTotal().multiply(taxRate.getValue())).setScale(2, RoundingMode.HALF_DOWN);
     }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public BigDecimal getTotalTax() {
-        return getSubTotal().multiply(taxRate.getValue());
+        return getSubTotal().multiply(taxRate.getValue()).setScale(2, RoundingMode.HALF_DOWN);
     }
 
     public abstract LocalDate getPaymentDate();

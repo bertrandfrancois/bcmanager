@@ -17,6 +17,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity(name = "DOCUMENT_LINES")
 @Data
@@ -47,7 +48,7 @@ public class DocumentLine implements Cloneable {
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public BigDecimal getTotal() {
-        return price.multiply(quantity);
+        return price.multiply(quantity).setScale(2, RoundingMode.HALF_DOWN);
     }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)

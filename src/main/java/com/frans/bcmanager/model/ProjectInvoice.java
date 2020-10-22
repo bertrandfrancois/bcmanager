@@ -39,8 +39,8 @@ public class ProjectInvoice extends Document {
                           Client client,
                           Project project,
                           List<DocumentLine> documentLines,
-                          Document linkedDocument) {
-        super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
+                          List<Document> linkedDocuments) {
+        super(code, creationDate, taxRate, status, client, documentLines, linkedDocuments);
         this.paymentDate = paymentDate;
         this.structuredCommunication = structuredCommunication;
         this.project = project;

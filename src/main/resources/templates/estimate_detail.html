@@ -106,12 +106,14 @@
                                     <th th:text="#{document.status}"></th>
                                     <td th:text="#{${{document.status}}}" th:class="${document.status.styleClass}"></td>
                                 </tr>
-                                <tr th:if="${document.linkedDocument != null}">
+                                <tr th:if="${!document.linkedDocuments.isEmpty()}">
                                     <th th:text="#{document.linkedInvoice}"></th>
                                     <td>
-                                        <a th:href="${document.linkedDocument.link}">
-                                            <span th:text="${document.linkedDocument.code}"></span>
-                                        </a>
+                                        <div th:each="linked_doc : ${document.linkedDocuments}">
+                                            <a th:href="${linked_doc.link}">
+                                                <span class="linked_documents" th:text="${linked_doc.code}"></span>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>

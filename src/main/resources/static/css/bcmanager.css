@@ -4,3 +4,6 @@
 .text-icon {
     padding-left:.25em;
 }
+.linked_documents {
+    display: table;
+}

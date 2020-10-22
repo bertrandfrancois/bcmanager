@@ -51,6 +51,21 @@
                             </td>
                         </tr>
                         <tr>
+                            <th th:text="#{document.splitMode}"></th>
+                            <td>
+                                <div class="form-group">
+                                    <span th:if="${#fields.hasErrors('splitMode')}" th:errors="*{splitMode}"
+                                          class="text-danger"></span>
+                                    <select class="form-control" th:field="*{splitMode}" id="splitMode">
+                                        <option th:each="splitMode : ${T(com.frans.bcmanager.enums.SplitMode).values()}"
+                                                th:value="${splitMode}"
+                                                th:text="${{splitMode.value}}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <th th:text="#{document.creationDate}"></th>
                             <td>
                                 <div class="form-group">

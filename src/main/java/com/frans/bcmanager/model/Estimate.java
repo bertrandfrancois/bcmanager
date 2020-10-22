@@ -3,7 +3,6 @@ package com.frans.bcmanager.model;
 import com.frans.bcmanager.enums.TaxRate;
 import com.frans.bcmanager.validation.DocumentCode;
 import com.frans.bcmanager.validation.UniqueEstimateCode;
-import com.frans.bcmanager.validation.UniqueInvoiceCode;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,22 +51,21 @@ public class Estimate extends Document implements Cloneable {
 
     @Override
     public boolean canBeEdited() {
-        return getStatus() == DocumentStatus.NOT_ACCEPTED && getLinkedDocument() == null;
+        return getStatus() == DocumentStatus.NOT_ACCEPTED && getLinkedDocuments().isEmpty();
     }
 
     public boolean canBeConverted() {
-        return getStatus() == DocumentStatus.ACCEPTED && getLinkedDocument() == null;
+        return getStatus() == DocumentStatus.ACCEPTED && getLinkedDocuments().isEmpty();
     }
 
     @Builder
     public Estimate(String code,
-                          LocalDate creationDate,
-                          TaxRate taxRate,
-                          DocumentStatus status,
-                          Client client,
-                          List<DocumentLine> documentLines,
-                          Document linkedDocument) {
-        super(code, creationDate, taxRate, status, client, documentLines, linkedDocument);
+                    LocalDate creationDate,
+                    TaxRate taxRate,
+                    DocumentStatus status,
+                    Client client,
+                    List<DocumentLine> documentLines,
+                    List<Document> linkedDocuments) {
+        super(code, creationDate, taxRate, status, client, documentLines, linkedDocuments);
     }
-
 }

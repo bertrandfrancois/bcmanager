@@ -1,5 +1,6 @@
 package com.frans.bcmanager.model;
 
+import com.frans.bcmanager.enums.SplitMode;
 import com.frans.bcmanager.validation.DocumentCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,9 @@ public class ConversionDTO {
 
     @NotNull
     private String code;
+
+    @NotNull
+    private SplitMode splitMode;
 
     public ConversionDTO(String code) {
         this.code = code;

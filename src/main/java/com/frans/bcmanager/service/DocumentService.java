@@ -108,10 +108,7 @@ public class DocumentService implements BaseService<Document> {
     }
 
     public Document convertEstimateToInvoice(Estimate estimate, ConversionDTO conversionDTO) {
-        Document invoice = convertEstimateToInvoiceService.convert(estimate, conversionDTO);
-        this.save(invoice);
-        estimate.setLinkedDocument(invoice);
-        return invoice;
+        return convertEstimateToInvoiceService.convert(estimate, conversionDTO);
     }
 
     public ProjectInvoice newProjectInvoice() {
@@ -124,5 +121,9 @@ public class DocumentService implements BaseService<Document> {
         ServiceInvoice serviceInvoice = new ServiceInvoice();
         serviceInvoice.setStructuredCommunication(structuredCommunicationFactory.create());
         return serviceInvoice;
+    }
+
+    public void splitInvoices() {
+
     }
 }
