@@ -82,7 +82,7 @@ public class PdfDocumentView extends AbstractPdfView {
         tableTitle.setWidthPercentage(100);
         Image image1;
         try {
-            image1 = Image.getInstance("src/main/resources/static/images/logo.jpg");
+            image1 = Image.getInstance("src/main/resources/static/images/logo_facture.jpg");
             image1.scalePercent(100f);
             PdfPCell cellLeft = new PdfPCell(image1);
             cellLeft.setBorder(0);
@@ -91,7 +91,7 @@ public class PdfDocumentView extends AbstractPdfView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Phrase phraseDate = new Phrase("Namur, le " + document.getCreationDate().format(ofPattern("dd/MM/yyyy")));
+        Phrase phraseDate = new Phrase("Andenne, le " + document.getCreationDate().format(ofPattern("dd/MM/yyyy")));
         phraseDate.setFont(FONT_DATE);
 
         PdfPCell cellRight = new PdfPCell(phraseDate);
@@ -119,17 +119,17 @@ public class PdfDocumentView extends AbstractPdfView {
         createInfosCell(tableInfo, enterprise.getAddress().getCity(), true);
         createInfosCell(tableInfo, document.getClient().getAddress().getPostCode() + " " + document.getClient().getAddress().getCity(),
                         true);
-        createInfosCell(tableInfo, enterprise.getPhoneNumber(), true);
+        createInfosCell(tableInfo, "Tel. : " + enterprise.getPhoneNumber(), true);
         createInfosCell(tableInfo, "Tel. : " + document.getClient().getPhoneNumber(), true);
-        createInfosCell(tableInfo, enterprise.getMail(), true);
+        createInfosCell(tableInfo, "Email : " + enterprise.getMail(), true);
         createInfosCell(tableInfo, "Email : " + document.getClient().getMail(), !document.getClient().getMail().isEmpty());
-        createInfosCell(tableInfo, enterprise.getBicNumber(), true);
+        createInfosCell(tableInfo, "BIC : " + enterprise.getBicNumber(), true);
         createInfosCell(tableInfo, "N° TVA : " + document.getClient().getTaxNumber(), !document.getClient().getTaxNumber().isEmpty());
-        createInfosCell(tableInfo, enterprise.getIbanNumber(), true);
+        createInfosCell(tableInfo, "IBAN : " + enterprise.getIbanNumber(), true);
         createInfosCell(tableInfo, "", true);
-        createInfosCell(tableInfo, enterprise.getTaxNumber(), true);
+        createInfosCell(tableInfo, "N° TVA : " + enterprise.getTaxNumber(), true);
         createInfosCell(tableInfo, PROJECT, document.getProject() != null);
-        createInfosCell(tableInfo, enterprise.getRegisterDate().format(ofPattern("dd/MM/yyyy")), true);
+        createInfosCell(tableInfo, "ENREG. : " + enterprise.getRegisterDate().format(ofPattern("dd/MM/yyyy")), true);
         createInfosCell(tableInfo, street, document.getProject() != null);
         createInfosCell(tableInfo, "", true);
         createInfosCell(tableInfo, postCode + " " + city, document.getProject() != null);
@@ -164,7 +164,7 @@ public class PdfDocumentView extends AbstractPdfView {
         tableHeader.setWidths(new float[]{1f, 2.5f, 1f, 1f, 1.5f, 1f});
 
         createHeaderCell(tableHeader, "POSTE N°", 0, ALIGN_LEFT);
-        createHeaderCell(tableHeader, "TRAVAUX", 0, ALIGN_LEFT);
+        createHeaderCell(tableHeader, "DESCRIPTION", 0, ALIGN_LEFT);
         createHeaderCell(tableHeader, "UNITE", 0, ALIGN_RIGHT);
         createHeaderCell(tableHeader, "PRIX U.", 0, ALIGN_RIGHT);
         createHeaderCell(tableHeader, "QUANTITE", 0, ALIGN_RIGHT);
@@ -272,7 +272,7 @@ public class PdfDocumentView extends AbstractPdfView {
         String com = document.getStructuredCommunication();
         greet += com != null ? "Communication structurée : " + structuredCommunicationFormatter.print(com, Locale.FRENCH) + "\n\n" : "";
 
-        greet += "Nous restons à votre disposition pour toute information complémentaire.\nCordialement,\n\nBoris Bertrand\n\n";
+        greet += "Nous restons à votre disposition pour toute information complémentaire.\nCordialement,\n\nBauduin Eric, Bertrand Boris\n\n";
         Chunk phraseGreet = new Chunk(greet);
         phraseGreet.setFont(FONT_GREET);
         Paragraph paraGreet = new Paragraph();
